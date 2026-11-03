@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRISÉ Perfumes e Cosméticos | Decants Originais</title>
+  <title>PRISÉ Perfumes e Cosméticos</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Cormorant Garamond & Montserrat -->
@@ -54,13 +54,13 @@
         <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-widest text-brand-dark cursor-pointer" onclick="filtrarCategoria('todos')">
           PRISÉ <span class="text-brand-pink font-light italic text-xl md:text-2xl">Perfumes & Cosméticos</span>
         </h1>
-        <p class="text-[9px] uppercase tracking-widest text-neutral-500 font-medium">Decants Importados 100% Originais</p>
+        <p class="text-[9px] uppercase tracking-widest text-neutral-500 font-medium">Decants & Frascos 100% Originais</p>
       </div>
 
-      <!-- Apenas o carrinho fica no topo -->
+      <!-- Carrinho -->
       <button onclick="toggleCarrinho(true)" class="relative p-2.5 text-brand-dark hover:text-brand-pink transition">
         <i data-lucide="shopping-bag" class="w-6 h-6"></i>
-        <span id="cartCount" class="absolute 0 top-0.5 right-0.5 bg-brand-pink text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+        <span id="cartCount" class="absolute top-0.5 right-0.5 bg-brand-pink text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
       </button>
     </div>
   </header>
@@ -69,29 +69,28 @@
   <section class="max-w-6xl mx-auto px-4 mt-4">
     <div class="rounded-2xl bg-gradient-to-r from-[#F8ECE8] via-[#EBD8D0] to-[#F5E2DA] p-6 md:p-12 text-center relative overflow-hidden shadow-sm border border-brand-rose/60">
       <span class="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-brand-gold bg-white/70 px-3.5 py-1 rounded-full shadow-xs">
-        Frascos em 2ml, 5ml e 10ml com Spray
+        Frascos Lacrados e Decants Originais
       </span>
       <h2 class="font-serif text-3xl md:text-5xl font-semibold mt-3 text-brand-dark leading-tight">
         Fragrâncias de Grife na Sua Pele
       </h2>
       <p class="text-xs md:text-sm text-neutral-600 max-w-lg mx-auto mt-2 font-light leading-relaxed">
-        Experimente os perfumes mais desejados do mundo no conforto da sua casa antes de investir no frasco grande.
+        Descubra como cada fragrância se comporta na sua pele. Compre decants ou o frasco grande com total garantia de originalidade.
       </p>
     </div>
   </section>
 
   <!-- ================= BARRA DE BUSCA E FILTROS ================= -->
   <section class="max-w-6xl mx-auto px-4 mt-6">
-    <!-- Busca -->
     <div class="relative max-w-md mx-auto mb-5">
-      <input type="text" id="searchInput" oninput="buscarProdutos()" placeholder="Buscar por perfume, marca ou nota olfativa..." 
+      <input type="text" id="searchInput" oninput="buscarProdutos()" placeholder="Buscar perfume, marca ou nota..." 
              class="w-full pl-10 pr-4 py-2.5 rounded-full border border-brand-rose bg-white text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink shadow-xs">
       <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5"></i>
     </div>
 
     <!-- Categorias -->
     <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar justify-start md:justify-center">
-      <button onclick="filtrarCategoria('todos')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition" data-cat="todos">Todos os Decants</button>
+      <button onclick="filtrarCategoria('todos')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition" data-cat="todos">Todos os Produtos</button>
       <button onclick="filtrarCategoria('feminino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="feminino">Femininos</button>
       <button onclick="filtrarCategoria('masculino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="masculino">Masculinos</button>
     </div>
@@ -100,7 +99,7 @@
   <!-- ================= GRID DE PRODUTOS ================= -->
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-      <!-- Injetado dinamicamente via JS -->
+      <!-- Injetado via JS -->
     </div>
   </main>
 
@@ -109,9 +108,9 @@
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center max-w-2xl mx-auto mb-10">
         <span class="text-brand-pink text-xs uppercase font-bold tracking-widest">Procedência Garantida</span>
-        <h3 class="font-serif text-3xl font-bold text-brand-dark mt-1">Por que escolher os Decants da PRISÉ?</h3>
+        <h3 class="font-serif text-3xl font-bold text-brand-dark mt-1">Garantia & Qualidade PRISÉ</h3>
         <p class="text-neutral-600 text-xs md:text-sm mt-2">
-          Decant é a fração de um perfume retirada do frasco original de grife diretamente para um frasco de vidro menor com borrifador.
+          Seja em frasco fechado ou em decant de bolsa, garantimos a melhor experiência sensorial em perfumaria importada.
         </p>
       </div>
 
@@ -122,7 +121,7 @@
           </div>
           <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">100% Autênticos</h4>
           <p class="text-xs text-neutral-600 leading-relaxed">
-            Nunca trabalhamos com réplicas ou contratipos. Todos os frascos maiores são importados e adquiridos em canais oficiais.
+            Nunca trabalhamos com réplicas ou contratipos. Todos os perfumes são originais, adquiridos de importadores oficiais.
           </p>
         </div>
 
@@ -130,9 +129,9 @@
           <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
             <i data-lucide="sparkles" class="w-6 h-6"></i>
           </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Frascos de Vidro com Spray</h4>
+          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Frascos Especiais com Spray</h4>
           <p class="text-xs text-neutral-600 leading-relaxed">
-            Embalagens de vidro reforçado com válvula spray fina, garantindo dosagem perfeita e conservação ideal do perfume.
+            Nossos decants menores utilizam frascos de vidro reforçado com borrifador em névoa fina, preservando cada nota.
           </p>
         </div>
 
@@ -140,58 +139,69 @@
           <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
             <i data-lucide="gem" class="w-6 h-6"></i>
           </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Mais Fragrâncias por Menos</h4>
+          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Compra Inteligente</h4>
           <p class="text-xs text-neutral-600 leading-relaxed">
-            Com o valor de um único frasco de 100ml, você pode ter 5 a 8 perfumes diferentes para usar em ocasiões específicas.
+            Tenha a liberdade de comprar o frasco original de 100ml ou decants menores para levar na bolsa e em viagens.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= MODAL DE DETALHES DO PRODUTO ================= -->
+  <!-- ================= MODAL COM DESCRIÇÃO COMPLETA DO PRODUTO ================= -->
   <div id="productModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-    <div class="bg-white w-full max-w-2xl rounded-2xl max-h-[90vh] overflow-y-auto p-5 md:p-8 relative shadow-2xl">
+    <div class="bg-white w-full max-w-2xl rounded-2xl max-h-[92vh] overflow-y-auto p-5 md:p-8 relative shadow-2xl">
       <button onclick="fecharModalProduto()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
         <i data-lucide="x" class="w-5 h-5 text-neutral-600"></i>
       </button>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-1">
+        <!-- Imagem -->
         <div>
           <img id="modalImg" src="" alt="" class="w-full h-64 md:h-80 object-cover rounded-xl border border-neutral-100 shadow-inner">
           <div class="mt-3 text-center text-[11px] text-neutral-500 font-medium">
-            🛡️ Fracionado sob ambiente esterilizado e lacrado
+            🛡️ Produto original • Garantia de procedência PRISÉ
           </div>
         </div>
 
+        <!-- Informações e Seleção -->
         <div class="flex flex-col justify-between">
           <div>
             <span id="modalBrand" class="text-xs uppercase font-bold tracking-wider text-brand-pink"></span>
             <h3 id="modalName" class="font-serif text-2xl font-bold text-brand-dark mt-1"></h3>
             <p id="modalCategory" class="text-xs text-neutral-500 capitalize"></p>
 
-            <!-- Seletor de Tamanho (2ml, 5ml, 10ml) -->
+            <!-- Seletor Dinâmico de Tamanhos Disponíveis -->
             <div class="mt-4">
-              <label class="block text-xs font-semibold text-neutral-700 mb-2">Selecione o tamanho do decant:</label>
-              <div class="grid grid-cols-3 gap-2" id="mlOptions"></div>
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">Tamanhos disponíveis:</label>
+              <div class="flex flex-wrap gap-2" id="mlOptions">
+                <!-- Injetado dinamicamente: 100ml, 50ml, 5ml, etc. -->
+              </div>
+            </div>
+
+            <!-- Descrição Completa do Perfume -->
+            <div class="mt-4 bg-brand-nude/70 p-3.5 rounded-xl border border-brand-rose/50">
+              <h4 class="text-[11px] font-bold text-brand-dark uppercase tracking-wider mb-1">Sobre esta Fragrância:</h4>
+              <p id="modalDescricao" class="text-xs text-neutral-700 leading-relaxed font-light"></p>
             </div>
 
             <!-- Pirâmide Olfativa Detalhada -->
-            <div class="mt-5 border-t border-brand-rose pt-3 text-xs space-y-2">
+            <div class="mt-4 border-t border-brand-rose pt-3 text-xs space-y-1.5">
               <p class="font-semibold text-brand-dark uppercase tracking-wider text-[11px]">Pirâmide Olfativa:</p>
-              <div><strong class="text-neutral-700">Notas de Topo:</strong> <span id="modalTopo" class="text-neutral-600"></span></div>
-              <div><strong class="text-neutral-700">Notas de Coração:</strong> <span id="modalCoracao" class="text-neutral-600"></span></div>
-              <div><strong class="text-neutral-700">Notas de Fundo:</strong> <span id="modalFundo" class="text-neutral-600"></span></div>
+              <div><strong class="text-neutral-700">Topo:</strong> <span id="modalTopo" class="text-neutral-600"></span></div>
+              <div><strong class="text-neutral-700">Coração:</strong> <span id="modalCoracao" class="text-neutral-600"></span></div>
+              <div><strong class="text-neutral-700">Fundo:</strong> <span id="modalFundo" class="text-neutral-600"></span></div>
             </div>
           </div>
 
+          <!-- Preço e Adicionar -->
           <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between gap-4">
             <div>
-              <span class="text-[10px] text-neutral-400 uppercase font-medium">Preço</span>
+              <span class="text-[10px] text-neutral-400 uppercase font-medium">Valor selecionado</span>
               <div id="modalSelectedPrice" class="font-serif text-2xl font-bold text-brand-dark">R$ 0,00</div>
             </div>
             <button onclick="adicionarAoCarrinhoModal()" class="flex-1 bg-brand-pink hover:bg-brand-pink/90 text-white font-medium py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition shadow">
-              <i data-lucide="plus" class="w-4 h-4"></i> Adicionar
+              <i data-lucide="plus" class="w-4 h-4"></i> Adicionar ao Pedido
             </button>
           </div>
         </div>
@@ -216,15 +226,15 @@
 
     <!-- Rodapé do Carrinho -->
     <div class="p-4 border-t border-neutral-100 bg-neutral-50/50 space-y-3">
-      <!-- Campo de Cupom -->
+      <!-- Cupom -->
       <div class="flex gap-2">
-        <input type="text" id="couponInput" placeholder="Cupom de desconto (Ex: PRISE10)" 
+        <input type="text" id="couponInput" placeholder="Possui cupom? (Ex: PRISE10)" 
                class="flex-1 px-3 py-2 text-xs border border-brand-rose rounded-lg focus:outline-none uppercase">
         <button onclick="aplicarCupom()" class="bg-brand-dark text-white text-xs px-3 py-2 rounded-lg hover:bg-black transition">Aplicar</button>
       </div>
       <div id="couponStatus" class="text-[11px] font-medium hidden"></div>
 
-      <!-- Resumo Valores -->
+      <!-- Resumo -->
       <div class="space-y-1 text-xs text-neutral-600">
         <div class="flex justify-between">
           <span>Subtotal:</span>
@@ -240,78 +250,147 @@
         </div>
       </div>
 
-      <!-- Formulário Rápido de Entrega -->
+      <!-- Dados de Envio -->
       <div class="space-y-2 pt-2 border-t text-xs">
         <input type="text" id="custName" placeholder="Seu Nome Completo" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
         <input type="text" id="custCity" placeholder="Cidade / Bairro (Para calcular envio)" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
         <select id="custPayment" class="w-full px-3 py-2 border rounded-lg focus:outline-none text-neutral-600">
-          <option value="Pix (Chave Rápida)">Pagamento preferido: Pix (À Vista)</option>
+          <option value="Pix (À Vista)">Pagamento preferido: Pix (À Vista)</option>
           <option value="Cartão de Crédito">Pagamento preferido: Cartão de Crédito</option>
         </select>
       </div>
 
-      <!-- Botão WhatsApp -->
+      <!-- Finalizar WhatsApp -->
       <button onclick="finalizarWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white font-semibold py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition">
         <i data-lucide="message-circle" class="w-4 h-4"></i> Finalizar Compra no WhatsApp
       </button>
     </div>
   </div>
 
-  <!-- ================= MODAL ADMIN (ACESSO POR SENHA) ================= -->
+  <!-- ================= PAINEL ADMIN SUPER FÁCIL (PARA LEIGOS) ================= -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-    <div class="bg-white w-full max-w-xl rounded-2xl max-h-[90vh] overflow-y-auto p-6 relative">
+    <div class="bg-white w-full max-w-xl rounded-2xl max-h-[92vh] overflow-y-auto p-6 relative shadow-2xl">
       <button onclick="fecharAdminModal()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
       <div class="flex items-center justify-between border-b pb-3 mb-4">
         <div>
-          <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel de Gerenciamento PRISÉ</h3>
-          <p class="text-[11px] text-green-600 font-medium">● Acesso autenticado</p>
+          <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel da Loja PRISÉ</h3>
+          <p class="text-[11px] text-green-600 font-medium">● Adicione e remova produtos com facilidade</p>
         </div>
         <button onclick="alterarSenhaAdmin()" class="text-[11px] text-neutral-500 hover:text-brand-pink underline">
           Mudar Senha
         </button>
       </div>
       
-      <!-- Formulário de Novo Produto -->
-      <form id="newProductForm" onsubmit="salvarNovoProduto(event)" class="space-y-3 bg-brand-nude p-4 rounded-xl border border-brand-rose">
-        <h4 class="text-xs font-bold uppercase text-brand-dark tracking-wider">+ Adicionar Novo Perfume</h4>
+      <!-- Formulário Intuitivo -->
+      <form id="newProductForm" onsubmit="salvarNovoProduto(event)" class="space-y-4 bg-brand-nude p-4 rounded-xl border border-brand-rose">
+        <h4 class="text-xs font-bold uppercase text-brand-dark tracking-wider">+ Cadastrar Produto</h4>
         
         <div class="grid grid-cols-2 gap-2 text-xs">
-          <input type="text" id="admName" placeholder="Nome (Ex: Sauvage Elixir)" required class="p-2 rounded border">
-          <input type="text" id="admBrand" placeholder="Marca (Ex: Christian Dior)" required class="p-2 rounded border">
+          <div>
+            <label class="block text-[10px] font-bold text-neutral-600 mb-1">Nome do Perfume:</label>
+            <input type="text" id="admName" placeholder="Ex: For Her EDT" required class="w-full p-2 rounded border bg-white">
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-neutral-600 mb-1">Marca:</label>
+            <input type="text" id="admBrand" placeholder="Ex: Narciso Rodriguez" required class="w-full p-2 rounded border bg-white">
+          </div>
         </div>
 
         <div class="grid grid-cols-2 gap-2 text-xs">
-          <select id="admCategory" class="p-2 rounded border">
-            <option value="feminino">Feminino</option>
-            <option value="masculino">Masculino</option>
-          </select>
-          <input type="url" id="admImg" placeholder="Link da Imagem (URL da foto)" required class="p-2 rounded border">
+          <div>
+            <label class="block text-[10px] font-bold text-neutral-600 mb-1">Categoria:</label>
+            <select id="admCategory" class="w-full p-2 rounded border bg-white">
+              <option value="feminino">Feminino</option>
+              <option value="masculino">Masculino</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-neutral-600 mb-1">Etiqueta de Destaque:</label>
+            <input type="text" id="admTag" placeholder="Ex: Mais Vendido, Frasco Lacrado..." class="w-full p-2 rounded border bg-white">
+          </div>
         </div>
 
-        <!-- Preços por ML -->
-        <div class="grid grid-cols-3 gap-2 text-xs">
-          <input type="number" step="0.5" id="admPrice2ml" placeholder="Preço 2ml (R$)" required class="p-2 rounded border">
-          <input type="number" step="0.5" id="admPrice5ml" placeholder="Preço 5ml (R$)" required class="p-2 rounded border">
-          <input type="number" step="0.5" id="admPrice10ml" placeholder="Preço 10ml (R$)" required class="p-2 rounded border">
+        <!-- FOTO DO CELULAR OU LINK -->
+        <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
+          <label class="block font-bold text-brand-dark text-[11px]">📸 Foto do Perfume:</label>
+          <div class="flex items-center gap-2">
+            <input type="file" id="admFileInput" accept="image/*" onchange="carregarFotoArquivo(event)" class="text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-brand-pink file:text-white hover:file:bg-brand-pink/90 cursor-pointer">
+          </div>
+          <p class="text-[10px] text-neutral-400">Ou se preferir, cole o link direto da imagem:</p>
+          <input type="url" id="admImg" placeholder="https://..." class="w-full p-2 text-xs rounded border bg-neutral-50">
+          <div id="imgPreviewContainer" class="hidden mt-2">
+            <span class="text-[10px] text-neutral-500">Prévia:</span>
+            <img id="imgPreview" src="" class="w-16 h-16 object-cover rounded border mt-1">
+          </div>
         </div>
 
-        <!-- Pirâmide Olfativa -->
-        <input type="text" id="admTopo" placeholder="Notas de Topo (Ex: Bergamota, Mandarina)" class="w-full p-2 text-xs rounded border">
-        <input type="text" id="admCoracao" placeholder="Notas de Coração (Ex: Jasmim, Pimenta)" class="w-full p-2 text-xs rounded border">
-        <input type="text" id="admFundo" placeholder="Notas de Fundo (Ex: Baunilha, Cedro)" class="w-full p-2 text-xs rounded border">
+        <!-- TAMANHOS E PREÇOS FLEXÍVEIS (Preenche só o que tiver!) -->
+        <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
+          <div>
+            <label class="block font-bold text-brand-dark text-[11px]">📏 Tamanhos e Preços Disponíveis:</label>
+            <p class="text-[10px] text-neutral-500">Preencha apenas os tamanhos que tiver em estoque (ex: pode ser só 100ml, ou só 5ml e 10ml, etc.):</p>
+          </div>
 
-        <button type="submit" class="w-full bg-brand-dark text-white text-xs py-2.5 rounded-lg hover:bg-black font-semibold transition">
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <span class="text-[10px] text-neutral-500 font-medium">Tamanho 1:</span>
+              <input type="text" id="tamanhoNome1" placeholder="Ex: 5ml ou 100ml" class="w-full p-1.5 rounded border text-xs">
+            </div>
+            <div>
+              <span class="text-[10px] text-neutral-500 font-medium">Preço (R$):</span>
+              <input type="number" step="0.5" id="tamanhoPreco1" placeholder="Ex: 49.00" class="w-full p-1.5 rounded border text-xs">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <span class="text-[10px] text-neutral-500 font-medium">Tamanho 2 (opcional):</span>
+              <input type="text" id="tamanhoNome2" placeholder="Ex: 10ml ou 50ml" class="w-full p-1.5 rounded border text-xs">
+            </div>
+            <div>
+              <span class="text-[10px] text-neutral-500 font-medium">Preço (R$):</span>
+              <input type="number" step="0.5" id="tamanhoPreco2" placeholder="Ex: 89.00" class="w-full p-1.5 rounded border text-xs">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <span class="text-[10px] text-neutral-500 font-medium">Tamanho 3 (opcional):</span>
+              <input type="text" id="tamanhoNome3" placeholder="Ex: 2ml ou 100ml" class="w-full p-1.5 rounded border text-xs">
+            </div>
+            <div>
+              <span class="text-[10px] text-neutral-500 font-medium">Preço (R$):</span>
+              <input type="number" step="0.5" id="tamanhoPreco3" placeholder="Ex: 25.00" class="w-full p-1.5 rounded border text-xs">
+            </div>
+          </div>
+        </div>
+
+        <!-- DESCRIÇÃO COMPLETA -->
+        <div class="text-xs">
+          <label class="block font-bold text-neutral-700 text-[11px] mb-1">📝 Descrição Completa do Perfume:</label>
+          <textarea id="admDescricao" rows="3" placeholder="Conte como é o cheiro do perfume, se é doce, fresco, para encontros, trabalho, fixação..." class="w-full p-2 rounded border bg-white text-xs"></textarea>
+        </div>
+
+        <!-- PIRÂMIDE OLFATIVA -->
+        <div class="space-y-1.5 text-xs">
+          <label class="block font-bold text-neutral-700 text-[11px]">👃 Pirâmide Olfativa:</label>
+          <input type="text" id="admTopo" placeholder="Notas de Topo (Saída) - Ex: Limão, Bergamota" class="w-full p-2 text-xs rounded border bg-white">
+          <input type="text" id="admCoracao" placeholder="Notas de Coração (Corpo) - Ex: Rosa, Jasmim, Canela" class="w-full p-2 text-xs rounded border bg-white">
+          <input type="text" id="admFundo" placeholder="Notas de Fundo - Ex: Baunilha, Sândalo, Âmbar" class="w-full p-2 text-xs rounded border bg-white">
+        </div>
+
+        <button type="submit" class="w-full bg-brand-dark text-white text-xs py-3 rounded-lg hover:bg-black font-semibold transition shadow">
           Salvar Perfume na Loja
         </button>
       </form>
 
       <!-- Lista de Produtos para Apagar -->
       <div class="mt-6">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-600 mb-2">Perfumes no Catálogo:</h4>
-        <div id="adminProductList" class="space-y-2 max-h-52 overflow-y-auto"></div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-600 mb-2">Perfumes no Catálogo (Clique na lixeira para remover):</h4>
+        <div id="adminProductList" class="space-y-2 max-h-56 overflow-y-auto"></div>
       </div>
     </div>
   </div>
@@ -325,7 +404,7 @@
           PRISÉ <span class="text-brand-pink font-light italic text-lg">Perfumes</span>
         </h4>
         <p class="text-neutral-400 text-xs leading-relaxed">
-          Sua loja de perfumaria e cosméticos importados com foco na experiência através de decants originais.
+          Sua loja de perfumaria e cosméticos importados com foco na experiência através de decants e frascos originais.
         </p>
       </div>
 
@@ -333,8 +412,8 @@
       <div>
         <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Departamentos</h5>
         <ul class="space-y-2 text-neutral-400">
-          <li><button onclick="filtrarCategoria('feminino')" class="hover:text-white transition">Decants Femininos</button></li>
-          <li><button onclick="filtrarCategoria('masculino')" class="hover:text-white transition">Decants Masculinos</button></li>
+          <li><button onclick="filtrarCategoria('feminino')" class="hover:text-white transition">Perfumes Femininos</button></li>
+          <li><button onclick="filtrarCategoria('masculino')" class="hover:text-white transition">Perfumes Masculinos</button></li>
           <li><button onclick="filtrarCategoria('todos')" class="hover:text-white transition">Ver Catálogo Completo</button></li>
         </ul>
       </div>
@@ -388,13 +467,13 @@
 
   <!-- ================= SCRIPTS JS ================= -->
   <script>
-    // 👇 COLOQUE O SEU WHATSAPP AQUI (Com DDD, sem espaços)
+    // 👇 COLOQUE O SEU WHATSAPP AQUI (Com DDD, sem traços ou espaços)
     const SEU_WHATSAPP = "5511999999999"; 
 
-    // Senha padrão de administrador (Pode trocar após logar)
+    // Senha padrão de administrador (Pode ser alterada)
     let ADMIN_PASSWORD = localStorage.getItem('prise_admin_pwd') || "1234";
 
-    // 8 Perfumes Reais Solicitados com Pirâmide Olfativa e Decants
+    // 8 Perfumes Cadastrados com DESCRIÇÃO COMPLETA e TAMANHOS FLEXÍVEIS
     const defaultProducts = [
       {
         id: "p1",
@@ -403,7 +482,8 @@
         category: "feminino",
         tag: "Elegante & Sofisticado",
         img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 25.0, "5ml": 49.0, "10ml": 89.0 },
+        prices: { "5ml": 49.0, "10ml": 89.0, "50ml (Frasco)": 489.0 },
+        descricao: "Uma ode à feminilidade e elegância discreta. O For Her EDT é uma fragrância almiscarada floral inconfundível, com toque aveludado e sensual. Ideal como assinatura olfativa para o trabalho, reuniões e ocasiões especiais.",
         topo: "Flor de Laranjeira Africana, Osmanthus e Bergamota",
         coracao: "Almíscar e Âmbar",
         fundo: "Vetiver, Baunilha e Patchouli"
@@ -415,7 +495,8 @@
         category: "feminino",
         tag: "Fresco Mais Vendido",
         img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 26.0, "5ml": 52.0, "10ml": 95.0 },
+        prices: { "5ml": 52.0, "10ml": 95.0, "100ml (Frasco)": 580.0 },
+        descricao: "A brisa ensolarada do verão mediterrâneo capturada em um frasco. Une o frescor revigorante do limão siciliano à maçã verde crocante. Uma fragrância alegre, luminosa e muito refrescante para dias quentes.",
         topo: "Limão Siciliano e Maçã Granny Smith",
         coracao: "Tagetes e Jasmim",
         fundo: "Madeira de Âmbar e Almíscar"
@@ -427,10 +508,11 @@
         category: "masculino",
         tag: "Ícone Clássico",
         img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 24.0, "5ml": 48.0, "10ml": 88.0 },
+        prices: { "5ml": 48.0, "10ml": 88.0, "75ml (Frasco)": 470.0 },
+        descricao: "Um dos perfumes masculinos mais consagrados de todos os tempos. Le Male é viril, magnético e acolhedor. Abre com a frescura revigorante da hortelã e lavanda e se transforma em uma base doce irresistível de baunilha.",
         topo: "Lavanda, Hortelã, Cardamomo e Bergamota",
         coracao: "Canela, Flor de Laranjeira e Alcarávia",
-        fundo: "Baunilha, Fava Tonka, Âmbar, Sândalo e Cedro"
+        fundo: "Baunilha, Fava Tonka, Âmbar e Sândalo"
       },
       {
         id: "p4",
@@ -439,7 +521,8 @@
         category: "masculino",
         tag: "Balada & Conquista",
         img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 25.0, "5ml": 50.0, "10ml": 92.0 },
+        prices: { "5ml": 50.0, "10ml": 92.0, "100ml (Frasco)": 599.0 },
+        descricao: "Símbolo de extravagância e audácia. 1 Million combina o frescor cítrico da mandarina com notas picantes de canela e uma base marcante de couro e âmbar. Fixação potente, projetada para destacar você em noites e festas.",
         topo: "Mandarina Sanguínea, Toranja e Hortelã",
         coracao: "Canela, Notas Especiadas e Rosa",
         fundo: "Âmbar, Couro, Notas Amadeiradas e Patchouli"
@@ -451,7 +534,8 @@
         category: "feminino",
         tag: "Alegre & Cítrico",
         img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 19.0, "5ml": 38.0, "10ml": 69.0 },
+        prices: { "5ml": 38.0, "10ml": 69.0, "100ml (Frasco)": 399.0 },
+        descricao: "Um coquetel cítrico que transmite pura felicidade. Traz um aroma cintilante de toranja, laranja e groselha, harmonizado com lírio-do-vale e toque adocicado de cana-de-açúcar. Muito elogiado pela leveza.",
         topo: "Toranja, Laranja, Limão e Groselha Vermelha",
         coracao: "Cana-de-Açúcar, Junco, Lírio-do-Vale e Rosa Chá",
         fundo: "Almíscar, Cedro e Notas Amadeiradas"
@@ -461,9 +545,10 @@
         name: "Animale For Men EDT (100ml)",
         brand: "Animale",
         category: "masculino",
-        tag: "Alta Fixação",
+        tag: "Custo-Benefício & Fixação",
         img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 16.0, "5ml": 32.0, "10ml": 58.0 },
+        prices: { "5ml": 32.0, "10ml": 58.0, "100ml (Frasco)": 269.0 },
+        descricao: "Fragrância masculina intensa, envolvente e com fixação surpreendente. Equilibra o frescor da lavanda e gerânio com o calor sedutor do couro e musgo de carvalho. Excelente para uso diário ou eventos marcantes.",
         topo: "Néroli, Limão, Frésia e Gálbano",
         coracao: "Lavanda, Junípero e Gerânio",
         fundo: "Couro, Musgo de Carvalho e Vetiver"
@@ -475,7 +560,8 @@
         category: "feminino",
         tag: "Gourmand Sedutor",
         img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 29.0, "5ml": 58.0, "10ml": 105.0 },
+        prices: { "5ml": 58.0, "10ml": 105.0, "50ml (Frasco)": 540.0 },
+        descricao: "Uma deliciosa sobremesa italiana transformada em perfume. Abre com limões cristalizados suculentos, evolui para flor de laranjeira luminosa e repousa sobre uma baunilha nobre e aconchegante. Doce, refinado e moderno.",
         topo: "Limão Cristalizado Doce",
         coracao: "Flor de Laranjeira e Panna Cotta",
         fundo: "Baunilha de Madagascar"
@@ -487,21 +573,22 @@
         category: "masculino",
         tag: "Campeão de Elogios",
         img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 32.0, "5ml": 68.0, "10ml": 125.0 },
+        prices: { "5ml": 68.0, "10ml": 125.0, "60ml (Frasco)": 620.0 },
+        descricao: "Inspirado no deserto na hora mágica do crepúsculo. Sauvage EDP é fresco, picante e misterioso. A bergamota da Calábria se une à sensualidade da baunilha de Papua-Nova Guiné e ao calor do ambroxan. Rastro inesquecível.",
         topo: "Bergamota da Calábria e Pimenta",
         coracao: "Lavanda, Pimenta de Sichuan e Noz-moscada",
         fundo: "Ambroxan e Baunilha de Papua-Nova Guiné"
       }
     ];
 
-    let products = JSON.parse(localStorage.getItem('prise_products_v1')) || defaultProducts;
+    let products = JSON.parse(localStorage.getItem('prise_products_v2')) || defaultProducts;
     let cart = [];
     let currentModalProduct = null;
-    let selectedMl = '5ml';
+    let selectedMl = '';
     let appliedDiscount = 0;
 
     function saveProducts() {
-      localStorage.setItem('prise_products_v1', JSON.stringify(products));
+      localStorage.setItem('prise_products_v2', JSON.stringify(products));
       renderProducts();
     }
 
@@ -511,12 +598,15 @@
       grid.innerHTML = '';
 
       if (lista.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum perfume encontrado.</div>';
+        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum produto encontrado.</div>';
         return;
       }
 
       lista.forEach(p => {
-        const precoMin = Math.min(...Object.values(p.prices)).toFixed(2).replace('.', ',');
+        const precos = Object.values(p.prices);
+        const precoMin = precos.length > 0 ? Math.min(...precos).toFixed(2).replace('.', ',') : "0,00";
+        const qtdTamanhos = Object.keys(p.prices).length;
+
         const card = document.createElement('div');
         card.className = "bg-white rounded-2xl overflow-hidden border border-brand-rose hover:shadow-md transition duration-300 flex flex-col justify-between";
         card.innerHTML = `
@@ -528,11 +618,11 @@
             <div class="p-3">
               <p class="text-[10px] uppercase font-bold tracking-wider text-brand-pink">${p.brand}</p>
               <h3 class="font-serif font-bold text-sm sm:text-base text-brand-dark line-clamp-1">${p.name}</h3>
-              <p class="text-[10px] text-neutral-400 mt-0.5">Decants de 2ml, 5ml e 10ml</p>
+              <p class="text-[10px] text-neutral-400 mt-0.5">${qtdTamanhos > 1 ? `${qtdTamanhos} opções de tamanho` : Object.keys(p.prices)[0] || 'Original'}</p>
             </div>
           </div>
           <div class="p-3 pt-0">
-            <div class="text-[11px] text-neutral-500 mb-1.5">A partir de <strong class="text-brand-dark text-sm">R$ ${precoMin}</strong></div>
+            <div class="text-[11px] text-neutral-500 mb-1.5">${qtdTamanhos > 1 ? 'A partir de' : 'Valor:'} <strong class="text-brand-dark text-sm">R$ ${precoMin}</strong></div>
             <button onclick="abrirModalProduto('${p.id}')" class="w-full bg-brand-nude hover:bg-brand-rose/50 text-brand-dark text-xs font-semibold py-2 rounded-xl border border-brand-rose/60 transition flex items-center justify-center gap-1">
               Ver Detalhes / Comprar
             </button>
@@ -561,20 +651,18 @@
       }
     }
 
-    // Busca
     function buscarProdutos() {
       const q = document.getElementById('searchInput').value.toLowerCase();
       const filtrados = products.filter(p => 
         p.name.toLowerCase().includes(q) || 
         p.brand.toLowerCase().includes(q) ||
-        (p.topo && p.topo.toLowerCase().includes(q)) ||
-        (p.coracao && p.coracao.toLowerCase().includes(q)) ||
-        (p.fundo && p.fundo.toLowerCase().includes(q))
+        (p.descricao && p.descricao.toLowerCase().includes(q)) ||
+        (p.topo && p.topo.toLowerCase().includes(q))
       );
       renderProducts(filtrados);
     }
 
-    // Modal de Detalhes
+    // ================= MODAL COM DESCRIÇÃO COMPLETA =================
     function abrirModalProduto(id) {
       currentModalProduct = products.find(p => p.id === id);
       if (!currentModalProduct) return;
@@ -584,11 +672,17 @@
       document.getElementById('modalName').innerText = currentModalProduct.name;
       document.getElementById('modalCategory').innerText = "Categoria: " + currentModalProduct.category;
 
+      // Descrição completa
+      document.getElementById('modalDescricao').innerText = currentModalProduct.descricao || "Fragrância importada 100% autêntica com fixação e projeção de alta performance.";
+
       document.getElementById('modalTopo').innerText = currentModalProduct.topo || 'Notas frescas';
       document.getElementById('modalCoracao').innerText = currentModalProduct.coracao || 'Notas florais e especiadas';
       document.getElementById('modalFundo').innerText = currentModalProduct.fundo || 'Madeiras nobres e âmbar';
 
-      selectedMl = '5ml';
+      // Define o primeiro tamanho disponível como selecionado
+      const tamanhos = Object.keys(currentModalProduct.prices);
+      selectedMl = tamanhos[0] || '';
+
       renderBotoesTamanho();
       atualizarPrecoModal();
 
@@ -598,14 +692,20 @@
     function renderBotoesTamanho() {
       const container = document.getElementById('mlOptions');
       container.innerHTML = '';
+      const tamanhos = Object.keys(currentModalProduct.prices);
 
-      ['2ml', '5ml', '10ml'].forEach(ml => {
+      if (tamanhos.length === 0) {
+        container.innerHTML = '<span class="text-xs text-neutral-400">Consulte disponibilidade</span>';
+        return;
+      }
+
+      tamanhos.forEach(ml => {
         const preco = currentModalProduct.prices[ml];
         const btn = document.createElement('button');
         const isSelected = (ml === selectedMl);
 
         btn.type = 'button';
-        btn.className = `py-2.5 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center justify-center transition cursor-pointer ${
+        btn.className = `py-2 px-3 rounded-xl text-xs font-semibold border flex flex-col items-center justify-center transition cursor-pointer min-w-[70px] ${
           isSelected 
             ? 'bg-brand-dark text-white border-brand-dark ring-2 ring-brand-pink shadow' 
             : 'bg-brand-nude hover:bg-brand-rose/40 border-brand-rose text-brand-dark'
@@ -629,7 +729,7 @@
     }
 
     function atualizarPrecoModal() {
-      const preco = currentModalProduct.prices[selectedMl];
+      const preco = currentModalProduct.prices[selectedMl] || 0;
       document.getElementById('modalSelectedPrice').innerText = `R$ ${preco.toFixed(2).replace('.', ',')}`;
     }
 
@@ -639,10 +739,10 @@
 
     // ================= CARRINHO =================
     function adicionarAoCarrinhoModal() {
-      if (!currentModalProduct) return;
+      if (!currentModalProduct || !selectedMl) return;
       
       const itemExistente = cart.find(item => item.id === currentModalProduct.id && item.ml === selectedMl);
-      const preco = currentModalProduct.prices[selectedMl];
+      const preco = currentModalProduct.prices[selectedMl] || 0;
 
       if (itemExistente) {
         itemExistente.qtd += 1;
@@ -698,7 +798,7 @@
             <img src="${item.img}" class="w-12 h-12 object-cover rounded-lg border">
             <div class="flex-1 min-w-0">
               <h4 class="text-xs font-bold text-brand-dark truncate">${item.name}</h4>
-              <p class="text-[10px] text-neutral-500 font-medium">Decant ${item.ml} • R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+              <p class="text-[10px] text-neutral-500 font-medium">${item.ml} • R$ ${item.price.toFixed(2).replace('.', ',')}</p>
               <div class="flex items-center gap-2 mt-1">
                 <button onclick="mudarQtd(${index}, -1)" class="w-5 h-5 bg-white border rounded flex items-center justify-center text-xs hover:bg-neutral-100">-</button>
                 <span class="text-xs font-semibold">${item.qtd}</span>
@@ -764,10 +864,10 @@
       renderCart();
     }
 
-    // ================= FINALIZAR WHATSAPP =================
+    // ================= WHATSAPP =================
     function finalizarWhatsApp() {
       if (cart.length === 0) {
-        alert("Adicione pelo menos um decant ao seu carrinho!");
+        alert("Adicione pelo menos um produto ao seu carrinho!");
         return;
       }
 
@@ -780,27 +880,27 @@
       msg += `--------------------------------------\n`;
       msg += `*Cliente:* ${nome}\n`;
       msg += `*Cidade/Bairro:* ${cidade}\n`;
-      msg += `*Pagamento:* ${pagamento}\n\n`;
-      msg += `*DECANTS ESCOLHIDOS:*\n`;
+      msg += `*Pagamento Escolhido:* ${pagamento}\n\n`;
+      msg += `*PRODUTOS ESCOLHIDOS:*\n`;
 
       cart.forEach(item => {
-        msg += `▪ ${item.qtd}x ${item.name} (${item.brand}) - Decant ${item.ml} | R$ ${(item.price * item.qtd).toFixed(2).replace('.', ',')}\n`;
+        msg += `▪ ${item.qtd}x ${item.name} (${item.brand})\n   Tamanho: *${item.ml}* | R$ ${(item.price * item.qtd).toFixed(2).replace('.', ',')}\n`;
       });
 
       msg += `--------------------------------------\n`;
       if (appliedDiscount > 0) {
-        msg += `*Cupom:* ${appliedDiscount}% OFF aplicado\n`;
+        msg += `*Cupom:* ${appliedDiscount}% OFF\n`;
       }
-      msg += `*TOTAL DO PEDIDO:* ${totalStr}\n\n`;
-      msg += `Olá! Gostaria de fechar o pedido e calcular o envio com a PRISÉ! ✨`;
+      msg += `*VALOR TOTAL:* ${totalStr}\n\n`;
+      msg += `Olá! Gostaria de fechar este pedido e combinar a entrega com a PRISÉ! ✨`;
 
       const link = `https://wa.me/${SEU_WHATSAPP}?text=${encodeURIComponent(msg)}`;
       window.open(link, '_blank');
     }
 
-    // ================= ADMIN ESCONDIDO NO RODAPÉ =================
+    // ================= ADMIN & CARREGAMENTO DE FOTO =================
     function solicitarAcessoAdmin() {
-      const tentativa = prompt("🔒 Área Restrita - PRISÉ\nDigite a senha de acesso:");
+      const tentativa = prompt("🔒 Área do Lojista - PRISÉ\nDigite a senha:");
       if (!tentativa) return;
 
       if (tentativa === ADMIN_PASSWORD) {
@@ -816,7 +916,7 @@
     }
 
     function alterarSenhaAdmin() {
-      const nova = prompt("Digite a NOVA senha para o painel:");
+      const nova = prompt("Digite a NOVA senha:");
       if (nova && nova.trim().length >= 4) {
         ADMIN_PASSWORD = nova.trim();
         localStorage.setItem('prise_admin_pwd', ADMIN_PASSWORD);
@@ -826,19 +926,73 @@
       }
     }
 
+    // Permite que ela escolha a foto do celular ou computador direto
+    function carregarFotoArquivo(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          // Redimensiona para não pesar a memória do celular
+          const canvas = document.createElement('canvas');
+          const maxDim = 600;
+          let w = img.width;
+          let h = img.height;
+          if (w > h) {
+            if (w > maxDim) { h *= maxDim / w; w = maxDim; }
+          } else {
+            if (h > maxDim) { w *= maxDim / h; h = maxDim; }
+          }
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+
+          document.getElementById('admImg').value = dataUrl;
+          document.getElementById('imgPreview').src = dataUrl;
+          document.getElementById('imgPreviewContainer').classList.remove('hidden');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
     function salvarNovoProduto(e) {
       e.preventDefault();
+
+      // Monta os tamanhos que ela preencheu
+      const prices = {};
+      const t1_n = document.getElementById('tamanhoNome1').value.trim();
+      const t1_p = parseFloat(document.getElementById('tamanhoPreco1').value);
+      if (t1_n && !isNaN(t1_p)) prices[t1_n] = t1_p;
+
+      const t2_n = document.getElementById('tamanhoNome2').value.trim();
+      const t2_p = parseFloat(document.getElementById('tamanhoPreco2').value);
+      if (t2_n && !isNaN(t2_p)) prices[t2_n] = t2_p;
+
+      const t3_n = document.getElementById('tamanhoNome3').value.trim();
+      const t3_p = parseFloat(document.getElementById('tamanhoPreco3').value);
+      if (t3_n && !isNaN(t3_p)) prices[t3_n] = t3_p;
+
+      if (Object.keys(prices).length === 0) {
+        alert("Preencha pelo menos um tamanho e preço (ex: Tamanho 1: 100ml e Preço: 350)!");
+        return;
+      }
+
+      const imagemFinal = document.getElementById('admImg').value.trim() || "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop";
+
       const novo = {
         id: "p_" + Date.now(),
         name: document.getElementById('admName').value.trim(),
         brand: document.getElementById('admBrand').value.trim(),
         category: document.getElementById('admCategory').value,
-        img: document.getElementById('admImg').value.trim(),
-        prices: {
-          "2ml": parseFloat(document.getElementById('admPrice2ml').value),
-          "5ml": parseFloat(document.getElementById('admPrice5ml').value),
-          "10ml": parseFloat(document.getElementById('admPrice10ml').value)
-        },
+        tag: document.getElementById('admTag').value.trim(),
+        img: imagemFinal,
+        prices: prices,
+        descricao: document.getElementById('admDescricao').value.trim(),
         topo: document.getElementById('admTopo').value.trim(),
         coracao: document.getElementById('admCoracao').value.trim(),
         fundo: document.getElementById('admFundo').value.trim()
@@ -847,8 +1001,9 @@
       products.unshift(novo);
       saveProducts();
       document.getElementById('newProductForm').reset();
+      document.getElementById('imgPreviewContainer').classList.add('hidden');
       renderAdminList();
-      alert("✓ Perfume adicionado à PRISÉ!");
+      alert("✓ Produto salvo com sucesso na loja!");
     }
 
     function renderAdminList() {
@@ -862,7 +1017,7 @@
             <img src="${p.img}" class="w-8 h-8 rounded object-cover">
             <div>
               <p class="font-bold text-neutral-800">${p.name}</p>
-              <p class="text-[10px] text-neutral-400 capitalize">${p.brand} • ${p.category}</p>
+              <p class="text-[10px] text-neutral-400 capitalize">${p.brand} • ${Object.keys(p.prices).join(', ')}</p>
             </div>
           </div>
           <button onclick="deletarProduto('${p.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-md hover:bg-red-50" title="Apagar perfume">
@@ -875,7 +1030,7 @@
     }
 
     function deletarProduto(id) {
-      if (confirm("Tem certeza que deseja apagar este perfume do catálogo?")) {
+      if (confirm("Tem certeza que deseja apagar este produto da loja?")) {
         products = products.filter(p => p.id !== id);
         saveProducts();
         renderAdminList();
