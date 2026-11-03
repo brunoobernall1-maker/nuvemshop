@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lumière Decants | Perfumes Fracionados de Luxo</title>
+  <title>PRISÉ Perfumes e Cosméticos | Decants Originais</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Cormorant Garamond & Montserrat -->
@@ -22,7 +22,7 @@
               nude: '#FAF5F2',
               rose: '#EBD8D0',
               pink: '#D8A499',
-              dark: '#2B2627',
+              dark: '#262122',
               gold: '#C5A059'
             }
           },
@@ -44,44 +44,38 @@
 
   <!-- ================= BARRA DE AVISO ================= -->
   <div class="bg-brand-pink text-white text-xs py-2 px-4 text-center font-medium tracking-wide">
-    ✨ Use o cupom <span class="font-bold underline cursor-pointer" onclick="aplicarCupomBarra('BEMVINDA10')">BEMVINDA10</span> para 10% OFF no seu primeiro pedido!
+    ✨ Use o cupom <span class="font-bold underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</span> para 10% OFF no seu primeiro pedido!
   </div>
 
   <!-- ================= CABEÇALHO ================= -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-rose">
     <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
       <div>
-        <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider text-brand-dark cursor-pointer" onclick="filtrarCategoria('todos')">
-          LUMIÈRE <span class="text-brand-pink font-light italic">Decants</span>
+        <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-widest text-brand-dark cursor-pointer" onclick="filtrarCategoria('todos')">
+          PRISÉ <span class="text-brand-pink font-light italic text-xl md:text-2xl">Perfumes & Cosméticos</span>
         </h1>
-        <p class="text-[9px] uppercase tracking-widest text-neutral-500">Fragrâncias Importadas 100% Originais</p>
+        <p class="text-[9px] uppercase tracking-widest text-neutral-500 font-medium">Decants Importados 100% Originais</p>
       </div>
 
-      <div class="flex items-center space-x-3">
-        <!-- Botão Admin Protegido -->
-        <button onclick="solicitarAcessoAdmin()" class="text-xs bg-brand-rose/40 hover:bg-brand-rose px-2.5 py-1.5 rounded-full flex items-center gap-1 transition text-neutral-700" title="Área Restrita do Lojista">
-          <i data-lucide="lock" class="w-3.5 h-3.5 text-brand-pink"></i>
-          <span class="hidden sm:inline">Admin</span>
-        </button>
-
-        <!-- Botão Carrinho -->
-        <button onclick="toggleCarrinho(true)" class="relative p-2 text-brand-dark hover:text-brand-pink transition">
-          <i data-lucide="shopping-bag" class="w-6 h-6"></i>
-          <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-pink text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
-        </button>
-      </div>
+      <!-- Apenas o carrinho fica no topo -->
+      <button onclick="toggleCarrinho(true)" class="relative p-2.5 text-brand-dark hover:text-brand-pink transition">
+        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+        <span id="cartCount" class="absolute 0 top-0.5 right-0.5 bg-brand-pink text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+      </button>
     </div>
   </header>
 
   <!-- ================= BANNER / HERO ================= -->
   <section class="max-w-6xl mx-auto px-4 mt-4">
-    <div class="rounded-2xl bg-gradient-to-r from-[#F7EBE7] via-[#EBD8D0] to-[#F3DDD5] p-6 md:p-12 text-center relative overflow-hidden shadow-sm border border-brand-rose/50">
-      <span class="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-brand-gold bg-white/60 px-3 py-1 rounded-full">Decants Lacrados • 2ml, 5ml e 10ml</span>
+    <div class="rounded-2xl bg-gradient-to-r from-[#F8ECE8] via-[#EBD8D0] to-[#F5E2DA] p-6 md:p-12 text-center relative overflow-hidden shadow-sm border border-brand-rose/60">
+      <span class="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-brand-gold bg-white/70 px-3.5 py-1 rounded-full shadow-xs">
+        Frascos em 2ml, 5ml e 10ml com Spray
+      </span>
       <h2 class="font-serif text-3xl md:text-5xl font-semibold mt-3 text-brand-dark leading-tight">
-        O luxo das fragrâncias de nicho <br class="hidden sm:block">ao seu alcance
+        Fragrâncias de Grife na Sua Pele
       </h2>
-      <p class="text-xs md:text-sm text-neutral-600 max-w-lg mx-auto mt-2 font-light">
-        Não compre frascos grandes às cegas. Teste na sua pele, descubra a fixação e monte sua coleção dos sonhos.
+      <p class="text-xs md:text-sm text-neutral-600 max-w-lg mx-auto mt-2 font-light leading-relaxed">
+        Experimente os perfumes mais desejados do mundo no conforto da sua casa antes de investir no frasco grande.
       </p>
     </div>
   </section>
@@ -91,17 +85,15 @@
     <!-- Busca -->
     <div class="relative max-w-md mx-auto mb-5">
       <input type="text" id="searchInput" oninput="buscarProdutos()" placeholder="Buscar por perfume, marca ou nota olfativa..." 
-             class="w-full pl-10 pr-4 py-2.5 rounded-full border border-brand-rose bg-white text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink">
+             class="w-full pl-10 pr-4 py-2.5 rounded-full border border-brand-rose bg-white text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink shadow-xs">
       <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5"></i>
     </div>
 
     <!-- Categorias -->
     <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar justify-start md:justify-center">
-      <button onclick="filtrarCategoria('todos')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition" data-cat="todos">Todos</button>
-      <button onclick="filtrarCategoria('feminino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="feminino">Decants Femininos</button>
-      <button onclick="filtrarCategoria('masculino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="masculino">Decants Masculinos</button>
-      <button onclick="filtrarCategoria('arabe')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="arabe">Árabes Virais</button>
-      <button onclick="filtrarCategoria('nicho')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="nicho">Nicho Exclusivo</button>
+      <button onclick="filtrarCategoria('todos')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition" data-cat="todos">Todos os Decants</button>
+      <button onclick="filtrarCategoria('feminino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="feminino">Femininos</button>
+      <button onclick="filtrarCategoria('masculino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="masculino">Masculinos</button>
     </div>
   </section>
 
@@ -112,14 +104,14 @@
     </div>
   </main>
 
-  <!-- ================= SEÇÃO SOBRE NÓS / O QUE SÃO DECANTS ================= -->
+  <!-- ================= SEÇÃO SOBRE NÓS / DECANTS ================= -->
   <section class="bg-white border-y border-brand-rose py-12 md:py-16">
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-brand-pink text-xs uppercase font-bold tracking-widest">Garantia & Procedência</span>
-        <h3 class="font-serif text-3xl font-bold text-brand-dark mt-1">O que são Decants e como funciona?</h3>
+        <span class="text-brand-pink text-xs uppercase font-bold tracking-widest">Procedência Garantida</span>
+        <h3 class="font-serif text-3xl font-bold text-brand-dark mt-1">Por que escolher os Decants da PRISÉ?</h3>
         <p class="text-neutral-600 text-xs md:text-sm mt-2">
-          Um decant é uma fração retirada diretamente do frasco original de grife e transferida para um frasco de vidro menor, com borrifador de alta performance.
+          Decant é a fração de um perfume retirada do frasco original de grife diretamente para um frasco de vidro menor com borrifador.
         </p>
       </div>
 
@@ -128,9 +120,9 @@
           <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
             <i data-lucide="shield-check" class="w-6 h-6"></i>
           </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">100% Originais</h4>
+          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">100% Autênticos</h4>
           <p class="text-xs text-neutral-600 leading-relaxed">
-            Nunca trabalhamos com réplicas ou contra-tipos. O líquido é exatamente o mesmo do perfume importado de loja oficial.
+            Nunca trabalhamos com réplicas ou contratipos. Todos os frascos maiores são importados e adquiridos em canais oficiais.
           </p>
         </div>
 
@@ -138,19 +130,19 @@
           <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
             <i data-lucide="sparkles" class="w-6 h-6"></i>
           </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Frascos de Alta Qualidade</h4>
+          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Frascos de Vidro com Spray</h4>
           <p class="text-xs text-neutral-600 leading-relaxed">
-            Nossos frascos são de vidro especial com spray em névoa fina, preservando todas as notas olfativas sem vazar na sua bolsa.
+            Embalagens de vidro reforçado com válvula spray fina, garantindo dosagem perfeita e conservação ideal do perfume.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl bg-brand-nude border border-brand-rose/60 text-center">
           <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
-            <i data-lucide="badge-dollar-sign" class="w-6 h-6"></i>
+            <i data-lucide="gem" class="w-6 h-6"></i>
           </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Economia Inteligente</h4>
+          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Mais Fragrâncias por Menos</h4>
           <p class="text-xs text-neutral-600 leading-relaxed">
-            Um decant de 5ml rende cerca de 75 a 80 borrifadas — tempo mais que suficiente para você decidir se vale a pena investir no frasco grande.
+            Com o valor de um único frasco de 100ml, você pode ter 5 a 8 perfumes diferentes para usar em ocasiões específicas.
           </p>
         </div>
       </div>
@@ -168,7 +160,7 @@
         <div>
           <img id="modalImg" src="" alt="" class="w-full h-64 md:h-80 object-cover rounded-xl border border-neutral-100 shadow-inner">
           <div class="mt-3 text-center text-[11px] text-neutral-500 font-medium">
-            🛡️ Fracionado do frasco regular sob ambiente esterilizado
+            🛡️ Fracionado sob ambiente esterilizado e lacrado
           </div>
         </div>
 
@@ -178,12 +170,10 @@
             <h3 id="modalName" class="font-serif text-2xl font-bold text-brand-dark mt-1"></h3>
             <p id="modalCategory" class="text-xs text-neutral-500 capitalize"></p>
 
-            <!-- Seletor de Tamanho Corrigido -->
+            <!-- Seletor de Tamanho (2ml, 5ml, 10ml) -->
             <div class="mt-4">
-              <label class="block text-xs font-semibold text-neutral-700 mb-2">Escolha a volumetria:</label>
-              <div class="grid grid-cols-3 gap-2" id="mlOptions">
-                <!-- Botões interativos injetados dinamicamente -->
-              </div>
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">Selecione o tamanho do decant:</label>
+              <div class="grid grid-cols-3 gap-2" id="mlOptions"></div>
             </div>
 
             <!-- Pirâmide Olfativa Detalhada -->
@@ -197,11 +187,11 @@
 
           <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between gap-4">
             <div>
-              <span class="text-[10px] text-neutral-400 uppercase">Preço selecionado</span>
+              <span class="text-[10px] text-neutral-400 uppercase font-medium">Preço</span>
               <div id="modalSelectedPrice" class="font-serif text-2xl font-bold text-brand-dark">R$ 0,00</div>
             </div>
-            <button onclick="adicionarAoCarrinhoModal()" class="flex-1 bg-brand-pink hover:bg-brand-pink/90 text-white font-medium py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition">
-              <i data-lucide="plus" class="w-4 h-4"></i> Adicionar ao Pedido
+            <button onclick="adicionarAoCarrinhoModal()" class="flex-1 bg-brand-pink hover:bg-brand-pink/90 text-white font-medium py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition shadow">
+              <i data-lucide="plus" class="w-4 h-4"></i> Adicionar
             </button>
           </div>
         </div>
@@ -211,11 +201,10 @@
 
   <!-- ================= GAVETA DO CARRINHO ================= -->
   <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
-    <!-- Topo -->
     <div class="p-4 border-b border-brand-rose flex items-center justify-between bg-brand-nude">
       <div class="flex items-center gap-2">
         <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-pink"></i>
-        <h3 class="font-serif text-xl font-bold text-brand-dark">Seu Pedido</h3>
+        <h3 class="font-serif text-xl font-bold text-brand-dark">Seu Pedido PRISÉ</h3>
       </div>
       <button onclick="toggleCarrinho(false)" class="p-1 rounded-full hover:bg-brand-rose/50">
         <i data-lucide="x" class="w-5 h-5"></i>
@@ -229,7 +218,7 @@
     <div class="p-4 border-t border-neutral-100 bg-neutral-50/50 space-y-3">
       <!-- Campo de Cupom -->
       <div class="flex gap-2">
-        <input type="text" id="couponInput" placeholder="Possui cupom? (Ex: BEMVINDA10)" 
+        <input type="text" id="couponInput" placeholder="Cupom de desconto (Ex: PRISE10)" 
                class="flex-1 px-3 py-2 text-xs border border-brand-rose rounded-lg focus:outline-none uppercase">
         <button onclick="aplicarCupom()" class="bg-brand-dark text-white text-xs px-3 py-2 rounded-lg hover:bg-black transition">Aplicar</button>
       </div>
@@ -254,10 +243,10 @@
       <!-- Formulário Rápido de Entrega -->
       <div class="space-y-2 pt-2 border-t text-xs">
         <input type="text" id="custName" placeholder="Seu Nome Completo" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
-        <input type="text" id="custCity" placeholder="Cidade / Bairro (Para cálculo de frete)" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
+        <input type="text" id="custCity" placeholder="Cidade / Bairro (Para calcular envio)" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
         <select id="custPayment" class="w-full px-3 py-2 border rounded-lg focus:outline-none text-neutral-600">
-          <option value="Pix (Chave Rápida)">Preferência: Pix (À Vista)</option>
-          <option value="Cartão de Crédito">Preferência: Cartão de Crédito</option>
+          <option value="Pix (Chave Rápida)">Pagamento preferido: Pix (À Vista)</option>
+          <option value="Cartão de Crédito">Pagamento preferido: Cartão de Crédito</option>
         </select>
       </div>
 
@@ -268,7 +257,7 @@
     </div>
   </div>
 
-  <!-- ================= MODAL ADMIN (COM SENHA DE SEGURANÇA) ================= -->
+  <!-- ================= MODAL ADMIN (ACESSO POR SENHA) ================= -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
     <div class="bg-white w-full max-w-xl rounded-2xl max-h-[90vh] overflow-y-auto p-6 relative">
       <button onclick="fecharAdminModal()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
@@ -277,31 +266,29 @@
 
       <div class="flex items-center justify-between border-b pb-3 mb-4">
         <div>
-          <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel de Decants</h3>
-          <p class="text-[11px] text-green-600 font-medium">● Acesso autorizado com senha</p>
+          <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel de Gerenciamento PRISÉ</h3>
+          <p class="text-[11px] text-green-600 font-medium">● Acesso autenticado</p>
         </div>
         <button onclick="alterarSenhaAdmin()" class="text-[11px] text-neutral-500 hover:text-brand-pink underline">
-          Trocar Senha
+          Mudar Senha
         </button>
       </div>
       
       <!-- Formulário de Novo Produto -->
       <form id="newProductForm" onsubmit="salvarNovoProduto(event)" class="space-y-3 bg-brand-nude p-4 rounded-xl border border-brand-rose">
-        <h4 class="text-xs font-bold uppercase text-brand-dark tracking-wider">+ Cadastrar Novo Perfume</h4>
+        <h4 class="text-xs font-bold uppercase text-brand-dark tracking-wider">+ Adicionar Novo Perfume</h4>
         
         <div class="grid grid-cols-2 gap-2 text-xs">
-          <input type="text" id="admName" placeholder="Nome (Ex: Delina Exclusif)" required class="p-2 rounded border">
-          <input type="text" id="admBrand" placeholder="Marca (Ex: Parfums de Marly)" required class="p-2 rounded border">
+          <input type="text" id="admName" placeholder="Nome (Ex: Sauvage Elixir)" required class="p-2 rounded border">
+          <input type="text" id="admBrand" placeholder="Marca (Ex: Christian Dior)" required class="p-2 rounded border">
         </div>
 
         <div class="grid grid-cols-2 gap-2 text-xs">
           <select id="admCategory" class="p-2 rounded border">
             <option value="feminino">Feminino</option>
             <option value="masculino">Masculino</option>
-            <option value="arabe">Árabe</option>
-            <option value="nicho">Nicho</option>
           </select>
-          <input type="url" id="admImg" placeholder="Link da Foto do Perfume (URL)" required class="p-2 rounded border">
+          <input type="url" id="admImg" placeholder="Link da Imagem (URL da foto)" required class="p-2 rounded border">
         </div>
 
         <!-- Preços por ML -->
@@ -312,12 +299,12 @@
         </div>
 
         <!-- Pirâmide Olfativa -->
-        <input type="text" id="admTopo" placeholder="Notas de Topo (Ex: Ruibarbo, Bergamota)" class="w-full p-2 text-xs rounded border">
-        <input type="text" id="admCoracao" placeholder="Notas de Coração (Ex: Rosa Turca, Peônia)" class="w-full p-2 text-xs rounded border">
-        <input type="text" id="admFundo" placeholder="Notas de Fundo (Ex: Baunilha, Almíscar)" class="w-full p-2 text-xs rounded border">
+        <input type="text" id="admTopo" placeholder="Notas de Topo (Ex: Bergamota, Mandarina)" class="w-full p-2 text-xs rounded border">
+        <input type="text" id="admCoracao" placeholder="Notas de Coração (Ex: Jasmim, Pimenta)" class="w-full p-2 text-xs rounded border">
+        <input type="text" id="admFundo" placeholder="Notas de Fundo (Ex: Baunilha, Cedro)" class="w-full p-2 text-xs rounded border">
 
         <button type="submit" class="w-full bg-brand-dark text-white text-xs py-2.5 rounded-lg hover:bg-black font-semibold transition">
-          Salvar Perfume no Catálogo
+          Salvar Perfume na Loja
         </button>
       </form>
 
@@ -334,16 +321,12 @@
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
       <!-- Coluna 1: Sobre -->
       <div class="space-y-3">
-        <h4 class="font-serif text-xl font-bold text-white tracking-wider">
-          LUMIÈRE <span class="text-brand-pink font-light italic">Decants</span>
+        <h4 class="font-serif text-2xl font-bold text-white tracking-widest">
+          PRISÉ <span class="text-brand-pink font-light italic text-lg">Perfumes</span>
         </h4>
         <p class="text-neutral-400 text-xs leading-relaxed">
-          Especialistas em fracionamento de perfumes importados e de nicho. Proporcionamos a experiência de usar as melhores fragrâncias do mundo de forma acessível.
+          Sua loja de perfumaria e cosméticos importados com foco na experiência através de decants originais.
         </p>
-        <div class="flex items-center gap-3 pt-2 text-neutral-400">
-          <a href="#" class="hover:text-brand-pink transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-          <a href="#" class="hover:text-brand-pink transition"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
-        </div>
       </div>
 
       <!-- Coluna 2: Navegação -->
@@ -352,57 +335,55 @@
         <ul class="space-y-2 text-neutral-400">
           <li><button onclick="filtrarCategoria('feminino')" class="hover:text-white transition">Decants Femininos</button></li>
           <li><button onclick="filtrarCategoria('masculino')" class="hover:text-white transition">Decants Masculinos</button></li>
-          <li><button onclick="filtrarCategoria('arabe')" class="hover:text-white transition">Perfumes Árabes Virais</button></li>
-          <li><button onclick="filtrarCategoria('nicho')" class="hover:text-white transition">Perfumes de Nicho</button></li>
+          <li><button onclick="filtrarCategoria('todos')" class="hover:text-white transition">Ver Catálogo Completo</button></li>
         </ul>
       </div>
 
       <!-- Coluna 3: Atendimento -->
       <div>
-        <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Atendimento ao Cliente</h5>
+        <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Atendimento</h5>
         <ul class="space-y-2 text-neutral-400">
-          <li>Segunda a Sexta: 09h às 19h</li>
-          <li>Sábado: 09h às 14h</li>
+          <li>Segunda a Sábado: 09h às 19h</li>
           <li class="flex items-center gap-1.5 text-white pt-1">
-            <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-pink"></i>
-            Suporte via WhatsApp
-          </li>
-          <li class="flex items-center gap-1.5 text-white">
-            <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-pink"></i>
-            contato@lumieredecants.com.br
+            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-brand-pink"></i>
+            Suporte direto via WhatsApp
           </li>
         </ul>
       </div>
 
-      <!-- Coluna 4: Segurança & Pagamentos -->
+      <!-- Coluna 4: Envio & Garantia -->
       <div>
-        <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Segurança & Envio</h5>
+        <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Envios & Segurança</h5>
         <div class="space-y-2 text-neutral-400">
           <p class="flex items-center gap-1.5">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-green-400"></i> Envio Seguro com Código de Rastreio
+            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-green-400"></i> Envio com Rastreamento
           </p>
           <p class="flex items-center gap-1.5">
-            <i data-lucide="shield" class="w-3.5 h-3.5 text-brand-pink"></i> Embalagens com Plástico Bolha Reforçado
+            <i data-lucide="shield" class="w-3.5 h-3.5 text-brand-pink"></i> Embalagens Antivazamento
           </p>
-          <div class="pt-3">
-            <span class="text-[10px] text-neutral-500 uppercase block mb-1.5">Formas de Pagamento:</span>
+          <div class="pt-2">
+            <span class="text-[10px] text-neutral-500 uppercase block mb-1">Pagamentos:</span>
             <div class="flex gap-2 text-neutral-300 font-mono text-[10px]">
               <span class="border border-neutral-700 px-2 py-1 rounded bg-neutral-800">PIX</span>
               <span class="border border-neutral-700 px-2 py-1 rounded bg-neutral-800">CARTÃO</span>
-              <span class="border border-neutral-700 px-2 py-1 rounded bg-neutral-800">PARCELADO</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Linha Final de Copyright -->
-    <div class="border-t border-neutral-800 pt-6 text-center text-neutral-500 text-[11px]">
-      <p>© 2026 Lumière Decants. Todos os direitos reservados. Fotos meramente ilustrativas dos frascos originais.</p>
+    <!-- Linha Final com o Botão Admin ESCONDIDO/DISCRETO -->
+    <div class="border-t border-neutral-800 pt-6 max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-neutral-500 text-[11px] gap-2">
+      <p>© 2026 PRISÉ Perfumes e Cosméticos. Todos os direitos reservados.</p>
+      
+      <!-- BOTÃO ADMIN DISCRETO (Quase invisível no canto) -->
+      <button onclick="solicitarAcessoAdmin()" class="opacity-25 hover:opacity-100 transition text-neutral-500 hover:text-brand-pink flex items-center gap-1 text-[10px] cursor-pointer" title="Área Restrita">
+        <i data-lucide="lock" class="w-3 h-3"></i> Acesso Restrito
+      </button>
     </div>
   </footer>
 
-  <!-- Overlay para fechar carrinho ao clicar fora -->
+  <!-- Overlay carrinho -->
   <div id="cartOverlay" onclick="toggleCarrinho(false)" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
 
   <!-- ================= SCRIPTS JS ================= -->
@@ -410,73 +391,121 @@
     // 👇 COLOQUE O SEU WHATSAPP AQUI (Com DDD, sem espaços)
     const SEU_WHATSAPP = "5511999999999"; 
 
-    // Senha padrão de administrador (Pode ser alterada pelo próprio painel)
-    let ADMIN_PASSWORD = localStorage.getItem('admin_pwd') || "1234";
+    // Senha padrão de administrador (Pode trocar após logar)
+    let ADMIN_PASSWORD = localStorage.getItem('prise_admin_pwd') || "1234";
 
-    // Catálogo inicial com pirâmide olfativa completa
+    // 8 Perfumes Reais Solicitados com Pirâmide Olfativa e Decants
     const defaultProducts = [
       {
-        id: "1",
-        name: "Delina Exclusif",
-        brand: "Parfums de Marly",
+        id: "p1",
+        name: "For Her EDT (50ml)",
+        brand: "Narciso Rodriguez",
         category: "feminino",
-        tag: "Nicho Luxo",
+        tag: "Elegante & Sofisticado",
         img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 45.0, "5ml": 95.0, "10ml": 175.0 },
-        topo: "Lichia, Pera e Bergamota",
-        coracao: "Rosa Turca, Oud e Incenso",
-        fundo: "Baunilha, Âmbar e Madeiras"
-      },
-      {
-        id: "2",
-        name: "Khamrah",
-        brand: "Lattafa",
-        category: "arabe",
-        tag: "Viral no TikTok",
-        img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
         prices: { "2ml": 25.0, "5ml": 49.0, "10ml": 89.0 },
-        topo: "Canela, Noz-moscada e Bergamota",
-        coracao: "Tâmaras, Pralinê e Tuberosa",
-        fundo: "Baunilha, Fava Tonka e Benjoim"
+        topo: "Flor de Laranjeira Africana, Osmanthus e Bergamota",
+        coracao: "Almíscar e Âmbar",
+        fundo: "Vetiver, Baunilha e Patchouli"
       },
       {
-        id: "3",
-        name: "Baccarat Rouge 540",
-        brand: "Maison Francis Kurkdjian",
-        category: "nicho",
-        tag: "Mais Vendido",
+        id: "p2",
+        name: "Light Blue EDP",
+        brand: "Dolce & Gabbana",
+        category: "feminino",
+        tag: "Fresco Mais Vendido",
+        img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 26.0, "5ml": 52.0, "10ml": 95.0 },
+        topo: "Limão Siciliano e Maçã Granny Smith",
+        coracao: "Tagetes e Jasmim",
+        fundo: "Madeira de Âmbar e Almíscar"
+      },
+      {
+        id: "p3",
+        name: "Le Male EDT (75ml)",
+        brand: "Jean Paul Gaultier",
+        category: "masculino",
+        tag: "Ícone Clássico",
         img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 55.0, "5ml": 120.0, "10ml": 220.0 },
-        topo: "Açafrão e Jasmim",
-        coracao: "Amberwood e Âmbar Cinzento",
-        fundo: "Resina de Abeto e Cedro"
+        prices: { "2ml": 24.0, "5ml": 48.0, "10ml": 88.0 },
+        topo: "Lavanda, Hortelã, Cardamomo e Bergamota",
+        coracao: "Canela, Flor de Laranjeira e Alcarávia",
+        fundo: "Baunilha, Fava Tonka, Âmbar, Sândalo e Cedro"
       },
       {
-        id: "4",
-        name: "Sauvage Elixir",
-        brand: "Dior",
+        id: "p4",
+        name: "1 Million EDT (100ml)",
+        brand: "Paco Rabanne",
+        category: "masculino",
+        tag: "Balada & Conquista",
+        img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 25.0, "5ml": 50.0, "10ml": 92.0 },
+        topo: "Mandarina Sanguínea, Toranja e Hortelã",
+        coracao: "Canela, Notas Especiadas e Rosa",
+        fundo: "Âmbar, Couro, Notas Amadeiradas e Patchouli"
+      },
+      {
+        id: "p5",
+        name: "I Love Love EDT (100ml)",
+        brand: "Moschino",
+        category: "feminino",
+        tag: "Alegre & Cítrico",
+        img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 19.0, "5ml": 38.0, "10ml": 69.0 },
+        topo: "Toranja, Laranja, Limão e Groselha Vermelha",
+        coracao: "Cana-de-Açúcar, Junco, Lírio-do-Vale e Rosa Chá",
+        fundo: "Almíscar, Cedro e Notas Amadeiradas"
+      },
+      {
+        id: "p6",
+        name: "Animale For Men EDT (100ml)",
+        brand: "Animale",
         category: "masculino",
         tag: "Alta Fixação",
+        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 16.0, "5ml": 32.0, "10ml": 58.0 },
+        topo: "Néroli, Limão, Frésia e Gálbano",
+        coracao: "Lavanda, Junípero e Gerânio",
+        fundo: "Couro, Musgo de Carvalho e Vetiver"
+      },
+      {
+        id: "p7",
+        name: "Devotion EDP (50ml)",
+        brand: "Dolce & Gabbana",
+        category: "feminino",
+        tag: "Gourmand Sedutor",
+        img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 29.0, "5ml": 58.0, "10ml": 105.0 },
+        topo: "Limão Cristalizado Doce",
+        coracao: "Flor de Laranjeira e Panna Cotta",
+        fundo: "Baunilha de Madagascar"
+      },
+      {
+        id: "p8",
+        name: "Sauvage EDP (60ml)",
+        brand: "Christian Dior",
+        category: "masculino",
+        tag: "Campeão de Elogios",
         img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
-        prices: { "2ml": 38.0, "5ml": 79.0, "10ml": 149.0 },
-        topo: "Canela, Noz-moscada e Cardamomo",
-        coracao: "Lavanda Francesa",
-        fundo: "Alcaçuz, Sândalo e Patchouli"
+        prices: { "2ml": 32.0, "5ml": 68.0, "10ml": 125.0 },
+        topo: "Bergamota da Calábria e Pimenta",
+        coracao: "Lavanda, Pimenta de Sichuan e Noz-moscada",
+        fundo: "Ambroxan e Baunilha de Papua-Nova Guiné"
       }
     ];
 
-    let products = JSON.parse(localStorage.getItem('decants_products')) || defaultProducts;
+    let products = JSON.parse(localStorage.getItem('prise_products_v1')) || defaultProducts;
     let cart = [];
     let currentModalProduct = null;
-    let selectedMl = '5ml'; // Padrão
-    let appliedDiscount = 0; // %
+    let selectedMl = '5ml';
+    let appliedDiscount = 0;
 
     function saveProducts() {
-      localStorage.setItem('decants_products', JSON.stringify(products));
+      localStorage.setItem('prise_products_v1', JSON.stringify(products));
       renderProducts();
     }
 
-    // Renderizar Perfumes na tela
+    // Renderizar Perfumes
     function renderProducts(lista = products) {
       const grid = document.getElementById('productGrid');
       grid.innerHTML = '';
@@ -499,7 +528,7 @@
             <div class="p-3">
               <p class="text-[10px] uppercase font-bold tracking-wider text-brand-pink">${p.brand}</p>
               <h3 class="font-serif font-bold text-sm sm:text-base text-brand-dark line-clamp-1">${p.name}</h3>
-              <p class="text-[10px] text-neutral-400 mt-0.5">Decants originais de 2, 5 e 10ml</p>
+              <p class="text-[10px] text-neutral-400 mt-0.5">Decants de 2ml, 5ml e 10ml</p>
             </div>
           </div>
           <div class="p-3 pt-0">
@@ -514,7 +543,7 @@
       lucide.createIcons();
     }
 
-    // Filtros por Categoria
+    // Filtrar Categoria
     function filtrarCategoria(cat) {
       document.querySelectorAll('.cat-btn').forEach(btn => {
         if(btn.dataset.cat === cat) {
@@ -545,7 +574,7 @@
       renderProducts(filtrados);
     }
 
-    // ================= MODAL DO PRODUTO & SELEÇÃO DE TAMANHO =================
+    // Modal de Detalhes
     function abrirModalProduto(id) {
       currentModalProduct = products.find(p => p.id === id);
       if (!currentModalProduct) return;
@@ -555,18 +584,17 @@
       document.getElementById('modalName').innerText = currentModalProduct.name;
       document.getElementById('modalCategory').innerText = "Categoria: " + currentModalProduct.category;
 
-      document.getElementById('modalTopo').innerText = currentModalProduct.topo || 'Notas cítricas e frescas';
-      document.getElementById('modalCoracao').innerText = currentModalProduct.coracao || 'Notas florais e especiarias';
+      document.getElementById('modalTopo').innerText = currentModalProduct.topo || 'Notas frescas';
+      document.getElementById('modalCoracao').innerText = currentModalProduct.coracao || 'Notas florais e especiadas';
       document.getElementById('modalFundo').innerText = currentModalProduct.fundo || 'Madeiras nobres e âmbar';
 
-      selectedMl = '5ml'; // Padrão selecionado
+      selectedMl = '5ml';
       renderBotoesTamanho();
       atualizarPrecoModal();
 
       document.getElementById('productModal').classList.remove('hidden');
     }
 
-    // Renderiza e cuida do clique nos botões de 2ml, 5ml e 10ml
     function renderBotoesTamanho() {
       const container = document.getElementById('mlOptions');
       container.innerHTML = '';
@@ -592,8 +620,8 @@
 
         btn.onclick = () => {
           selectedMl = ml;
-          renderBotoesTamanho(); // Atualiza a cor visual dos botões
-          atualizarPrecoModal();  // Atualiza o preço final
+          renderBotoesTamanho();
+          atualizarPrecoModal();
         };
 
         container.appendChild(btn);
@@ -609,7 +637,7 @@
       document.getElementById('productModal').classList.add('hidden');
     }
 
-    // ================= CARRINHO & CUPONS =================
+    // ================= CARRINHO =================
     function adicionarAoCarrinhoModal() {
       if (!currentModalProduct) return;
       
@@ -724,7 +752,7 @@
       const status = document.getElementById('couponStatus');
       status.classList.remove('hidden');
 
-      if (code === "BEMVINDA10" || code === "PRIMEIRACOMPRA") {
+      if (code === "PRISE10" || code === "PRIMEIRACOMPRA") {
         appliedDiscount = 10;
         status.className = "text-[11px] font-semibold text-green-600";
         status.innerText = "✓ Cupom de 10% OFF aplicado com sucesso!";
@@ -748,12 +776,12 @@
       const pagamento = document.getElementById('custPayment').value;
       const totalStr = document.getElementById('cartTotal').innerText;
 
-      let msg = `*🛍️ NOVO PEDIDO - LUMIÈRE DECANTS*\n`;
+      let msg = `*🛍️ NOVO PEDIDO - PRISÉ PERFUMES E COSMÉTICOS*\n`;
       msg += `--------------------------------------\n`;
       msg += `*Cliente:* ${nome}\n`;
-      msg += `*Local/Cidade:* ${cidade}\n`;
-      msg += `*Pagamento Escolhido:* ${pagamento}\n\n`;
-      msg += `*ITENS ESCOLHIDOS:*\n`;
+      msg += `*Cidade/Bairro:* ${cidade}\n`;
+      msg += `*Pagamento:* ${pagamento}\n\n`;
+      msg += `*DECANTS ESCOLHIDOS:*\n`;
 
       cart.forEach(item => {
         msg += `▪ ${item.qtd}x ${item.name} (${item.brand}) - Decant ${item.ml} | R$ ${(item.price * item.qtd).toFixed(2).replace('.', ',')}\n`;
@@ -761,25 +789,25 @@
 
       msg += `--------------------------------------\n`;
       if (appliedDiscount > 0) {
-        msg += `*Cupom Aplicado:* ${appliedDiscount}% OFF\n`;
+        msg += `*Cupom:* ${appliedDiscount}% OFF aplicado\n`;
       }
-      msg += `*VALOR TOTAL:* ${totalStr}\n\n`;
-      msg += `Olá! Gostaria de confirmar a disponibilidade e o valor do frete para envio! ✨`;
+      msg += `*TOTAL DO PEDIDO:* ${totalStr}\n\n`;
+      msg += `Olá! Gostaria de fechar o pedido e calcular o envio com a PRISÉ! ✨`;
 
       const link = `https://wa.me/${SEU_WHATSAPP}?text=${encodeURIComponent(msg)}`;
       window.open(link, '_blank');
     }
 
-    // ================= PAINEL ADMIN COM PROTEÇÃO POR SENHA =================
+    // ================= ADMIN ESCONDIDO NO RODAPÉ =================
     function solicitarAcessoAdmin() {
-      const tentativa = prompt("🔒 Área Restrita da Loja\nDigite a senha de administrador:");
+      const tentativa = prompt("🔒 Área Restrita - PRISÉ\nDigite a senha de acesso:");
       if (!tentativa) return;
 
       if (tentativa === ADMIN_PASSWORD) {
         document.getElementById('adminModal').classList.remove('hidden');
         renderAdminList();
       } else {
-        alert("❌ Senha incorreta! Acesso negado.");
+        alert("❌ Senha incorreta!");
       }
     }
 
@@ -791,17 +819,17 @@
       const nova = prompt("Digite a NOVA senha para o painel:");
       if (nova && nova.trim().length >= 4) {
         ADMIN_PASSWORD = nova.trim();
-        localStorage.setItem('admin_pwd', ADMIN_PASSWORD);
-        alert("✓ Senha atualizada com sucesso!");
+        localStorage.setItem('prise_admin_pwd', ADMIN_PASSWORD);
+        alert("✓ Senha atualizada!");
       } else {
-        alert("Senha muito curta. Digite no mínimo 4 caracteres.");
+        alert("A senha deve ter no mínimo 4 caracteres.");
       }
     }
 
     function salvarNovoProduto(e) {
       e.preventDefault();
       const novo = {
-        id: Date.now().toString(),
+        id: "p_" + Date.now(),
         name: document.getElementById('admName').value.trim(),
         brand: document.getElementById('admBrand').value.trim(),
         category: document.getElementById('admCategory').value,
@@ -820,7 +848,7 @@
       saveProducts();
       document.getElementById('newProductForm').reset();
       renderAdminList();
-      alert("✓ Perfume adicionado com sucesso ao catálogo!");
+      alert("✓ Perfume adicionado à PRISÉ!");
     }
 
     function renderAdminList() {
