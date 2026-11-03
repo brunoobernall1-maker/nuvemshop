@@ -38,13 +38,44 @@
     body { background-color: #FAF5F2; }
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Animação Contínua da Barra Superior */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
   </style>
 </head>
 <body class="font-sans text-brand-dark antialiased">
 
-  <!-- ================= BARRA DE AVISO ================= -->
-  <div class="bg-brand-pink text-white text-xs py-2 px-4 text-center font-medium tracking-wide">
-    ✨ Use o cupom <span class="font-bold underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</span> para 10% OFF no seu primeiro pedido!
+  <!-- ================= BARRA DE AVISO ANIMADA (MARQUEE) ================= -->
+  <div class="bg-brand-pink text-white text-xs py-2 overflow-hidden border-b border-brand-rose/40 select-none">
+    <div class="animate-marquee whitespace-nowrap flex items-center gap-8 font-medium tracking-wide">
+      <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF no seu primeiro pedido!</span>
+      <span>•</span>
+      <span>🛡️ Fragrâncias 100% Originais e Fracionamento Lacrado</span>
+      <span>•</span>
+      <span>📦 Enviamos com Seguro para Todo o Brasil</span>
+      <span>•</span>
+      <span>💬 Atendimento Personalizado no WhatsApp</span>
+      <span>•</span>
+      <!-- Repetição idêntica para o loop infinito sem cortes -->
+      <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF no seu primeiro pedido!</span>
+      <span>•</span>
+      <span>🛡️ Fragrâncias 100% Originais e Fracionamento Lacrado</span>
+      <span>•</span>
+      <span>📦 Enviamos com Seguro para Todo o Brasil</span>
+      <span>•</span>
+      <span>💬 Atendimento Personalizado no WhatsApp</span>
+    </div>
   </div>
 
   <!-- ================= CABEÇALHO ================= -->
@@ -156,7 +187,6 @@
       </button>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-1">
-        <!-- Imagem -->
         <div>
           <img id="modalImg" src="" alt="" class="w-full h-64 md:h-80 object-cover rounded-xl border border-neutral-100 shadow-inner">
           <div class="mt-3 text-center text-[11px] text-neutral-500 font-medium">
@@ -164,28 +194,25 @@
           </div>
         </div>
 
-        <!-- Informações e Seleção -->
         <div class="flex flex-col justify-between">
           <div>
             <span id="modalBrand" class="text-xs uppercase font-bold tracking-wider text-brand-pink"></span>
             <h3 id="modalName" class="font-serif text-2xl font-bold text-brand-dark mt-1"></h3>
             <p id="modalCategory" class="text-xs text-neutral-500 capitalize"></p>
 
-            <!-- Seletor Dinâmico de Tamanhos Disponíveis -->
+            <!-- Seletor Dinâmico de Tamanhos -->
             <div class="mt-4">
               <label class="block text-xs font-semibold text-neutral-700 mb-2">Tamanhos disponíveis:</label>
-              <div class="flex flex-wrap gap-2" id="mlOptions">
-                <!-- Injetado dinamicamente: 100ml, 50ml, 5ml, etc. -->
-              </div>
+              <div class="flex flex-wrap gap-2" id="mlOptions"></div>
             </div>
 
-            <!-- Descrição Completa do Perfume -->
+            <!-- Descrição Completa -->
             <div class="mt-4 bg-brand-nude/70 p-3.5 rounded-xl border border-brand-rose/50">
               <h4 class="text-[11px] font-bold text-brand-dark uppercase tracking-wider mb-1">Sobre esta Fragrância:</h4>
               <p id="modalDescricao" class="text-xs text-neutral-700 leading-relaxed font-light"></p>
             </div>
 
-            <!-- Pirâmide Olfativa Detalhada -->
+            <!-- Pirâmide Olfativa -->
             <div class="mt-4 border-t border-brand-rose pt-3 text-xs space-y-1.5">
               <p class="font-semibold text-brand-dark uppercase tracking-wider text-[11px]">Pirâmide Olfativa:</p>
               <div><strong class="text-neutral-700">Topo:</strong> <span id="modalTopo" class="text-neutral-600"></span></div>
@@ -194,7 +221,6 @@
             </div>
           </div>
 
-          <!-- Preço e Adicionar -->
           <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between gap-4">
             <div>
               <span class="text-[10px] text-neutral-400 uppercase font-medium">Valor selecionado</span>
@@ -267,9 +293,9 @@
     </div>
   </div>
 
-  <!-- ================= PAINEL ADMIN SUPER FÁCIL (PARA LEIGOS) ================= -->
+  <!-- ================= PAINEL ADMIN COM EDIÇÃO & GERENCIADOR DE CUPONS ================= -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-    <div class="bg-white w-full max-w-xl rounded-2xl max-h-[92vh] overflow-y-auto p-6 relative shadow-2xl">
+    <div id="adminModalBox" class="bg-white w-full max-w-xl rounded-2xl max-h-[92vh] overflow-y-auto p-6 relative shadow-2xl">
       <button onclick="fecharAdminModal()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
@@ -277,17 +303,49 @@
       <div class="flex items-center justify-between border-b pb-3 mb-4">
         <div>
           <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel da Loja PRISÉ</h3>
-          <p class="text-[11px] text-green-600 font-medium">● Adicione e remova produtos com facilidade</p>
+          <p class="text-[11px] text-green-600 font-medium">● Gerencie produtos e cupons</p>
         </div>
         <button onclick="alterarSenhaAdmin()" class="text-[11px] text-neutral-500 hover:text-brand-pink underline">
           Mudar Senha
         </button>
       </div>
-      
-      <!-- Formulário Intuitivo -->
-      <form id="newProductForm" onsubmit="salvarNovoProduto(event)" class="space-y-4 bg-brand-nude p-4 rounded-xl border border-brand-rose">
-        <h4 class="text-xs font-bold uppercase text-brand-dark tracking-wider">+ Cadastrar Produto</h4>
+
+      <!-- SESSÃO DE GERENCIAR CUPONS DE DESCONTO -->
+      <div class="mb-6 p-4 rounded-xl bg-neutral-50 border border-brand-rose/60">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-dark flex items-center gap-1.5">
+            <i data-lucide="ticket" class="w-4 h-4 text-brand-pink"></i> Cupons de Desconto
+          </h4>
+          <span class="text-[10px] text-neutral-400">Ativos no carrinho</span>
+        </div>
         
+        <!-- Formulário de Criar Cupom -->
+        <div class="flex gap-2 mb-3">
+          <input type="text" id="novoCupomCodigo" placeholder="Código (Ex: AMIGA15)" class="flex-1 p-2 text-xs uppercase rounded border bg-white focus:outline-none">
+          <input type="number" id="novoCupomValor" placeholder="% OFF (Ex: 15)" min="1" max="90" class="w-24 p-2 text-xs rounded border bg-white focus:outline-none">
+          <button onclick="adicionarNovoCupom()" type="button" class="bg-brand-pink hover:bg-brand-pink/90 text-white text-xs px-3 py-2 rounded font-semibold transition">
+            + Criar
+          </button>
+        </div>
+
+        <!-- Lista de Cupons Existentes -->
+        <div id="adminCouponsList" class="flex flex-wrap gap-2">
+          <!-- Injetado via JS -->
+        </div>
+      </div>
+      
+      <!-- FORMULÁRIO DE PRODUTO (CADASTRAR OU EDITAR) -->
+      <form id="newProductForm" onsubmit="salvarNovoProduto(event)" class="space-y-4 bg-brand-nude p-4 rounded-xl border border-brand-rose">
+        <div class="flex items-center justify-between">
+          <h4 id="formProductTitle" class="text-xs font-bold uppercase text-brand-dark tracking-wider">+ Cadastrar Novo Perfume</h4>
+          <button type="button" id="btnCancelEdit" onclick="cancelarEdicao()" class="hidden text-[11px] text-red-500 hover:underline">
+            ✕ Cancelar Edição
+          </button>
+        </div>
+        
+        <!-- Campo Oculto para saber se está Editando -->
+        <input type="hidden" id="editingProductId" value="">
+
         <div class="grid grid-cols-2 gap-2 text-xs">
           <div>
             <label class="block text-[10px] font-bold text-neutral-600 mb-1">Nome do Perfume:</label>
@@ -316,22 +374,20 @@
         <!-- FOTO DO CELULAR OU LINK -->
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
           <label class="block font-bold text-brand-dark text-[11px]">📸 Foto do Perfume:</label>
-          <div class="flex items-center gap-2">
-            <input type="file" id="admFileInput" accept="image/*" onchange="carregarFotoArquivo(event)" class="text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-brand-pink file:text-white hover:file:bg-brand-pink/90 cursor-pointer">
-          </div>
+          <input type="file" id="admFileInput" accept="image/*" onchange="carregarFotoArquivo(event)" class="text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-brand-pink file:text-white hover:file:bg-brand-pink/90 cursor-pointer">
           <p class="text-[10px] text-neutral-400">Ou se preferir, cole o link direto da imagem:</p>
           <input type="url" id="admImg" placeholder="https://..." class="w-full p-2 text-xs rounded border bg-neutral-50">
           <div id="imgPreviewContainer" class="hidden mt-2">
-            <span class="text-[10px] text-neutral-500">Prévia:</span>
+            <span class="text-[10px] text-neutral-500">Prévia da Foto:</span>
             <img id="imgPreview" src="" class="w-16 h-16 object-cover rounded border mt-1">
           </div>
         </div>
 
-        <!-- TAMANHOS E PREÇOS FLEXÍVEIS (Preenche só o que tiver!) -->
+        <!-- TAMANHOS E PREÇOS FLEXÍVEIS -->
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
           <div>
-            <label class="block font-bold text-brand-dark text-[11px]">📏 Tamanhos e Preços Disponíveis:</label>
-            <p class="text-[10px] text-neutral-500">Preencha apenas os tamanhos que tiver em estoque (ex: pode ser só 100ml, ou só 5ml e 10ml, etc.):</p>
+            <label class="block font-bold text-brand-dark text-[11px]">📏 Tamanhos e Preços:</label>
+            <p class="text-[10px] text-neutral-500">Preencha apenas o que tiver (ex: pode ser só 100ml, ou só 5ml e 10ml):</p>
           </div>
 
           <div class="grid grid-cols-2 gap-2">
@@ -382,14 +438,14 @@
           <input type="text" id="admFundo" placeholder="Notas de Fundo - Ex: Baunilha, Sândalo, Âmbar" class="w-full p-2 text-xs rounded border bg-white">
         </div>
 
-        <button type="submit" class="w-full bg-brand-dark text-white text-xs py-3 rounded-lg hover:bg-black font-semibold transition shadow">
+        <button type="submit" id="btnSalvarProduto" class="w-full bg-brand-dark text-white text-xs py-3 rounded-lg hover:bg-black font-semibold transition shadow">
           Salvar Perfume na Loja
         </button>
       </form>
 
-      <!-- Lista de Produtos para Apagar -->
+      <!-- LISTA DE PRODUTOS (COM EDITAR E APAGAR) -->
       <div class="mt-6">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-600 mb-2">Perfumes no Catálogo (Clique na lixeira para remover):</h4>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-600 mb-2">Perfumes no Catálogo:</h4>
         <div id="adminProductList" class="space-y-2 max-h-56 overflow-y-auto"></div>
       </div>
     </div>
@@ -455,7 +511,7 @@
     <div class="border-t border-neutral-800 pt-6 max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-neutral-500 text-[11px] gap-2">
       <p>© 2026 PRISÉ Perfumes e Cosméticos. Todos os direitos reservados.</p>
       
-      <!-- BOTÃO ADMIN DISCRETO (Quase invisível no canto) -->
+      <!-- BOTÃO ADMIN DISCRETO (No canto direito inferior) -->
       <button onclick="solicitarAcessoAdmin()" class="opacity-25 hover:opacity-100 transition text-neutral-500 hover:text-brand-pink flex items-center gap-1 text-[10px] cursor-pointer" title="Área Restrita">
         <i data-lucide="lock" class="w-3 h-3"></i> Acesso Restrito
       </button>
@@ -470,10 +526,22 @@
     // 👇 COLOQUE O SEU WHATSAPP AQUI (Com DDD, sem traços ou espaços)
     const SEU_WHATSAPP = "5511999999999"; 
 
-    // Senha padrão de administrador (Pode ser alterada)
+    // Senha padrão de administrador
     let ADMIN_PASSWORD = localStorage.getItem('prise_admin_pwd') || "1234";
 
-    // 8 Perfumes Cadastrados com DESCRIÇÃO COMPLETA e TAMANHOS FLEXÍVEIS
+    // Cupons Padrão da Loja
+    const defaultCoupons = [
+      { code: "PRISE10", discount: 10 },
+      { code: "BEMVINDA", discount: 10 }
+    ];
+    let coupons = JSON.parse(localStorage.getItem('prise_coupons_v1')) || defaultCoupons;
+
+    function saveCoupons() {
+      localStorage.setItem('prise_coupons_v1', JSON.stringify(coupons));
+      renderAdminCoupons();
+    }
+
+    // 8 Perfumes Cadastrados
     const defaultProducts = [
       {
         id: "p1",
@@ -581,18 +649,18 @@
       }
     ];
 
-    let products = JSON.parse(localStorage.getItem('prise_products_v2')) || defaultProducts;
+    let products = JSON.parse(localStorage.getItem('prise_products_v3')) || defaultProducts;
     let cart = [];
     let currentModalProduct = null;
     let selectedMl = '';
     let appliedDiscount = 0;
 
     function saveProducts() {
-      localStorage.setItem('prise_products_v2', JSON.stringify(products));
+      localStorage.setItem('prise_products_v3', JSON.stringify(products));
       renderProducts();
     }
 
-    // Renderizar Perfumes
+    // Renderizar Vitrine
     function renderProducts(lista = products) {
       const grid = document.getElementById('productGrid');
       grid.innerHTML = '';
@@ -618,7 +686,7 @@
             <div class="p-3">
               <p class="text-[10px] uppercase font-bold tracking-wider text-brand-pink">${p.brand}</p>
               <h3 class="font-serif font-bold text-sm sm:text-base text-brand-dark line-clamp-1">${p.name}</h3>
-              <p class="text-[10px] text-neutral-400 mt-0.5">${qtdTamanhos > 1 ? `${qtdTamanhos} opções de tamanho` : Object.keys(p.prices)[0] || 'Original'}</p>
+              <p class="text-[10px] text-neutral-400 mt-0.5">${qtdTamanhos > 1 ? `${qtdTamanhos} opções disponíveis` : Object.keys(p.prices)[0] || 'Original'}</p>
             </div>
           </div>
           <div class="p-3 pt-0">
@@ -662,7 +730,7 @@
       renderProducts(filtrados);
     }
 
-    // ================= MODAL COM DESCRIÇÃO COMPLETA =================
+    // Modal de Detalhes
     function abrirModalProduto(id) {
       currentModalProduct = products.find(p => p.id === id);
       if (!currentModalProduct) return;
@@ -671,15 +739,12 @@
       document.getElementById('modalBrand').innerText = currentModalProduct.brand;
       document.getElementById('modalName').innerText = currentModalProduct.name;
       document.getElementById('modalCategory').innerText = "Categoria: " + currentModalProduct.category;
-
-      // Descrição completa
       document.getElementById('modalDescricao').innerText = currentModalProduct.descricao || "Fragrância importada 100% autêntica com fixação e projeção de alta performance.";
 
       document.getElementById('modalTopo').innerText = currentModalProduct.topo || 'Notas frescas';
       document.getElementById('modalCoracao').innerText = currentModalProduct.coracao || 'Notas florais e especiadas';
       document.getElementById('modalFundo').innerText = currentModalProduct.fundo || 'Madeiras nobres e âmbar';
 
-      // Define o primeiro tamanho disponível como selecionado
       const tamanhos = Object.keys(currentModalProduct.prices);
       selectedMl = tamanhos[0] || '';
 
@@ -693,11 +758,6 @@
       const container = document.getElementById('mlOptions');
       container.innerHTML = '';
       const tamanhos = Object.keys(currentModalProduct.prices);
-
-      if (tamanhos.length === 0) {
-        container.innerHTML = '<span class="text-xs text-neutral-400">Consulte disponibilidade</span>';
-        return;
-      }
 
       tamanhos.forEach(ml => {
         const preco = currentModalProduct.prices[ml];
@@ -737,7 +797,7 @@
       document.getElementById('productModal').classList.add('hidden');
     }
 
-    // ================= CARRINHO =================
+    // Carrinho
     function adicionarAoCarrinhoModal() {
       if (!currentModalProduct || !selectedMl) return;
       
@@ -841,6 +901,7 @@
       renderCart();
     }
 
+    // Cupons Dinâmicos no Carrinho
     function aplicarCupomBarra(codigo) {
       document.getElementById('couponInput').value = codigo;
       toggleCarrinho(true);
@@ -852,10 +913,12 @@
       const status = document.getElementById('couponStatus');
       status.classList.remove('hidden');
 
-      if (code === "PRISE10" || code === "PRIMEIRACOMPRA") {
-        appliedDiscount = 10;
+      const cupomEncontrado = coupons.find(c => c.code.toUpperCase() === code);
+
+      if (cupomEncontrado) {
+        appliedDiscount = cupomEncontrado.discount;
         status.className = "text-[11px] font-semibold text-green-600";
-        status.innerText = "✓ Cupom de 10% OFF aplicado com sucesso!";
+        status.innerText = `✓ Cupom de ${appliedDiscount}% OFF aplicado com sucesso!`;
       } else {
         appliedDiscount = 0;
         status.className = "text-[11px] font-semibold text-red-500";
@@ -864,7 +927,7 @@
       renderCart();
     }
 
-    // ================= WHATSAPP =================
+    // Finalizar WhatsApp
     function finalizarWhatsApp() {
       if (cart.length === 0) {
         alert("Adicione pelo menos um produto ao seu carrinho!");
@@ -880,7 +943,7 @@
       msg += `--------------------------------------\n`;
       msg += `*Cliente:* ${nome}\n`;
       msg += `*Cidade/Bairro:* ${cidade}\n`;
-      msg += `*Pagamento Escolhido:* ${pagamento}\n\n`;
+      msg += `*Pagamento:* ${pagamento}\n\n`;
       msg += `*PRODUTOS ESCOLHIDOS:*\n`;
 
       cart.forEach(item => {
@@ -889,7 +952,7 @@
 
       msg += `--------------------------------------\n`;
       if (appliedDiscount > 0) {
-        msg += `*Cupom:* ${appliedDiscount}% OFF\n`;
+        msg += `*Cupom Aplicado:* ${appliedDiscount}% OFF\n`;
       }
       msg += `*VALOR TOTAL:* ${totalStr}\n\n`;
       msg += `Olá! Gostaria de fechar este pedido e combinar a entrega com a PRISÉ! ✨`;
@@ -898,7 +961,7 @@
       window.open(link, '_blank');
     }
 
-    // ================= ADMIN & CARREGAMENTO DE FOTO =================
+    // ================= ADMIN & CUPONS & EDIÇÃO =================
     function solicitarAcessoAdmin() {
       const tentativa = prompt("🔒 Área do Lojista - PRISÉ\nDigite a senha:");
       if (!tentativa) return;
@@ -906,6 +969,7 @@
       if (tentativa === ADMIN_PASSWORD) {
         document.getElementById('adminModal').classList.remove('hidden');
         renderAdminList();
+        renderAdminCoupons();
       } else {
         alert("❌ Senha incorreta!");
       }
@@ -913,6 +977,7 @@
 
     function fecharAdminModal() {
       document.getElementById('adminModal').classList.add('hidden');
+      cancelarEdicao();
     }
 
     function alterarSenhaAdmin() {
@@ -926,7 +991,60 @@
       }
     }
 
-    // Permite que ela escolha a foto do celular ou computador direto
+    // Gerenciamento de Cupons no Admin
+    function renderAdminCoupons() {
+      const container = document.getElementById('adminCouponsList');
+      container.innerHTML = '';
+      if (coupons.length === 0) {
+        container.innerHTML = '<span class="text-[11px] text-neutral-400">Nenhum cupom ativo no momento.</span>';
+        return;
+      }
+
+      coupons.forEach((c, idx) => {
+        const badge = document.createElement('div');
+        badge.className = "flex items-center gap-1.5 bg-white border border-brand-rose px-2.5 py-1 rounded-full text-xs";
+        badge.innerHTML = `
+          <strong class="text-brand-dark uppercase">${c.code}</strong>
+          <span class="text-brand-pink font-semibold">(${c.discount}%)</span>
+          <button onclick="deletarCupom(${idx})" class="text-neutral-400 hover:text-red-500 ml-1 p-0.5">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+          </button>
+        `;
+        container.appendChild(badge);
+      });
+      lucide.createIcons();
+    }
+
+    function adicionarNovoCupom() {
+      const code = document.getElementById('novoCupomCodigo').value.trim().toUpperCase();
+      const val = parseFloat(document.getElementById('novoCupomValor').value);
+
+      if (!code || isNaN(val) || val <= 0 || val > 90) {
+        alert("Digite um código válido e uma porcentagem entre 1% e 90%!");
+        return;
+      }
+
+      // Evita cupom duplicado
+      if (coupons.some(c => c.code.toUpperCase() === code)) {
+        alert("Já existe um cupom com esse código!");
+        return;
+      }
+
+      coupons.push({ code: code, discount: val });
+      saveCoupons();
+      document.getElementById('novoCupomCodigo').value = '';
+      document.getElementById('novoCupomValor').value = '';
+      alert(`✓ Cupom ${code} (${val}% OFF) criado com sucesso!`);
+    }
+
+    function deletarCupom(idx) {
+      if (confirm(`Remover o cupom ${coupons[idx].code}?`)) {
+        coupons.splice(idx, 1);
+        saveCoupons();
+      }
+    }
+
+    // Carregamento de Foto
     function carregarFotoArquivo(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -935,7 +1053,6 @@
       reader.onload = function(e) {
         const img = new Image();
         img.onload = function() {
-          // Redimensiona para não pesar a memória do celular
           const canvas = document.createElement('canvas');
           const maxDim = 600;
           let w = img.width;
@@ -960,10 +1077,10 @@
       reader.readAsDataURL(file);
     }
 
+    // Salvar Produto (Novo ou Editado)
     function salvarNovoProduto(e) {
       e.preventDefault();
 
-      // Monta os tamanhos que ela preencheu
       const prices = {};
       const t1_n = document.getElementById('tamanhoNome1').value.trim();
       const t1_p = parseFloat(document.getElementById('tamanhoPreco1').value);
@@ -978,32 +1095,101 @@
       if (t3_n && !isNaN(t3_p)) prices[t3_n] = t3_p;
 
       if (Object.keys(prices).length === 0) {
-        alert("Preencha pelo menos um tamanho e preço (ex: Tamanho 1: 100ml e Preço: 350)!");
+        alert("Preencha pelo menos um tamanho e preço!");
         return;
       }
 
       const imagemFinal = document.getElementById('admImg').value.trim() || "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop";
+      const editId = document.getElementById('editingProductId').value;
 
-      const novo = {
-        id: "p_" + Date.now(),
-        name: document.getElementById('admName').value.trim(),
-        brand: document.getElementById('admBrand').value.trim(),
-        category: document.getElementById('admCategory').value,
-        tag: document.getElementById('admTag').value.trim(),
-        img: imagemFinal,
-        prices: prices,
-        descricao: document.getElementById('admDescricao').value.trim(),
-        topo: document.getElementById('admTopo').value.trim(),
-        coracao: document.getElementById('admCoracao').value.trim(),
-        fundo: document.getElementById('admFundo').value.trim()
-      };
+      if (editId) {
+        // Atualiza Produto Existente
+        const index = products.findIndex(p => p.id === editId);
+        if (index !== -1) {
+          products[index] = {
+            ...products[index],
+            name: document.getElementById('admName').value.trim(),
+            brand: document.getElementById('admBrand').value.trim(),
+            category: document.getElementById('admCategory').value,
+            tag: document.getElementById('admTag').value.trim(),
+            img: imagemFinal,
+            prices: prices,
+            descricao: document.getElementById('admDescricao').value.trim(),
+            topo: document.getElementById('admTopo').value.trim(),
+            coracao: document.getElementById('admCoracao').value.trim(),
+            fundo: document.getElementById('admFundo').value.trim()
+          };
+          alert("✓ Alterações salvas com sucesso!");
+        }
+      } else {
+        // Cria Novo Produto
+        const novo = {
+          id: "p_" + Date.now(),
+          name: document.getElementById('admName').value.trim(),
+          brand: document.getElementById('admBrand').value.trim(),
+          category: document.getElementById('admCategory').value,
+          tag: document.getElementById('admTag').value.trim(),
+          img: imagemFinal,
+          prices: prices,
+          descricao: document.getElementById('admDescricao').value.trim(),
+          topo: document.getElementById('admTopo').value.trim(),
+          coracao: document.getElementById('admCoracao').value.trim(),
+          fundo: document.getElementById('admFundo').value.trim()
+        };
+        products.unshift(novo);
+        alert("✓ Perfume adicionado à loja!");
+      }
 
-      products.unshift(novo);
       saveProducts();
+      cancelarEdicao();
+      renderAdminList();
+    }
+
+    // Carrega dados para Edição
+    function iniciarEdicao(id) {
+      const p = products.find(prod => prod.id === id);
+      if (!p) return;
+
+      document.getElementById('editingProductId').value = p.id;
+      document.getElementById('formProductTitle').innerText = `✏️ Editando: ${p.name}`;
+      document.getElementById('btnSalvarProduto').innerText = "Salvar Alterações no Perfume";
+      document.getElementById('btnCancelEdit').classList.remove('hidden');
+
+      document.getElementById('admName').value = p.name;
+      document.getElementById('admBrand').value = p.brand;
+      document.getElementById('admCategory').value = p.category;
+      document.getElementById('admTag').value = p.tag || '';
+      document.getElementById('admImg').value = p.img;
+      document.getElementById('imgPreview').src = p.img;
+      document.getElementById('imgPreviewContainer').classList.remove('hidden');
+
+      document.getElementById('admDescricao').value = p.descricao || '';
+      document.getElementById('admTopo').value = p.topo || '';
+      document.getElementById('admCoracao').value = p.coracao || '';
+      document.getElementById('admFundo').value = p.fundo || '';
+
+      // Preenche os tamanhos
+      const tamanhos = Object.keys(p.prices);
+      document.getElementById('tamanhoNome1').value = tamanhos[0] || '';
+      document.getElementById('tamanhoPreco1').value = tamanhos[0] ? p.prices[tamanhos[0]] : '';
+
+      document.getElementById('tamanhoNome2').value = tamanhos[1] || '';
+      document.getElementById('tamanhoPreco2').value = tamanhos[1] ? p.prices[tamanhos[1]] : '';
+
+      document.getElementById('tamanhoNome3').value = tamanhos[2] || '';
+      document.getElementById('tamanhoPreco3').value = tamanhos[2] ? p.prices[tamanhos[2]] : '';
+
+      // Rola o painel suavemente até o formulário
+      document.getElementById('adminModalBox').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelarEdicao() {
+      document.getElementById('editingProductId').value = '';
+      document.getElementById('formProductTitle').innerText = "+ Cadastrar Novo Perfume";
+      document.getElementById('btnSalvarProduto').innerText = "Salvar Perfume na Loja";
+      document.getElementById('btnCancelEdit').classList.add('hidden');
       document.getElementById('newProductForm').reset();
       document.getElementById('imgPreviewContainer').classList.add('hidden');
-      renderAdminList();
-      alert("✓ Produto salvo com sucesso na loja!");
     }
 
     function renderAdminList() {
@@ -1011,18 +1197,23 @@
       container.innerHTML = '';
       products.forEach(p => {
         const item = document.createElement('div');
-        item.className = "flex items-center justify-between p-2 rounded-lg bg-neutral-50 border text-xs";
+        item.className = "flex items-center justify-between p-2.5 rounded-lg bg-neutral-50 border text-xs";
         item.innerHTML = `
-          <div class="flex items-center gap-2 truncate">
-            <img src="${p.img}" class="w-8 h-8 rounded object-cover">
-            <div>
-              <p class="font-bold text-neutral-800">${p.name}</p>
+          <div class="flex items-center gap-2.5 truncate">
+            <img src="${p.img}" class="w-9 h-9 rounded object-cover border">
+            <div class="truncate">
+              <p class="font-bold text-neutral-800 truncate">${p.name}</p>
               <p class="text-[10px] text-neutral-400 capitalize">${p.brand} • ${Object.keys(p.prices).join(', ')}</p>
             </div>
           </div>
-          <button onclick="deletarProduto('${p.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-md hover:bg-red-50" title="Apagar perfume">
-            <i data-lucide="trash" class="w-4 h-4"></i>
-          </button>
+          <div class="flex items-center gap-1">
+            <button onclick="iniciarEdicao('${p.id}')" class="text-blue-500 hover:text-blue-700 p-1.5 rounded-md hover:bg-blue-50" title="Editar Produto">
+              <i data-lucide="pencil" class="w-4 h-4"></i>
+            </button>
+            <button onclick="deletarProduto('${p.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-md hover:bg-red-50" title="Apagar Produto">
+              <i data-lucide="trash" class="w-4 h-4"></i>
+            </button>
+          </div>
         `;
         container.appendChild(item);
       });
