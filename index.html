@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumière Decants | Perfumes Fracionados Originais</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Cormorant Garamond & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              nude: '#FAF5F2',
+              rose: '#EBD8D0',
+              pink: '#D8A499',
+              dark: '#2B2627',
+              gold: '#C5A059'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #FAF5F2; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="font-sans text-brand-dark antialiased">
+
+  <!-- ================= BARRA DE AVISO ================= -->
+  <div class="bg-brand-pink text-white text-xs py-2 px-4 text-center font-medium tracking-wide">
+    ✨ Use o cupom <span class="font-bold underline cursor-pointer" onclick="aplicarCupomBarra('BEMVINDA10')">BEMVINDA10</span> para 10% OFF no primeiro pedido!
+  </div>
+
+  <!-- ================= CABEÇALHO ================= -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-brand-rose">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div>
+        <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider text-brand-dark cursor-pointer" onclick="filtrarCategoria('todos')">
+          LUMIÈRE <span class="text-brand-pink font-light italic">Decants</span>
+        </h1>
+        <p class="text-[10px] uppercase tracking-widest text-neutral-500">Fragrâncias Importadas 100% Originais</p>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <!-- Botão Admin -->
+        <button onclick="abrirAdminModal()" class="text-xs bg-brand-rose/40 hover:bg-brand-rose px-2.5 py-1.5 rounded-full flex items-center gap-1 transition text-neutral-700">
+          <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Gerenciar</span>
+        </button>
+
+        <!-- Botão Carrinho -->
+        <button onclick="toggleCarrinho(true)" class="relative p-2 text-brand-dark hover:text-brand-pink transition">
+          <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+          <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-pink text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= BANNER / HERO ================= -->
+  <section class="max-w-6xl mx-auto px-4 mt-4">
+    <div class="rounded-2xl bg-gradient-to-r from-[#F5E6E1] to-[#EBD8D0] p-6 md:p-10 text-center relative overflow-hidden shadow-sm">
+      <span class="text-[11px] font-semibold uppercase tracking-widest text-brand-gold">Fracionados em 2ml, 5ml e 10ml</span>
+      <h2 class="font-serif text-3xl md:text-5xl font-semibold mt-2 text-brand-dark">
+        Experimente antes de investir no frasco grande
+      </h2>
+      <p class="text-sm text-neutral-600 max-w-lg mx-auto mt-2 font-light">
+        Descubra como cada fragrância se comporta na sua pele com nossos decants lacrados e autênticos.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= BARRA DE BUSCA E FILTROS ================= -->
+  <section class="max-w-6xl mx-auto px-4 mt-6">
+    <!-- Busca -->
+    <div class="relative max-w-md mx-auto mb-5">
+      <input type="text" id="searchInput" oninput="buscarProdutos()" placeholder="Buscar por perfume ou marca..." 
+             class="w-full pl-10 pr-4 py-2.5 rounded-full border border-brand-rose bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink">
+      <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5"></i>
+    </div>
+
+    <!-- Categorias -->
+    <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar justify-start md:justify-center">
+      <button onclick="filtrarCategoria('todos')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition" data-cat="todos">Todos</button>
+      <button onclick="filtrarCategoria('feminino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="feminino">Decants Femininos</button>
+      <button onclick="filtrarCategoria('masculino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="masculino">Decants Masculinos</button>
+      <button onclick="filtrarCategoria('arabe')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="arabe">Árabes Virais</button>
+      <button onclick="filtrarCategoria('nicho')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="nicho">Perfumes de Nicho</button>
+    </div>
+  </section>
+
+  <!-- ================= GRID DE PRODUTOS ================= -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      <!-- Injetado dinamicamente via JS -->
+    </div>
+  </main>
+
+  <!-- ================= MODAL DE DETALHES DO PRODUTO ================= -->
+  <div id="productModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-2xl rounded-2xl max-h-[90vh] overflow-y-auto p-5 md:p-8 relative">
+      <button onclick="fecharModalProduto()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
+        <i data-lucide="x" class="w-5 h-5 text-neutral-600"></i>
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+        <div>
+          <img id="modalImg" src="" alt="" class="w-full h-64 md:h-80 object-cover rounded-xl border border-neutral-100 shadow-inner">
+          <div class="mt-3 text-center text-[11px] text-neutral-500 font-medium">
+            🛡️ 100% original fracionado do frasco regular
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-between">
+          <div>
+            <span id="modalBrand" class="text-xs uppercase font-bold tracking-wider text-brand-pink"></span>
+            <h3 id="modalName" class="font-serif text-2xl font-bold text-brand-dark mt-1"></h3>
+            <p id="modalCategory" class="text-xs text-neutral-500 capitalize"></p>
+
+            <!-- Seletor de Tamanho -->
+            <div class="mt-4">
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">Escolha a volumetria:</label>
+              <div class="grid grid-cols-3 gap-2" id="mlOptions">
+                <!-- Injetado via JS -->
+              </div>
+            </div>
+
+            <!-- Pirâmide Olfativa Detalhada -->
+            <div class="mt-5 border-t border-brand-rose pt-3 text-xs space-y-2">
+              <p class="font-semibold text-brand-dark uppercase tracking-wider text-[11px]">Pirâmide Olfativa:</p>
+              <div><strong class="text-neutral-700">Notas de Topo:</strong> <span id="modalTopo" class="text-neutral-600"></span></div>
+              <div><strong class="text-neutral-700">Notas de Coração:</strong> <span id="modalCoracao" class="text-neutral-600"></span></div>
+              <div><strong class="text-neutral-700">Notas de Fundo:</strong> <span id="modalFundo" class="text-neutral-600"></span></div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between gap-4">
+            <div>
+              <span class="text-[10px] text-neutral-400 uppercase">Preço selecionado</span>
+              <div id="modalSelectedPrice" class="font-serif text-2xl font-bold text-brand-dark">R$ 0,00</div>
+            </div>
+            <button onclick="adicionarAoCarrinhoModal()" class="flex-1 bg-brand-pink hover:bg-brand-pink/90 text-white font-medium py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition">
+              <i data-lucide="plus" class="w-4 h-4"></i> Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GAVETA DO CARRINHO ================= -->
+  <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Topo -->
+    <div class="p-4 border-b border-brand-rose flex items-center justify-between bg-brand-nude">
+      <div class="flex items-center gap-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-pink"></i>
+        <h3 class="font-serif text-xl font-bold text-brand-dark">Seu Pedido</h3>
+      </div>
+      <button onclick="toggleCarrinho(false)" class="p-1 rounded-full hover:bg-brand-rose/50">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Lista de Itens -->
+    <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-3">
+      <!-- Itens do carrinho JS -->
+    </div>
+
+    <!-- Rodapé do Carrinho -->
+    <div class="p-4 border-t border-neutral-100 bg-neutral-50/50 space-y-3">
+      <!-- Campo de Cupom -->
+      <div class="flex gap-2">
+        <input type="text" id="couponInput" placeholder="Possui cupom? (Ex: BEMVINDA10)" 
+               class="flex-1 px-3 py-2 text-xs border border-brand-rose rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-pink uppercase">
+        <button onclick="aplicarCupom()" class="bg-brand-dark text-white text-xs px-3 py-2 rounded-lg hover:bg-black transition">Aplicar</button>
+      </div>
+      <div id="couponStatus" class="text-[11px] font-medium hidden"></div>
+
+      <!-- Resumo Valores -->
+      <div class="space-y-1 text-xs text-neutral-600">
+        <div class="flex justify-between">
+          <span>Subtotal:</span>
+          <span id="cartSubtotal">R$ 0,00</span>
+        </div>
+        <div id="discountRow" class="flex justify-between text-green-600 hidden font-medium">
+          <span>Desconto Cupom:</span>
+          <span id="cartDiscount">- R$ 0,00</span>
+        </div>
+        <div class="flex justify-between text-base font-serif font-bold text-brand-dark pt-1 border-t">
+          <span>Total:</span>
+          <span id="cartTotal">R$ 0,00</span>
+        </div>
+      </div>
+
+      <!-- Formulário Rápido de Entrega -->
+      <div class="space-y-2 pt-2 border-t text-xs">
+        <input type="text" id="custName" placeholder="Seu Nome Completo" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
+        <input type="text" id="custCity" placeholder="Cidade / Bairro" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
+        <select id="custPayment" class="w-full px-3 py-2 border rounded-lg focus:outline-none text-neutral-600">
+          <option value="Pix (Chave Rápida)">Pagamento: Pix</option>
+          <option value="Cartão de Crédito">Pagamento: Cartão de Crédito</option>
+        </select>
+      </div>
+
+      <!-- Botão WhatsApp -->
+      <button onclick="finalizarWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white font-semibold py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition">
+        <i data-lucide="message-circle" class="w-4 h-4"></i> Finalizar Compra no WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL ADMIN (FÁCIL ADICIONAR/REMOVER) ================= -->
+  <div id="adminModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-xl rounded-2xl max-h-[90vh] overflow-y-auto p-6 relative">
+      <button onclick="fecharAdminModal()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <h3 class="font-serif text-2xl font-bold text-brand-dark mb-4">Painel de Decants</h3>
+      
+      <!-- Formulário de Novo Produto -->
+      <form id="newProductForm" onsubmit="salvarNovoProduto(event)" class="space-y-3 bg-brand-nude p-4 rounded-xl border border-brand-rose">
+        <h4 class="text-xs font-bold uppercase text-brand-dark tracking-wider">+ Adicionar Novo Perfume</h4>
+        
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <input type="text" id="admName" placeholder="Nome (Ex: Delina)" required class="p-2 rounded border">
+          <input type="text" id="admBrand" placeholder="Marca (Ex: Parfums de Marly)" required class="p-2 rounded border">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <select id="admCategory" class="p-2 rounded border">
+            <option value="feminino">Feminino</option>
+            <option value="masculino">Masculino</option>
+            <option value="arabe">Árabe</option>
+            <option value="nicho">Nicho</option>
+          </select>
+          <input type="url" id="admImg" placeholder="URL da Imagem (Link)" required class="p-2 rounded border">
+        </div>
+
+        <!-- Preços por ML -->
+        <div class="grid grid-cols-3 gap-2 text-xs">
+          <input type="number" step="0.5" id="admPrice2ml" placeholder="Preço 2ml (R$)" required class="p-2 rounded border">
+          <input type="number" step="0.5" id="admPrice5ml" placeholder="Preço 5ml (R$)" required class="p-2 rounded border">
+          <input type="number" step="0.5" id="admPrice10ml" placeholder="Preço 10ml (R$)" required class="p-2 rounded border">
+        </div>
+
+        <!-- Pirâmide Olfativa -->
+        <input type="text" id="admTopo" placeholder="Notas de Topo (Ex: Ruibarbo, Lichia)" class="w-full p-2 text-xs rounded border">
+        <input type="text" id="admCoracao" placeholder="Notas de Coração (Ex: Rosa Turca, Peônia)" class="w-full p-2 text-xs rounded border">
+        <input type="text" id="admFundo" placeholder="Notas de Fundo (Ex: Baunilha, Almíscar)" class="w-full p-2 text-xs rounded border">
+
+        <button type="submit" class="w-full bg-brand-dark text-white text-xs py-2.5 rounded-lg hover:bg-black font-semibold">
+          Cadastrar Perfume
+        </button>
+      </form>
+
+      <!-- Lista de Produtos para Apagar -->
+      <div class="mt-6">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-600 mb-2">Perfumes Atuais (Clique na lixeira para remover):</h4>
+        <div id="adminProductList" class="space-y-2 max-h-52 overflow-y-auto">
+          <!-- Injetado via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay para fechar carrinho ao clicar fora -->
+  <div id="cartOverlay" onclick="toggleCarrinho(false)" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    // 👇 COLOQUE O SEU WHATSAPP AQUI (com DDD sem espaços ou traços)
+    const SEU_WHATSAPP = "5511999999999"; 
+
+    // Lista Inicial Padrão de Perfumes (Igual estilo Pauline Decants)
+    const defaultProducts = [
+      {
+        id: "1",
+        name: "Delina Exclusif",
+        brand: "Parfums de Marly",
+        category: "feminino",
+        tag: "Nicho Luxo",
+        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 45.0, "5ml": 95.0, "10ml": 175.0 },
+        topo: "Lichia, Pera e Bergamota",
+        coracao: "Rosa Turca, Agarwood (Oud) e Incenso",
+        fundo: "Baunilha, Âmbar e Notas Amadeiradas"
+      },
+      {
+        id: "2",
+        name: "Khamrah",
+        brand: "Lattafa",
+        category: "arabe",
+        tag: "Viral no TikTok",
+        img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 25.0, "5ml": 49.0, "10ml": 89.0 },
+        topo: "Canela, Noz-moscada e Bergamota",
+        coracao: "Tâmaras, Pralinê, Tuberosa e Mahonial",
+        fundo: "Baunilha, Fava Tonka, Benjoim, Mirra e Madeira de Âmbar"
+      },
+      {
+        id: "3",
+        name: "Baccarat Rouge 540",
+        brand: "Maison Francis Kurkdjian",
+        category: "nicho",
+        tag: "Mais Vendido",
+        img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 55.0, "5ml": 120.0, "10ml": 220.0 },
+        topo: "Açafrão e Jasmim",
+        coracao: "Amberwood e Âmbar Cinzento",
+        fundo: "Resina de Abeto e Cedro"
+      },
+      {
+        id: "4",
+        name: "Sauvage Elixir",
+        brand: "Dior",
+        category: "masculino",
+        tag: "Alta Fixação",
+        img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
+        prices: { "2ml": 38.0, "5ml": 79.0, "10ml": 149.0 },
+        topo: "Canela, Noz-moscada, Cardamomo e Toranja",
+        coracao: "Lavanda",
+        fundo: "Alcaçuz, Sândalo, Âmbar, Patchouli e Vetiver"
+      }
+    ];
+
+    // Carregar do LocalStorage ou usar os padrões
+    let products = JSON.parse(localStorage.getItem('decants_products')) || defaultProducts;
+    let cart = [];
+    let currentCategory = 'todos';
+    let currentModalProduct = null;
+    let selectedMl = '5ml';
+    let appliedDiscount = 0; // %
+
+    function saveProducts() {
+      localStorage.setItem('decants_products', JSON.stringify(products));
+      renderProducts();
+    }
+
+    // Renderizar Cards de Perfumes
+    function renderProducts(lista = products) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      if (lista.length === 0) {
+        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum perfume encontrado.</div>';
+        return;
+      }
+
+      lista.forEach(p => {
+        const precoMin = Math.min(...Object.values(p.prices)).toFixed(2).replace('.', ',');
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl overflow-hidden border border-brand-rose hover:shadow-md transition duration-300 flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="relative cursor-pointer" onclick="abrirModalProduto('${p.id}')">
+              <img src="${p.img}" alt="${p.name}" class="w-full h-44 sm:h-52 object-cover">
+              ${p.tag ? `<span class="absolute top-2 left-2 bg-brand-pink/90 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">${p.tag}</span>` : ''}
+            </div>
+            <div class="p-3">
+              <p class="text-[10px] uppercase font-bold tracking-wider text-brand-pink">${p.brand}</p>
+              <h3 class="font-serif font-bold text-sm sm:text-base text-brand-dark line-clamp-1">${p.name}</h3>
+              <p class="text-[10px] text-neutral-400 mt-0.5">Decants originais de 2, 5 e 10ml</p>
+            </div>
+          </div>
+          <div class="p-3 pt-0">
+            <div class="text-[11px] text-neutral-500 mb-1.5">A partir de <strong class="text-brand-dark text-sm">R$ ${precoMin}</strong></div>
+            <button onclick="abrirModalProduto('${p.id}')" class="w-full bg-brand-nude hover:bg-brand-rose/50 text-brand-dark text-xs font-semibold py-2 rounded-xl border border-brand-rose/60 transition flex items-center justify-center gap-1">
+              Escolher Tamanho
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    // Filtros e Busca
+    function filtrarCategoria(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if(btn.dataset.cat === cat) {
+          btn.className = "cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition";
+        } else {
+          btn.className = "cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition";
+        }
+      });
+
+      if (cat === 'todos') {
+        renderProducts(products);
+      } else {
+        const filtrados = products.filter(p => p.category.toLowerCase() === cat.toLowerCase());
+        renderProducts(filtrados);
+      }
+    }
+
+    function buscarProdutos() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const filtrados = products.filter(p => 
+        p.name.toLowerCase().includes(q) || 
+        p.brand.toLowerCase().includes(q)
+      );
+      renderProducts(filtrados);
+    }
+
+    // Modal de Detalhes
+    function abrirModalProduto(id) {
+      currentModalProduct = products.find(p => p.id === id);
+      if (!currentModalProduct) return;
+
+      document.getElementById('modalImg').src = currentModalProduct.img;
+      document.getElementById('modalBrand').innerText = currentModalProduct.brand;
+      document.getElementById('modalName').innerText = currentModalProduct.name;
+      document.getElementById('modalCategory').innerText = "Categoria: " + currentModalProduct.category;
+
+      document.getElementById('modalTopo').innerText = currentModalProduct.topo || 'Não especificado';
+      document.getElementById('modalCoracao').innerText = currentModalProduct.coracao || 'Não especificado';
+      document.getElementById('modalFundo').innerText = currentModalProduct.fundo || 'Não especificado';
+
+      // Opções de ML
+      selectedMl = '5ml'; // Padrão
+      const mlContainer = document.getElementById('mlOptions');
+      mlContainer.innerHTML = '';
+
+      Object.keys(currentModalProduct.prices).forEach(ml => {
+        const btn = document.createElement('button');
+        btn.className = `py-2 rounded-xl text-xs font-semibold border transition ${ml === selectedMl ? 'bg-brand-dark text-white border-brand-dark' : 'bg-brand-nude border-brand-rose text-brand-dark'}`;
+        btn.innerText = `${ml}`;
+        btn.onclick = () => {
+          selectedMl = ml;
+          atualizarPrecoModal();
+          abrirModalProduto(id); // re-render botões
+        };
+        mlContainer.appendChild(btn);
+      });
+
+      atualizarPrecoModal();
+      document.getElementById('productModal').classList.remove('hidden');
+    }
+
+    function atualizarPrecoModal() {
+      const preco = currentModalProduct.prices[selectedMl];
+      document.getElementById('modalSelectedPrice').innerText = `R$ ${preco.toFixed(2).replace('.', ',')}`;
+    }
+
+    function fecharModalProduto() {
+      document.getElementById('productModal').classList.add('hidden');
+    }
+
+    // Carrinho
+    function adicionarAoCarrinhoModal() {
+      if (!currentModalProduct) return;
+      
+      const itemExistente = cart.find(item => item.id === currentModalProduct.id && item.ml === selectedMl);
+      const preco = currentModalProduct.prices[selectedMl];
+
+      if (itemExistente) {
+        itemExistente.qtd += 1;
+      } else {
+        cart.push({
+          id: currentModalProduct.id,
+          name: currentModalProduct.name,
+          brand: currentModalProduct.brand,
+          ml: selectedMl,
+          price: preco,
+          qtd: 1,
+          img: currentModalProduct.img
+        });
+      }
+
+      fecharModalProduto();
+      renderCart();
+      toggleCarrinho(true);
+    }
+
+    function toggleCarrinho(abrir) {
+      const drawer = document.getElementById('cartDrawer');
+      const overlay = document.getElementById('cartOverlay');
+      if (abrir) {
+        drawer.classList.remove('translate-x-full');
+        overlay.classList.remove('hidden');
+      } else {
+        drawer.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+      }
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cartItems');
+      container.innerHTML = '';
+      let subtotal = 0;
+      let totalQtd = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 text-neutral-400 text-xs">
+            <i data-lucide="shopping-bag" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
+            Seu carrinho está vazio
+          </div>`;
+      } else {
+        cart.forEach((item, index) => {
+          subtotal += item.price * item.qtd;
+          totalQtd += item.qtd;
+
+          const el = document.createElement('div');
+          el.className = "flex items-center gap-3 bg-brand-nude/60 p-2.5 rounded-xl border border-brand-rose/40";
+          el.innerHTML = `
+            <img src="${item.img}" class="w-12 h-12 object-cover rounded-lg border">
+            <div class="flex-1 min-w-0">
+              <h4 class="text-xs font-bold text-brand-dark truncate">${item.name}</h4>
+              <p class="text-[10px] text-neutral-500 font-medium">Decant ${item.ml} • R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+              <div class="flex items-center gap-2 mt-1">
+                <button onclick="mudarQtd(${index}, -1)" class="w-5 h-5 bg-white border rounded flex items-center justify-center text-xs hover:bg-neutral-100">-</button>
+                <span class="text-xs font-semibold">${item.qtd}</span>
+                <button onclick="mudarQtd(${index}, 1)" class="w-5 h-5 bg-white border rounded flex items-center justify-center text-xs hover:bg-neutral-100">+</button>
+              </div>
+            </div>
+            <button onclick="removerItem(${index})" class="text-neutral-400 hover:text-red-500 p-1">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          `;
+          container.appendChild(el);
+        });
+      }
+
+      document.getElementById('cartCount').innerText = totalQtd;
+      document.getElementById('cartSubtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+
+      // Desconto
+      const descontoVal = subtotal * (appliedDiscount / 100);
+      const totalFinal = Math.max(0, subtotal - descontoVal);
+
+      if (appliedDiscount > 0) {
+        document.getElementById('discountRow').classList.remove('hidden');
+        document.getElementById('cartDiscount').innerText = `- R$ ${descontoVal.toFixed(2).replace('.', ',')} (${appliedDiscount}%)`;
+      } else {
+        document.getElementById('discountRow').classList.add('hidden');
+      }
+
+      document.getElementById('cartTotal').innerText = `R$ ${totalFinal.toFixed(2).replace('.', ',')}`;
+      lucide.createIcons();
+    }
+
+    function mudarQtd(index, delta) {
+      cart[index].qtd += delta;
+      if (cart[index].qtd <= 0) cart.splice(index, 1);
+      renderCart();
+    }
+
+    function removerItem(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+
+    // Cupons
+    function aplicarCupomBarra(codigo) {
+      document.getElementById('couponInput').value = codigo;
+      toggleCarrinho(true);
+      aplicarCupom();
+    }
+
+    function aplicarCupom() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      const status = document.getElementById('couponStatus');
+      status.classList.remove('hidden');
+
+      if (code === "BEMVINDA10" || code === "PRIMEIRACOMPRA") {
+        appliedDiscount = 10;
+        status.className = "text-[11px] font-semibold text-green-600";
+        status.innerText = "✓ Cupom de 10% OFF aplicado com sucesso!";
+      } else if (code === "ESQUENTA15") {
+        appliedDiscount = 15;
+        status.className = "text-[11px] font-semibold text-green-600";
+        status.innerText = "✓ Cupom de 15% OFF aplicado com sucesso!";
+      } else {
+        appliedDiscount = 0;
+        status.className = "text-[11px] font-semibold text-red-500";
+        status.innerText = "Cupom inválido ou expirado.";
+      }
+      renderCart();
+    }
+
+    // Finalizar WhatsApp
+    function finalizarWhatsApp() {
+      if (cart.length === 0) {
+        alert("Adicione pelo menos um decant ao seu carrinho!");
+        return;
+      }
+
+      const nome = document.getElementById('custName').value.trim() || "Não informado";
+      const cidade = document.getElementById('custCity').value.trim() || "A combinar";
+      const pagamento = document.getElementById('custPayment').value;
+      const subtotalStr = document.getElementById('cartSubtotal').innerText;
+      const totalStr = document.getElementById('cartTotal').innerText;
+
+      let msg = `*🛍️ NOVO PEDIDO - LUMIÈRE DECANTS*\n`;
+      msg += `--------------------------------------\n`;
+      msg += `*Cliente:* ${nome}\n`;
+      msg += `*Local/Cidade:* ${cidade}\n`;
+      msg += `*Forma de Pagamento:* ${pagamento}\n\n`;
+      msg += `*ITENS ESCOLHIDOS:*\n`;
+
+      cart.forEach(item => {
+        msg += `▪ ${item.qtd}x ${item.name} (${item.brand}) - Decant ${item.ml} | R$ ${(item.price * item.qtd).toFixed(2).replace('.', ',')}\n`;
+      });
+
+      msg += `--------------------------------------\n`;
+      if (appliedDiscount > 0) {
+        msg += `*Cupom:* ${appliedDiscount}% OFF aplicado\n`;
+      }
+      msg += `*TOTAL DO PEDIDO:* ${totalStr}\n\n`;
+      msg += `Gostaria de confirmar a disponibilidade e o frete para envio! ✨`;
+
+      const link = `https://wa.me/${SEU_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+      window.open(link, '_blank');
+    }
+
+    // ================= FUNÇÕES DO PAINEL ADMIN =================
+    function abrirAdminModal() {
+      document.getElementById('adminModal').classList.remove('hidden');
+      renderAdminList();
+    }
+
+    function fecharAdminModal() {
+      document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function salvarNovoProduto(e) {
+      e.preventDefault();
+      const novo = {
+        id: Date.now().toString(),
+        name: document.getElementById('admName').value.trim(),
+        brand: document.getElementById('admBrand').value.trim(),
+        category: document.getElementById('admCategory').value,
+        img: document.getElementById('admImg').value.trim(),
+        prices: {
+          "2ml": parseFloat(document.getElementById('admPrice2ml').value),
+          "5ml": parseFloat(document.getElementById('admPrice5ml').value),
+          "10ml": parseFloat(document.getElementById('admPrice10ml').value)
+        },
+        topo: document.getElementById('admTopo').value.trim(),
+        coracao: document.getElementById('admCoracao').value.trim(),
+        fundo: document.getElementById('admFundo').value.trim()
+      };
+
+      products.unshift(novo);
+      saveProducts();
+      document.getElementById('newProductForm').reset();
+      renderAdminList();
+      alert("Perfume adicionado com sucesso!");
+    }
+
+    function renderAdminList() {
+      const container = document.getElementById('adminProductList');
+      container.innerHTML = '';
+      products.forEach((p, index) => {
+        const item = document.createElement('div');
+        item.className = "flex items-center justify-between p-2 rounded-lg bg-neutral-50 border text-xs";
+        item.innerHTML = `
+          <div class="flex items-center gap-2 truncate">
+            <img src="${p.img}" class="w-8 h-8 rounded object-cover">
+            <div>
+              <p class="font-bold text-neutral-800">${p.name}</p>
+              <p class="text-[10px] text-neutral-400 capitalize">${p.brand} • ${p.category}</p>
+            </div>
+          </div>
+          <button onclick="deletarProduto('${p.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-md hover:bg-red-50">
+            <i data-lucide="trash" class="w-4 h-4"></i>
+          </button>
+        `;
+        container.appendChild(item);
+      });
+      lucide.createIcons();
+    }
+
+    function deletarProduto(id) {
+      if (confirm("Tem certeza que deseja apagar este perfume do catálogo?")) {
+        products = products.filter(p => p.id !== id);
+        saveProducts();
+        renderAdminList();
+      }
+    }
+
+    // Inicialização
+    renderProducts();
+    renderCart();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
