@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRISÉ Perfumes e Cosméticos</title>
+  <title>PRISÉ Perfumes e Cosméticos | Itajaí - SC</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Cormorant Garamond & Montserrat -->
@@ -56,25 +56,25 @@
 </head>
 <body class="font-sans text-brand-dark antialiased">
 
-  <!-- ================= BARRA DE AVISO ANIMADA (MARQUEE) ================= -->
+  <!-- ================= BARRA DE AVISO ANIMADA COM LOCALIZAÇÃO ================= -->
   <div class="bg-brand-pink text-white text-xs py-2 overflow-hidden border-b border-brand-rose/40 select-none">
     <div class="animate-marquee whitespace-nowrap flex items-center gap-8 font-medium tracking-wide">
-      <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF no seu primeiro pedido!</span>
+      <span>📍 <strong>Itajaí - SC</strong>: Envios para todo o Brasil e entregas na região!</span>
       <span>•</span>
-      <span>🛡️ Fragrâncias 100% Originais e Fracionamento Lacrado</span>
+      <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF</span>
       <span>•</span>
-      <span>📦 Enviamos com Seguro para Todo o Brasil</span>
+      <span>🛡️ Fragrâncias 100% Originais com Garantia</span>
       <span>•</span>
-      <span>💬 Atendimento Personalizado no WhatsApp</span>
+      <span>💬 Atendimento exclusivo no WhatsApp</span>
       <span>•</span>
-      <!-- Repetição idêntica para o loop infinito sem cortes -->
-      <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF no seu primeiro pedido!</span>
+      <!-- Repetição idêntica para o loop infinito sem corte -->
+      <span>📍 <strong>Itajaí - SC</strong>: Envios para todo o Brasil e entregas na região!</span>
       <span>•</span>
-      <span>🛡️ Fragrâncias 100% Originais e Fracionamento Lacrado</span>
+      <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF</span>
       <span>•</span>
-      <span>📦 Enviamos com Seguro para Todo o Brasil</span>
+      <span>🛡️ Fragrâncias 100% Originais com Garantia</span>
       <span>•</span>
-      <span>💬 Atendimento Personalizado no WhatsApp</span>
+      <span>💬 Atendimento exclusivo no WhatsApp</span>
     </div>
   </div>
 
@@ -82,10 +82,10 @@
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-rose">
     <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
       <div>
-        <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-widest text-brand-dark cursor-pointer" onclick="filtrarCategoria('todos')">
+        <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-widest text-brand-dark cursor-pointer" onclick="filtrarCategoria('todos', true)">
           PRISÉ <span class="text-brand-pink font-light italic text-xl md:text-2xl">Perfumes & Cosméticos</span>
         </h1>
-        <p class="text-[9px] uppercase tracking-widest text-neutral-500 font-medium">Decants & Frascos 100% Originais</p>
+        <p class="text-[9px] uppercase tracking-widest text-neutral-500 font-medium">100% Originais • Itajaí - SC</p>
       </div>
 
       <!-- Carrinho -->
@@ -100,26 +100,26 @@
   <section class="max-w-6xl mx-auto px-4 mt-4">
     <div class="rounded-2xl bg-gradient-to-r from-[#F8ECE8] via-[#EBD8D0] to-[#F5E2DA] p-6 md:p-12 text-center relative overflow-hidden shadow-sm border border-brand-rose/60">
       <span class="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-brand-gold bg-white/70 px-3.5 py-1 rounded-full shadow-xs">
-        Frascos Lacrados e Decants Originais
+        📍 Itajaí - SC • Frascos Lacrados e Decants Originais
       </span>
       <h2 class="font-serif text-3xl md:text-5xl font-semibold mt-3 text-brand-dark leading-tight">
         Fragrâncias de Grife na Sua Pele
       </h2>
       <p class="text-xs md:text-sm text-neutral-600 max-w-lg mx-auto mt-2 font-light leading-relaxed">
-        Descubra como cada fragrância se comporta na sua pele. Compre decants ou o frasco grande com total garantia de originalidade.
+        Compre decants de bolsa ou frascos fechados com total garantia de originalidade. Enviamos de Itajaí para todo o Brasil!
       </p>
     </div>
   </section>
 
   <!-- ================= BARRA DE BUSCA E FILTROS ================= -->
-  <section class="max-w-6xl mx-auto px-4 mt-6">
+  <section id="catalogoSecao" class="max-w-6xl mx-auto px-4 mt-6 scroll-mt-24">
     <div class="relative max-w-md mx-auto mb-5">
-      <input type="text" id="searchInput" oninput="buscarProdutos()" placeholder="Buscar perfume, marca ou nota..." 
+      <input type="text" id="searchInput" oninput="buscarProdutos()" placeholder="Buscar perfume, marca ou nota olfativa..." 
              class="w-full pl-10 pr-4 py-2.5 rounded-full border border-brand-rose bg-white text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink shadow-xs">
       <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5"></i>
     </div>
 
-    <!-- Categorias -->
+    <!-- Categorias do Topo -->
     <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar justify-start md:justify-center">
       <button onclick="filtrarCategoria('todos')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition" data-cat="todos">Todos os Produtos</button>
       <button onclick="filtrarCategoria('feminino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="feminino">Femininos</button>
@@ -138,10 +138,10 @@
   <section class="bg-white border-y border-brand-rose py-12 md:py-16">
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-brand-pink text-xs uppercase font-bold tracking-widest">Procedência Garantida</span>
+        <span class="text-brand-pink text-xs uppercase font-bold tracking-widest">Base em Itajaí - SC</span>
         <h3 class="font-serif text-3xl font-bold text-brand-dark mt-1">Garantia & Qualidade PRISÉ</h3>
         <p class="text-neutral-600 text-xs md:text-sm mt-2">
-          Seja em frasco fechado ou em decant de bolsa, garantimos a melhor experiência sensorial em perfumaria importada.
+          Atendemos clientes em todo o Brasil e entregamos com máxima agilidade para Itajaí, Balneário Camboriú e região.
         </p>
       </div>
 
@@ -168,11 +168,11 @@
 
         <div class="p-6 rounded-2xl bg-brand-nude border border-brand-rose/60 text-center">
           <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
-            <i data-lucide="gem" class="w-6 h-6"></i>
+            <i data-lucide="truck" class="w-6 h-6"></i>
           </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Compra Inteligente</h4>
+          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Envio Rápido & Seguro</h4>
           <p class="text-xs text-neutral-600 leading-relaxed">
-            Tenha a liberdade de comprar o frasco original de 100ml ou decants menores para levar na bolsa e em viagens.
+            Embalagens super protegidas com plástico bolha e código de rastreamento para você acompanhar cada etapa do envio.
           </p>
         </div>
       </div>
@@ -200,7 +200,7 @@
             <h3 id="modalName" class="font-serif text-2xl font-bold text-brand-dark mt-1"></h3>
             <p id="modalCategory" class="text-xs text-neutral-500 capitalize"></p>
 
-            <!-- Seletor Dinâmico de Tamanhos -->
+            <!-- Seletor de Tamanhos -->
             <div class="mt-4">
               <label class="block text-xs font-semibold text-neutral-700 mb-2">Tamanhos disponíveis:</label>
               <div class="flex flex-wrap gap-2" id="mlOptions"></div>
@@ -279,7 +279,7 @@
       <!-- Dados de Envio -->
       <div class="space-y-2 pt-2 border-t text-xs">
         <input type="text" id="custName" placeholder="Seu Nome Completo" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
-        <input type="text" id="custCity" placeholder="Cidade / Bairro (Para calcular envio)" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
+        <input type="text" id="custCity" placeholder="Cidade / Bairro (Ex: Itajaí, BC, SP...)" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
         <select id="custPayment" class="w-full px-3 py-2 border rounded-lg focus:outline-none text-neutral-600">
           <option value="Pix (À Vista)">Pagamento preferido: Pix (À Vista)</option>
           <option value="Cartão de Crédito">Pagamento preferido: Cartão de Crédito</option>
@@ -303,14 +303,14 @@
       <div class="flex items-center justify-between border-b pb-3 mb-4">
         <div>
           <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel da Loja PRISÉ</h3>
-          <p class="text-[11px] text-green-600 font-medium">● Gerencie produtos e cupons</p>
+          <p class="text-[11px] text-green-600 font-medium">● Gerencie produtos, cupons e estoque</p>
         </div>
         <button onclick="alterarSenhaAdmin()" class="text-[11px] text-neutral-500 hover:text-brand-pink underline">
           Mudar Senha
         </button>
       </div>
 
-      <!-- SESSÃO DE GERENCIAR CUPONS DE DESCONTO -->
+      <!-- GERENCIAR CUPONS DE DESCONTO -->
       <div class="mb-6 p-4 rounded-xl bg-neutral-50 border border-brand-rose/60">
         <div class="flex items-center justify-between mb-2">
           <h4 class="text-xs font-bold uppercase tracking-wider text-brand-dark flex items-center gap-1.5">
@@ -319,7 +319,6 @@
           <span class="text-[10px] text-neutral-400">Ativos no carrinho</span>
         </div>
         
-        <!-- Formulário de Criar Cupom -->
         <div class="flex gap-2 mb-3">
           <input type="text" id="novoCupomCodigo" placeholder="Código (Ex: AMIGA15)" class="flex-1 p-2 text-xs uppercase rounded border bg-white focus:outline-none">
           <input type="number" id="novoCupomValor" placeholder="% OFF (Ex: 15)" min="1" max="90" class="w-24 p-2 text-xs rounded border bg-white focus:outline-none">
@@ -328,10 +327,7 @@
           </button>
         </div>
 
-        <!-- Lista de Cupons Existentes -->
-        <div id="adminCouponsList" class="flex flex-wrap gap-2">
-          <!-- Injetado via JS -->
-        </div>
+        <div id="adminCouponsList" class="flex flex-wrap gap-2"></div>
       </div>
       
       <!-- FORMULÁRIO DE PRODUTO (CADASTRAR OU EDITAR) -->
@@ -343,7 +339,6 @@
           </button>
         </div>
         
-        <!-- Campo Oculto para saber se está Editando -->
         <input type="hidden" id="editingProductId" value="">
 
         <div class="grid grid-cols-2 gap-2 text-xs">
@@ -387,7 +382,7 @@
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
           <div>
             <label class="block font-bold text-brand-dark text-[11px]">📏 Tamanhos e Preços:</label>
-            <p class="text-[10px] text-neutral-500">Preencha apenas o que tiver (ex: pode ser só 100ml, ou só 5ml e 10ml):</p>
+            <p class="text-[10px] text-neutral-500">Preencha apenas o que tiver (ex: só 100ml, ou só 5ml e 10ml):</p>
           </div>
 
           <div class="grid grid-cols-2 gap-2">
@@ -451,10 +446,11 @@
     </div>
   </div>
 
-  <!-- ================= RODAPÉ COMPLETO ================= -->
+  <!-- ================= RODAPÉ COMPLETO COM REDES E LOCALIZAÇÃO ================= -->
   <footer class="bg-brand-dark text-neutral-300 pt-12 pb-8 border-t border-brand-rose/20 text-xs">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-      <!-- Coluna 1: Sobre -->
+      
+      <!-- Coluna 1: Sobre e Redes Sociais com Botões -->
       <div class="space-y-3">
         <h4 class="font-serif text-2xl font-bold text-white tracking-widest">
           PRISÉ <span class="text-brand-pink font-light italic text-lg">Perfumes</span>
@@ -462,26 +458,56 @@
         <p class="text-neutral-400 text-xs leading-relaxed">
           Sua loja de perfumaria e cosméticos importados com foco na experiência através de decants e frascos originais.
         </p>
+        <p class="text-white text-xs flex items-center gap-1.5 font-medium">
+          <i data-lucide="map-pin" class="w-4 h-4 text-brand-pink"></i> Base em <strong>Itajaí - SC</strong>
+        </p>
+
+        <!-- BOTÕES OFICIAIS INSTAGRAM E WHATSAPP NO RODAPÉ -->
+        <div class="pt-2 flex flex-col sm:flex-row gap-2">
+          <!-- Botão WhatsApp -->
+          <a id="footerWaBtn" href="#" target="_blank" rel="noopener noreferrer" 
+             class="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-3.5 py-2 rounded-xl flex items-center justify-center gap-2 font-medium text-xs shadow transition">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+
+          <!-- Botão Instagram -->
+          <a id="footerIgBtn" href="#" target="_blank" rel="noopener noreferrer" 
+             class="bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 text-white px-3.5 py-2 rounded-xl flex items-center justify-center gap-2 font-medium text-xs shadow transition">
+            <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
+          </a>
+        </div>
       </div>
 
-      <!-- Coluna 2: Navegação -->
+      <!-- Coluna 2: Navegação & Departamentos (ROLA PARA CIMA NA HORA) -->
       <div>
         <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Departamentos</h5>
         <ul class="space-y-2 text-neutral-400">
-          <li><button onclick="filtrarCategoria('feminino')" class="hover:text-white transition">Perfumes Femininos</button></li>
-          <li><button onclick="filtrarCategoria('masculino')" class="hover:text-white transition">Perfumes Masculinos</button></li>
-          <li><button onclick="filtrarCategoria('todos')" class="hover:text-white transition">Ver Catálogo Completo</button></li>
+          <li>
+            <button onclick="filtrarCategoria('feminino', true)" class="hover:text-brand-pink transition flex items-center gap-1.5">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-500"></i> Perfumes Femininos
+            </button>
+          </li>
+          <li>
+            <button onclick="filtrarCategoria('masculino', true)" class="hover:text-brand-pink transition flex items-center gap-1.5">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-500"></i> Perfumes Masculinos
+            </button>
+          </li>
+          <li>
+            <button onclick="filtrarCategoria('todos', true)" class="hover:text-brand-pink transition flex items-center gap-1.5 font-semibold text-neutral-300">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-pink"></i> Ver Catálogo Completo
+            </button>
+          </li>
         </ul>
       </div>
 
-      <!-- Coluna 3: Atendimento -->
+      <!-- Coluna 3: Atendimento & Região -->
       <div>
-        <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Atendimento</h5>
+        <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Atendimento & Local</h5>
         <ul class="space-y-2 text-neutral-400">
           <li>Segunda a Sábado: 09h às 19h</li>
-          <li class="flex items-center gap-1.5 text-white pt-1">
-            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-brand-pink"></i>
-            Suporte direto via WhatsApp
+          <li class="text-white font-medium">📍 Itajaí - Santa Catarina</li>
+          <li class="text-[11px] text-neutral-400 leading-relaxed">
+            Entregas expressas para Itajaí, Balneário Camboriú, Navegantes e envios via Correios/Jadlog para todo o Brasil.
           </li>
         </ul>
       </div>
@@ -509,9 +535,9 @@
 
     <!-- Linha Final com o Botão Admin ESCONDIDO/DISCRETO -->
     <div class="border-t border-neutral-800 pt-6 max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-neutral-500 text-[11px] gap-2">
-      <p>© 2026 PRISÉ Perfumes e Cosméticos. Todos os direitos reservados.</p>
+      <p>© 2026 PRISÉ Perfumes e Cosméticos • Itajaí - SC. Todos os direitos reservados.</p>
       
-      <!-- BOTÃO ADMIN DISCRETO (No canto direito inferior) -->
+      <!-- BOTÃO ADMIN DISCRETO -->
       <button onclick="solicitarAcessoAdmin()" class="opacity-25 hover:opacity-100 transition text-neutral-500 hover:text-brand-pink flex items-center gap-1 text-[10px] cursor-pointer" title="Área Restrita">
         <i data-lucide="lock" class="w-3 h-3"></i> Acesso Restrito
       </button>
@@ -523,8 +549,16 @@
 
   <!-- ================= SCRIPTS JS ================= -->
   <script>
+    // ================= CONFIGURAÇÕES DA LOJA =================
     // 👇 COLOQUE O SEU WHATSAPP AQUI (Com DDD, sem traços ou espaços)
     const SEU_WHATSAPP = "5511999999999"; 
+
+    // 👇 COLOQUE O LINK OU O @ DO INSTAGRAM AQUI:
+    const SEU_INSTAGRAM = "https://instagram.com/priseperfumes";
+
+    // Configura os links do rodapé dinamicamente
+    document.getElementById('footerWaBtn').href = `https://wa.me/${SEU_WHATSAPP}?text=${encodeURIComponent("Olá! Estou no site da PRISÉ Perfumes e gostaria de tirar uma dúvida! ✨")}`;
+    document.getElementById('footerIgBtn').href = SEU_INSTAGRAM;
 
     // Senha padrão de administrador
     let ADMIN_PASSWORD = localStorage.getItem('prise_admin_pwd') || "1234";
@@ -649,14 +683,14 @@
       }
     ];
 
-    let products = JSON.parse(localStorage.getItem('prise_products_v3')) || defaultProducts;
+    let products = JSON.parse(localStorage.getItem('prise_products_v4')) || defaultProducts;
     let cart = [];
     let currentModalProduct = null;
     let selectedMl = '';
     let appliedDiscount = 0;
 
     function saveProducts() {
-      localStorage.setItem('prise_products_v3', JSON.stringify(products));
+      localStorage.setItem('prise_products_v4', JSON.stringify(products));
       renderProducts();
     }
 
@@ -666,7 +700,7 @@
       grid.innerHTML = '';
 
       if (lista.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum produto encontrado.</div>';
+        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum produto encontrado nesta categoria.</div>';
         return;
       }
 
@@ -701,8 +735,12 @@
       lucide.createIcons();
     }
 
-    // Filtrar Categoria
-    function filtrarCategoria(cat) {
+    // ================= FILTRAR E ROLAR PARA O CATÁLOGO =================
+    function filtrarCategoria(cat, rolarTela = false) {
+      // Limpa campo de busca
+      document.getElementById('searchInput').value = '';
+
+      // Atualiza botões superiores
       document.querySelectorAll('.cat-btn').forEach(btn => {
         if(btn.dataset.cat === cat) {
           btn.className = "cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition";
@@ -711,11 +749,20 @@
         }
       });
 
+      // Aplica filtro
       if (cat === 'todos') {
         renderProducts(products);
       } else {
         const filtrados = products.filter(p => p.category.toLowerCase() === cat.toLowerCase());
         renderProducts(filtrados);
+      }
+
+      // Rola a tela até o catálogo se for acionado
+      if (rolarTela) {
+        const secao = document.getElementById('catalogoSecao');
+        if (secao) {
+          secao.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     }
 
@@ -901,7 +948,7 @@
       renderCart();
     }
 
-    // Cupons Dinâmicos no Carrinho
+    // Cupons Dinâmicos
     function aplicarCupomBarra(codigo) {
       document.getElementById('couponInput').value = codigo;
       toggleCarrinho(true);
@@ -927,7 +974,7 @@
       renderCart();
     }
 
-    // Finalizar WhatsApp
+    // Finalizar WhatsApp (Com menção a Itajaí - SC)
     function finalizarWhatsApp() {
       if (cart.length === 0) {
         alert("Adicione pelo menos um produto ao seu carrinho!");
@@ -939,10 +986,10 @@
       const pagamento = document.getElementById('custPayment').value;
       const totalStr = document.getElementById('cartTotal').innerText;
 
-      let msg = `*🛍️ NOVO PEDIDO - PRISÉ PERFUMES E COSMÉTICOS*\n`;
+      let msg = `*🛍️ NOVO PEDIDO - PRISÉ PERFUMES (ITAJAÍ-SC)*\n`;
       msg += `--------------------------------------\n`;
       msg += `*Cliente:* ${nome}\n`;
-      msg += `*Cidade/Bairro:* ${cidade}\n`;
+      msg += `*Endereço/Cidade:* ${cidade}\n`;
       msg += `*Pagamento:* ${pagamento}\n\n`;
       msg += `*PRODUTOS ESCOLHIDOS:*\n`;
 
@@ -955,7 +1002,7 @@
         msg += `*Cupom Aplicado:* ${appliedDiscount}% OFF\n`;
       }
       msg += `*VALOR TOTAL:* ${totalStr}\n\n`;
-      msg += `Olá! Gostaria de fechar este pedido e combinar a entrega com a PRISÉ! ✨`;
+      msg += `Olá! Gostaria de fechar o pedido e calcular a entrega/envio a partir de Itajaí - SC! ✨`;
 
       const link = `https://wa.me/${SEU_WHATSAPP}?text=${encodeURIComponent(msg)}`;
       window.open(link, '_blank');
@@ -991,7 +1038,6 @@
       }
     }
 
-    // Gerenciamento de Cupons no Admin
     function renderAdminCoupons() {
       const container = document.getElementById('adminCouponsList');
       container.innerHTML = '';
@@ -1024,7 +1070,6 @@
         return;
       }
 
-      // Evita cupom duplicado
       if (coupons.some(c => c.code.toUpperCase() === code)) {
         alert("Já existe um cupom com esse código!");
         return;
@@ -1044,7 +1089,6 @@
       }
     }
 
-    // Carregamento de Foto
     function carregarFotoArquivo(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -1077,7 +1121,6 @@
       reader.readAsDataURL(file);
     }
 
-    // Salvar Produto (Novo ou Editado)
     function salvarNovoProduto(e) {
       e.preventDefault();
 
@@ -1103,7 +1146,6 @@
       const editId = document.getElementById('editingProductId').value;
 
       if (editId) {
-        // Atualiza Produto Existente
         const index = products.findIndex(p => p.id === editId);
         if (index !== -1) {
           products[index] = {
@@ -1122,7 +1164,6 @@
           alert("✓ Alterações salvas com sucesso!");
         }
       } else {
-        // Cria Novo Produto
         const novo = {
           id: "p_" + Date.now(),
           name: document.getElementById('admName').value.trim(),
@@ -1145,7 +1186,6 @@
       renderAdminList();
     }
 
-    // Carrega dados para Edição
     function iniciarEdicao(id) {
       const p = products.find(prod => prod.id === id);
       if (!p) return;
@@ -1168,7 +1208,6 @@
       document.getElementById('admCoracao').value = p.coracao || '';
       document.getElementById('admFundo').value = p.fundo || '';
 
-      // Preenche os tamanhos
       const tamanhos = Object.keys(p.prices);
       document.getElementById('tamanhoNome1').value = tamanhos[0] || '';
       document.getElementById('tamanhoPreco1').value = tamanhos[0] ? p.prices[tamanhos[0]] : '';
@@ -1179,7 +1218,6 @@
       document.getElementById('tamanhoNome3').value = tamanhos[2] || '';
       document.getElementById('tamanhoPreco3').value = tamanhos[2] ? p.prices[tamanhos[2]] : '';
 
-      // Rola o painel suavemente até o formulário
       document.getElementById('adminModalBox').scrollTo({ top: 0, behavior: 'smooth' });
     }
 
