@@ -71,7 +71,6 @@
       <span>•</span>
       <span>💬 Atendimento exclusivo no WhatsApp</span>
       <span>•</span>
-      <!-- Loop contínuo -->
       <span>📍 <strong>Itajaí - SC</strong>: Envios para todo o Brasil e entregas expressas na região!</span>
       <span>•</span>
       <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF</span>
@@ -92,7 +91,6 @@
         <p class="text-[9px] uppercase tracking-widest text-neutral-500 font-medium">100% Originais • Itajaí - SC</p>
       </div>
 
-      <!-- Carrinho -->
       <button onclick="toggleCarrinho(true)" class="relative p-2.5 text-brand-dark hover:text-brand-pink transition">
         <i data-lucide="shopping-bag" class="w-6 h-6"></i>
         <span id="cartCount" class="absolute top-0.5 right-0.5 bg-brand-pink text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
@@ -135,7 +133,7 @@
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div id="loadingCatalogo" class="text-center py-16 text-neutral-400 text-xs flex flex-col items-center justify-center gap-2">
       <div class="w-6 h-6 border-2 border-brand-pink border-t-transparent rounded-full animate-spin"></div>
-      <span>Sincronizando com a nuvem Supabase...</span>
+      <span>Carregando catálogo da PRISÉ...</span>
     </div>
     <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
   </main>
@@ -301,7 +299,7 @@
         <div>
           <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel da Loja PRISÉ</h3>
           <p class="text-[11px] text-green-600 font-medium flex items-center gap-1">
-            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Nuvem Supabase Ativa
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Nuvem Supabase Conectada
           </p>
         </div>
         <button onclick="alterarSenhaAdmin()" class="text-[11px] text-neutral-500 hover:text-brand-pink underline">
@@ -338,6 +336,7 @@
           </button>
         </div>
         
+        <!-- ID do produto (Vazio = Novo, Preenchido = Editando) -->
         <input type="hidden" id="editingProductId" value="">
 
         <div class="grid grid-cols-2 gap-2 text-xs">
@@ -551,9 +550,10 @@
 
     let ADMIN_PASSWORD = localStorage.getItem('prise_admin_pwd') || "1234";
 
-    // Perfumes Iniciais Padrão
+    // Perfumes Iniciais com IDs numéricos reais garantidos
     const defaultInitialList = [
       {
+        id: 1,
         name: "For Her EDT (50ml)",
         brand: "Narciso Rodriguez",
         category: "feminino",
@@ -566,6 +566,7 @@
         fundo: "Vetiver, Baunilha e Patchouli"
       },
       {
+        id: 2,
         name: "Light Blue EDP",
         brand: "Dolce & Gabbana",
         category: "feminino",
@@ -578,6 +579,7 @@
         fundo: "Madeira de Âmbar e Almíscar"
       },
       {
+        id: 3,
         name: "Le Male EDT (75ml)",
         brand: "Jean Paul Gaultier",
         category: "masculino",
@@ -590,6 +592,7 @@
         fundo: "Baunilha, Fava Tonka, Âmbar e Sândalo"
       },
       {
+        id: 4,
         name: "1 Million EDT (100ml)",
         brand: "Paco Rabanne",
         category: "masculino",
@@ -602,6 +605,7 @@
         fundo: "Âmbar, Couro, Notas Amadeiradas e Patchouli"
       },
       {
+        id: 5,
         name: "I Love Love EDT (100ml)",
         brand: "Moschino",
         category: "feminino",
@@ -614,6 +618,7 @@
         fundo: "Almíscar, Cedro e Notas Amadeiradas"
       },
       {
+        id: 6,
         name: "Animale For Men EDT (100ml)",
         brand: "Animale",
         category: "masculino",
@@ -626,6 +631,7 @@
         fundo: "Couro, Musgo de Carvalho e Vetiver"
       },
       {
+        id: 7,
         name: "Devotion EDP (50ml)",
         brand: "Dolce & Gabbana",
         category: "feminino",
@@ -638,6 +644,7 @@
         fundo: "Baunilha de Madagascar"
       },
       {
+        id: 8,
         name: "Sauvage EDP (60ml)",
         brand: "Christian Dior",
         category: "masculino",
@@ -665,7 +672,7 @@
     let selectedMl = '';
     let appliedDiscount = 0;
 
-    // Carregar Produtos com AUTO-POVOAMENTO (grava no Supabase se estiver vazio!)
+    // Carregar Produtos
     async function carregarProdutos() {
       try {
         const { data, error } = await _supabase
@@ -676,25 +683,22 @@
         document.getElementById('loadingCatalogo').classList.add('hidden');
 
         if (error) {
-          console.error("Erro ao ler produtos do Supabase:", error);
+          console.warn("Aviso ao ler Supabase:", error.message);
           products = defaultInitialList;
           renderProducts();
           return;
         }
 
-        // Se o Supabase estiver vazio, ele salva os 8 perfumes lá dentro agora mesmo!
+        // Se o Supabase estiver vazio, popula automaticamente
         if (!data || data.length === 0) {
-          console.log("Banco vazio! Inserindo os 8 perfumes iniciais no Supabase...");
+          console.log("Inserindo produtos padrão no Supabase...");
+          const listaParaSalvar = defaultInitialList.map(({ id, ...resto }) => resto);
           const { data: inseridos, error: errInsert } = await _supabase
             .from('produtos')
-            .insert(defaultInitialList)
+            .insert(listaParaSalvar)
             .select();
 
-          if (!errInsert && inseridos && inseridos.length > 0) {
-            products = inseridos;
-          } else {
-            products = defaultInitialList;
-          }
+          products = (!errInsert && inseridos && inseridos.length > 0) ? inseridos : defaultInitialList;
         } else {
           products = data;
         }
@@ -720,7 +724,6 @@
         if (!error && data && data.length > 0) {
           coupons = data;
         } else {
-          // Se não tiver cupons, insere os padrão
           await _supabase.from('cupons').insert([
             { code: "PRISE10", discount: 10 },
             { code: "BEMVINDA", discount: 10 }
@@ -766,7 +769,7 @@
         card.className = "bg-white rounded-2xl overflow-hidden border border-brand-rose hover:shadow-md transition duration-300 flex flex-col justify-between";
         card.innerHTML = `
           <div>
-            <div class="relative cursor-pointer" onclick="abrirModalProduto(${p.id})">
+            <div class="relative cursor-pointer" onclick="abrirModalProduto('${p.id}')">
               <img src="${p.img}" alt="${p.name}" class="w-full h-44 sm:h-52 object-cover" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600'">
               ${p.tag ? `<span class="absolute top-2 left-2 bg-brand-pink/90 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">${p.tag}</span>` : ''}
             </div>
@@ -778,7 +781,7 @@
           </div>
           <div class="p-3 pt-0">
             <div class="text-[11px] text-neutral-500 mb-1.5">${qtdTamanhos > 1 ? 'A partir de' : 'Valor:'} <strong class="text-brand-dark text-sm">R$ ${precoMin}</strong></div>
-            <button onclick="abrirModalProduto(${p.id})" class="w-full bg-brand-nude hover:bg-brand-rose/50 text-brand-dark text-xs font-semibold py-2 rounded-xl border border-brand-rose/60 transition flex items-center justify-center gap-1">
+            <button onclick="abrirModalProduto('${p.id}')" class="w-full bg-brand-nude hover:bg-brand-rose/50 text-brand-dark text-xs font-semibold py-2 rounded-xl border border-brand-rose/60 transition flex items-center justify-center gap-1">
               Ver Detalhes / Comprar
             </button>
           </div>
@@ -1099,7 +1102,7 @@
         badge.innerHTML = `
           <strong class="text-brand-dark uppercase">${c.code}</strong>
           <span class="text-brand-pink font-semibold">(${c.discount}%)</span>
-          <button onclick="deletarCupom(${c.id})" class="text-neutral-400 hover:text-red-500 ml-1 p-0.5">
+          <button onclick="deletarCupom('${c.id}')" class="text-neutral-400 hover:text-red-500 ml-1 p-0.5">
             <i data-lucide="x" class="w-3.5 h-3.5"></i>
           </button>
         `;
@@ -1130,12 +1133,16 @@
 
     async function deletarCupom(id) {
       if (confirm(`Remover este cupom?`)) {
-        await _supabase.from('cupons').delete().eq('id', id);
+        const numId = parseInt(id, 10);
+        if (!isNaN(numId)) {
+          await _supabase.from('cupons').delete().eq('id', numId);
+        } else {
+          await _supabase.from('cupons').delete().eq('code', id);
+        }
         carregarCupons();
       }
     }
 
-    // Carregamento de Foto pelo Arquivo
     function carregarFotoArquivo(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -1168,7 +1175,6 @@
       reader.readAsDataURL(file);
     }
 
-    // Prévia do Link digitado
     function atualizarPreviaLink(url) {
       const preview = document.getElementById('imgPreview');
       const container = document.getElementById('imgPreviewContainer');
@@ -1180,7 +1186,7 @@
       }
     }
 
-    // Salvar produto (Novo ou Editado) com garantia de gravação
+    // Salvar produto com TRATAMENTO BLINDADO CONTRA "NaN"
     async function salvarNovoProduto(e) {
       e.preventDefault();
 
@@ -1203,7 +1209,10 @@
       }
 
       const imagemFinal = document.getElementById('admImg').value.trim() || "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop";
-      const editId = document.getElementById('editingProductId').value;
+      
+      // Validação blindada do ID (evita o erro "bigint: NaN")
+      const editIdRaw = document.getElementById('editingProductId').value.trim();
+      const editId = (editIdRaw && editIdRaw !== 'undefined' && !isNaN(Number(editIdRaw))) ? parseInt(editIdRaw, 10) : null;
 
       const dadosProduto = {
         name: document.getElementById('admName').value.trim(),
@@ -1224,33 +1233,33 @@
 
       try {
         if (editId) {
-          // Atualiza registro no Supabase
+          // Edição de produto com ID numérico válido
           const { data, error } = await _supabase
             .from('produtos')
             .update(dadosProduto)
-            .eq('id', Number(editId))
+            .eq('id', editId)
             .select();
 
           if (error) throw error;
 
-          // Se por acaso a linha não existia no Supabase, ele cria como nova
+          // Se por algum motivo o ID não constava na tabela, insere como novo
           if (!data || data.length === 0) {
             await _supabase.from('produtos').insert([dadosProduto]);
           }
 
           alert("✓ Perfume e imagem atualizados com sucesso!");
         } else {
-          // Cria novo perfume
+          // Cadastro de novo perfume
           const { error } = await _supabase.from('produtos').insert([dadosProduto]);
           if (error) throw error;
           alert("✓ Novo perfume publicado no Supabase!");
         }
 
         cancelarEdicao();
-        await carregarProdutos(); // Força a recarga imediata da tela
+        await carregarProdutos();
       } catch (err) {
         console.error("Erro completo:", err);
-        alert("Erro ao salvar no Supabase:\n" + (err.message || JSON.stringify(err)));
+        alert("Erro no Supabase:\n" + (err.message || JSON.stringify(err)));
       } finally {
         btnSalvar.disabled = false;
         btnSalvar.innerText = "Salvar Perfume no Supabase";
@@ -1262,7 +1271,10 @@
       const p = products.find(prod => String(prod.id) === String(id));
       if (!p) return;
 
-      document.getElementById('editingProductId').value = p.id;
+      // Garante que o ID guardado seja válido ou vazio
+      const validId = (!isNaN(Number(p.id))) ? p.id : '';
+      document.getElementById('editingProductId').value = validId;
+
       document.getElementById('formProductTitle').innerText = `✏️ Editando: ${p.name}`;
       document.getElementById('btnSalvarProduto').innerText = "Salvar Alterações no Perfume";
       document.getElementById('btnCancelEdit').classList.remove('hidden');
@@ -1273,7 +1285,6 @@
       document.getElementById('admTag').value = p.tag || '';
       document.getElementById('admImg').value = p.img;
       
-      // Mostra a prévia da foto atual
       document.getElementById('imgPreview').src = p.img;
       document.getElementById('imgPreviewContainer').classList.remove('hidden');
 
@@ -1319,10 +1330,10 @@
             </div>
           </div>
           <div class="flex items-center gap-1">
-            <button onclick="iniciarEdicao(${p.id})" class="text-blue-500 hover:text-blue-700 p-1.5 rounded-md hover:bg-blue-50" title="Editar Produto">
+            <button onclick="iniciarEdicao('${p.id}')" class="text-blue-500 hover:text-blue-700 p-1.5 rounded-md hover:bg-blue-50" title="Editar Produto">
               <i data-lucide="pencil" class="w-4 h-4"></i>
             </button>
-            <button onclick="deletarProduto(${p.id})" class="text-red-500 hover:text-red-700 p-1.5 rounded-md hover:bg-red-50" title="Apagar Produto">
+            <button onclick="deletarProduto('${p.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-md hover:bg-red-50" title="Apagar Produto">
               <i data-lucide="trash" class="w-4 h-4"></i>
             </button>
           </div>
@@ -1334,13 +1345,16 @@
 
     async function deletarProduto(id) {
       if (confirm("Tem certeza que deseja apagar este produto da loja online?")) {
-        const { error } = await _supabase.from('produtos').delete().eq('id', Number(id));
-        if (error) {
-          alert("Erro ao excluir: " + error.message);
-        } else {
-          alert("✓ Perfume removido da nuvem!");
-          await carregarProdutos();
+        const numId = parseInt(id, 10);
+        if (!isNaN(numId)) {
+          const { error } = await _supabase.from('produtos').delete().eq('id', numId);
+          if (error) {
+            alert("Erro ao excluir: " + error.message);
+            return;
+          }
         }
+        alert("✓ Perfume removido!");
+        await carregarProdutos();
       }
     }
 
