@@ -43,6 +43,7 @@
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+    /* Barra Deslizante */
     @keyframes marquee {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -70,6 +71,7 @@
       <span>•</span>
       <span>💬 Atendimento exclusivo no WhatsApp</span>
       <span>•</span>
+      <!-- Loop contínuo -->
       <span>📍 <strong>Itajaí - SC</strong>: Envios para todo o Brasil e entregas expressas na região!</span>
       <span>•</span>
       <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF</span>
@@ -133,7 +135,7 @@
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div id="loadingCatalogo" class="text-center py-16 text-neutral-400 text-xs flex flex-col items-center justify-center gap-2">
       <div class="w-6 h-6 border-2 border-brand-pink border-t-transparent rounded-full animate-spin"></div>
-      <span>Carregando catálogo da PRISÉ...</span>
+      <span>Sincronizando com a nuvem Supabase...</span>
     </div>
     <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
   </main>
@@ -288,7 +290,7 @@
     </div>
   </div>
 
-  <!-- ================= PAINEL ADMIN (SUPABASE) ================= -->
+  <!-- ================= PAINEL ADMIN ================= -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
     <div id="adminModalBox" class="bg-white w-full max-w-xl rounded-2xl max-h-[92vh] overflow-y-auto p-6 relative shadow-2xl">
       <button onclick="fecharAdminModal()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
@@ -299,7 +301,7 @@
         <div>
           <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel da Loja PRISÉ</h3>
           <p class="text-[11px] text-green-600 font-medium flex items-center gap-1">
-            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Nuvem Supabase Conectada
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Nuvem Supabase Ativa
           </p>
         </div>
         <button onclick="alterarSenhaAdmin()" class="text-[11px] text-neutral-500 hover:text-brand-pink underline">
@@ -365,13 +367,13 @@
 
         <!-- FOTO -->
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
-          <label class="block font-bold text-brand-dark text-[11px]">📸 Foto do Perfume (Galeria do Celular ou PC):</label>
+          <label class="block font-bold text-brand-dark text-[11px]">📸 Foto do Perfume (Galeria ou Link):</label>
           <input type="file" id="admFileInput" accept="image/*" onchange="carregarFotoArquivo(event)" class="text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-brand-pink file:text-white hover:file:bg-brand-pink/90 cursor-pointer">
-          <p class="text-[10px] text-neutral-400">Ou cole um link direto da imagem:</p>
-          <input type="url" id="admImg" placeholder="https://..." class="w-full p-2 text-xs rounded border bg-neutral-50">
+          <p class="text-[10px] text-neutral-400">Ou cole o link direto da imagem:</p>
+          <input type="url" id="admImg" oninput="atualizarPreviaLink(this.value)" placeholder="https://..." class="w-full p-2 text-xs rounded border bg-neutral-50">
           <div id="imgPreviewContainer" class="hidden mt-2">
-            <span class="text-[10px] text-neutral-500">Prévia da Foto:</span>
-            <img id="imgPreview" src="" class="w-16 h-16 object-cover rounded border mt-1">
+            <span class="text-[10px] text-neutral-500 font-medium">Prévia da Foto:</span>
+            <img id="imgPreview" src="" class="w-20 h-20 object-cover rounded border mt-1 shadow-sm">
           </div>
         </div>
 
@@ -379,7 +381,7 @@
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
           <div>
             <label class="block font-bold text-brand-dark text-[11px]">📏 Tamanhos e Preços:</label>
-            <p class="text-[10px] text-neutral-500">Preencha apenas o que tiver em estoque (ex: pode ser só 100ml, ou só 5ml e 10ml):</p>
+            <p class="text-[10px] text-neutral-500">Preencha apenas o que tiver em estoque:</p>
           </div>
 
           <div class="grid grid-cols-2 gap-2">
@@ -536,9 +538,7 @@
 
   <!-- ================= SCRIPTS JS + SUPABASE ================= -->
   <script>
-    // =========================================================================
-    // 👇 SUAS CHAVES DO SUPABASE JÁ INSERIDAS E CONFIGURADAS:
-    // =========================================================================
+    // 👇 SUAS CHAVES DO SUPABASE:
     const SUPABASE_URL = "https://ptpzltsxedbgcivuizsd.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_oQZUmoq2_RXdG1FSqUKjMA_O5wEHVP6";
 
@@ -551,10 +551,9 @@
 
     let ADMIN_PASSWORD = localStorage.getItem('prise_admin_pwd') || "1234";
 
-    // Fallback de segurança para nunca ficar vazio
-    const fallbackProducts = [
+    // Perfumes Iniciais Padrão
+    const defaultInitialList = [
       {
-        id: 1,
         name: "For Her EDT (50ml)",
         brand: "Narciso Rodriguez",
         category: "feminino",
@@ -567,7 +566,6 @@
         fundo: "Vetiver, Baunilha e Patchouli"
       },
       {
-        id: 2,
         name: "Light Blue EDP",
         brand: "Dolce & Gabbana",
         category: "feminino",
@@ -580,7 +578,6 @@
         fundo: "Madeira de Âmbar e Almíscar"
       },
       {
-        id: 3,
         name: "Le Male EDT (75ml)",
         brand: "Jean Paul Gaultier",
         category: "masculino",
@@ -593,7 +590,6 @@
         fundo: "Baunilha, Fava Tonka, Âmbar e Sândalo"
       },
       {
-        id: 4,
         name: "1 Million EDT (100ml)",
         brand: "Paco Rabanne",
         category: "masculino",
@@ -606,7 +602,6 @@
         fundo: "Âmbar, Couro, Notas Amadeiradas e Patchouli"
       },
       {
-        id: 5,
         name: "I Love Love EDT (100ml)",
         brand: "Moschino",
         category: "feminino",
@@ -619,7 +614,6 @@
         fundo: "Almíscar, Cedro e Notas Amadeiradas"
       },
       {
-        id: 6,
         name: "Animale For Men EDT (100ml)",
         brand: "Animale",
         category: "masculino",
@@ -632,7 +626,6 @@
         fundo: "Couro, Musgo de Carvalho e Vetiver"
       },
       {
-        id: 7,
         name: "Devotion EDP (50ml)",
         brand: "Dolce & Gabbana",
         category: "feminino",
@@ -645,7 +638,6 @@
         fundo: "Baunilha de Madagascar"
       },
       {
-        id: 8,
         name: "Sauvage EDP (60ml)",
         brand: "Christian Dior",
         category: "masculino",
@@ -663,7 +655,7 @@
     try {
       _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     } catch (err) {
-      console.error("Erro ao inicializar Supabase:", err);
+      console.error("Erro ao iniciar Supabase:", err);
     }
 
     let products = [];
@@ -673,7 +665,7 @@
     let selectedMl = '';
     let appliedDiscount = 0;
 
-    // Carregar Produtos
+    // Carregar Produtos com AUTO-POVOAMENTO (grava no Supabase se estiver vazio!)
     async function carregarProdutos() {
       try {
         const { data, error } = await _supabase
@@ -683,17 +675,35 @@
 
         document.getElementById('loadingCatalogo').classList.add('hidden');
 
-        if (error || !data || data.length === 0) {
-          console.warn("Usando catálogo inicial:", error ? error.message : "Tabela vazia");
-          products = fallbackProducts;
+        if (error) {
+          console.error("Erro ao ler produtos do Supabase:", error);
+          products = defaultInitialList;
+          renderProducts();
+          return;
+        }
+
+        // Se o Supabase estiver vazio, ele salva os 8 perfumes lá dentro agora mesmo!
+        if (!data || data.length === 0) {
+          console.log("Banco vazio! Inserindo os 8 perfumes iniciais no Supabase...");
+          const { data: inseridos, error: errInsert } = await _supabase
+            .from('produtos')
+            .insert(defaultInitialList)
+            .select();
+
+          if (!errInsert && inseridos && inseridos.length > 0) {
+            products = inseridos;
+          } else {
+            products = defaultInitialList;
+          }
         } else {
           products = data;
         }
+
         renderProducts();
         renderAdminList();
       } catch (err) {
         console.error("Erro ao carregar:", err);
-        products = fallbackProducts;
+        products = defaultInitialList;
         document.getElementById('loadingCatalogo').classList.add('hidden');
         renderProducts();
       }
@@ -710,6 +720,11 @@
         if (!error && data && data.length > 0) {
           coupons = data;
         } else {
+          // Se não tiver cupons, insere os padrão
+          await _supabase.from('cupons').insert([
+            { code: "PRISE10", discount: 10 },
+            { code: "BEMVINDA", discount: 10 }
+          ]);
           coupons = [{ id: 1, code: "PRISE10", discount: 10 }, { id: 2, code: "BEMVINDA", discount: 10 }];
         }
         renderAdminCoupons();
@@ -728,7 +743,7 @@
           .on('postgres_changes', { event: '*', schema: 'public', table: 'cupons' }, () => carregarCupons())
           .subscribe();
       } catch (e) {
-        console.warn("Realtime não ativado:", e);
+        console.warn("Realtime:", e);
       }
     }
 
@@ -752,7 +767,7 @@
         card.innerHTML = `
           <div>
             <div class="relative cursor-pointer" onclick="abrirModalProduto(${p.id})">
-              <img src="${p.img}" alt="${p.name}" class="w-full h-44 sm:h-52 object-cover">
+              <img src="${p.img}" alt="${p.name}" class="w-full h-44 sm:h-52 object-cover" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600'">
               ${p.tag ? `<span class="absolute top-2 left-2 bg-brand-pink/90 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">${p.tag}</span>` : ''}
             </div>
             <div class="p-3">
@@ -1120,6 +1135,7 @@
       }
     }
 
+    // Carregamento de Foto pelo Arquivo
     function carregarFotoArquivo(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -1152,6 +1168,19 @@
       reader.readAsDataURL(file);
     }
 
+    // Prévia do Link digitado
+    function atualizarPreviaLink(url) {
+      const preview = document.getElementById('imgPreview');
+      const container = document.getElementById('imgPreviewContainer');
+      if (url && url.trim().length > 5) {
+        preview.src = url.trim();
+        container.classList.remove('hidden');
+      } else {
+        container.classList.add('hidden');
+      }
+    }
+
+    // Salvar produto (Novo ou Editado) com garantia de gravação
     async function salvarNovoProduto(e) {
       e.preventDefault();
 
@@ -1195,33 +1224,47 @@
 
       try {
         if (editId) {
-          const { error } = await _supabase.from('produtos').update(dadosProduto).eq('id', editId);
+          // Atualiza registro no Supabase
+          const { data, error } = await _supabase
+            .from('produtos')
+            .update(dadosProduto)
+            .eq('id', Number(editId))
+            .select();
+
           if (error) throw error;
-          alert("✓ Perfume atualizado com sucesso!");
+
+          // Se por acaso a linha não existia no Supabase, ele cria como nova
+          if (!data || data.length === 0) {
+            await _supabase.from('produtos').insert([dadosProduto]);
+          }
+
+          alert("✓ Perfume e imagem atualizados com sucesso!");
         } else {
+          // Cria novo perfume
           const { error } = await _supabase.from('produtos').insert([dadosProduto]);
           if (error) throw error;
-          alert("✓ Perfume cadastrado com sucesso no Supabase!");
+          alert("✓ Novo perfume publicado no Supabase!");
         }
 
         cancelarEdicao();
-        carregarProdutos();
+        await carregarProdutos(); // Força a recarga imediata da tela
       } catch (err) {
-        console.error("Erro completo do Supabase:", err);
-        alert("Erro no Supabase:\n" + (err.message || err.error_description || JSON.stringify(err)));
+        console.error("Erro completo:", err);
+        alert("Erro ao salvar no Supabase:\n" + (err.message || JSON.stringify(err)));
       } finally {
         btnSalvar.disabled = false;
         btnSalvar.innerText = "Salvar Perfume no Supabase";
       }
     }
 
+    // Iniciar Edição
     function iniciarEdicao(id) {
       const p = products.find(prod => String(prod.id) === String(id));
       if (!p) return;
 
       document.getElementById('editingProductId').value = p.id;
       document.getElementById('formProductTitle').innerText = `✏️ Editando: ${p.name}`;
-      document.getElementById('btnSalvarProduto').innerText = "Salvar Alterações no Supabase";
+      document.getElementById('btnSalvarProduto').innerText = "Salvar Alterações no Perfume";
       document.getElementById('btnCancelEdit').classList.remove('hidden');
 
       document.getElementById('admName').value = p.name;
@@ -1229,6 +1272,8 @@
       document.getElementById('admCategory').value = p.category;
       document.getElementById('admTag').value = p.tag || '';
       document.getElementById('admImg').value = p.img;
+      
+      // Mostra a prévia da foto atual
       document.getElementById('imgPreview').src = p.img;
       document.getElementById('imgPreviewContainer').classList.remove('hidden');
 
@@ -1267,7 +1312,7 @@
         item.className = "flex items-center justify-between p-2.5 rounded-lg bg-neutral-50 border text-xs";
         item.innerHTML = `
           <div class="flex items-center gap-2.5 truncate">
-            <img src="${p.img}" class="w-9 h-9 rounded object-cover border">
+            <img src="${p.img}" class="w-9 h-9 rounded object-cover border" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600'">
             <div class="truncate">
               <p class="font-bold text-neutral-800 truncate">${p.name}</p>
               <p class="text-[10px] text-neutral-400 capitalize">${p.brand} • ${Object.keys(p.prices || {}).join(', ')}</p>
@@ -1289,17 +1334,17 @@
 
     async function deletarProduto(id) {
       if (confirm("Tem certeza que deseja apagar este produto da loja online?")) {
-        const { error } = await _supabase.from('produtos').delete().eq('id', id);
+        const { error } = await _supabase.from('produtos').delete().eq('id', Number(id));
         if (error) {
           alert("Erro ao excluir: " + error.message);
         } else {
           alert("✓ Perfume removido da nuvem!");
-          carregarProdutos();
+          await carregarProdutos();
         }
       }
     }
 
-    // Inicialização da Página
+    // Inicialização Completa
     carregarProdutos();
     carregarCupons();
     escutarMudancasEmTempoReal();
