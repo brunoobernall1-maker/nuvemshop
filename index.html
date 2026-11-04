@@ -43,7 +43,6 @@
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Barra Deslizante Contínua */
     @keyframes marquee {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -71,7 +70,6 @@
       <span>•</span>
       <span>💬 Atendimento exclusivo no WhatsApp</span>
       <span>•</span>
-      <!-- Loop infinito -->
       <span>📍 <strong>Itajaí - SC</strong>: Envios para todo o Brasil e entregas expressas na região!</span>
       <span>•</span>
       <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF</span>
@@ -135,7 +133,7 @@
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div id="loadingCatalogo" class="text-center py-16 text-neutral-400 text-xs flex flex-col items-center justify-center gap-2">
       <div class="w-6 h-6 border-2 border-brand-pink border-t-transparent rounded-full animate-spin"></div>
-      <span>Carregando catálogo da nuvem Supabase...</span>
+      <span>Carregando catálogo da PRISÉ...</span>
     </div>
     <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
   </main>
@@ -206,19 +204,16 @@
             <h3 id="modalName" class="font-serif text-2xl font-bold text-brand-dark mt-1"></h3>
             <p id="modalCategory" class="text-xs text-neutral-500 capitalize"></p>
 
-            <!-- Seletor de Tamanhos Dinâmico -->
             <div class="mt-4">
               <label class="block text-xs font-semibold text-neutral-700 mb-2">Tamanhos disponíveis:</label>
               <div class="flex flex-wrap gap-2" id="mlOptions"></div>
             </div>
 
-            <!-- Descrição Completa -->
             <div class="mt-4 bg-brand-nude/70 p-3.5 rounded-xl border border-brand-rose/50">
               <h4 class="text-[11px] font-bold text-brand-dark uppercase tracking-wider mb-1">Sobre esta Fragrância:</h4>
               <p id="modalDescricao" class="text-xs text-neutral-700 leading-relaxed font-light"></p>
             </div>
 
-            <!-- Pirâmide Olfativa -->
             <div class="mt-4 border-t border-brand-rose pt-3 text-xs space-y-1.5">
               <p class="font-semibold text-brand-dark uppercase tracking-wider text-[11px]">Pirâmide Olfativa:</p>
               <div><strong class="text-neutral-700">Topo:</strong> <span id="modalTopo" class="text-neutral-600"></span></div>
@@ -256,7 +251,6 @@
     <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
 
     <div class="p-4 border-t border-neutral-100 bg-neutral-50/50 space-y-3">
-      <!-- Cupom -->
       <div class="flex gap-2">
         <input type="text" id="couponInput" placeholder="Possui cupom? (Ex: PRISE10)" 
                class="flex-1 px-3 py-2 text-xs border border-brand-rose rounded-lg focus:outline-none uppercase">
@@ -264,7 +258,6 @@
       </div>
       <div id="couponStatus" class="text-[11px] font-medium hidden"></div>
 
-      <!-- Resumo -->
       <div class="space-y-1 text-xs text-neutral-600">
         <div class="flex justify-between">
           <span>Subtotal:</span>
@@ -280,7 +273,6 @@
         </div>
       </div>
 
-      <!-- Dados de Envio -->
       <div class="space-y-2 pt-2 border-t text-xs">
         <input type="text" id="custName" placeholder="Seu Nome Completo" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
         <input type="text" id="custCity" placeholder="Cidade / Bairro (Ex: Itajaí, BC, SP...)" class="w-full px-3 py-2 border rounded-lg focus:outline-none">
@@ -290,7 +282,6 @@
         </select>
       </div>
 
-      <!-- Finalizar WhatsApp -->
       <button onclick="finalizarWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white font-semibold py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition">
         <i data-lucide="message-circle" class="w-4 h-4"></i> Finalizar Compra no WhatsApp
       </button>
@@ -308,7 +299,7 @@
         <div>
           <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel da Loja PRISÉ</h3>
           <p class="text-[11px] text-green-600 font-medium flex items-center gap-1">
-            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Nuvem Supabase Ativa
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Nuvem Supabase Conectada
           </p>
         </div>
         <button onclick="alterarSenhaAdmin()" class="text-[11px] text-neutral-500 hover:text-brand-pink underline">
@@ -372,9 +363,9 @@
           </div>
         </div>
 
-        <!-- FOTO DO CELULAR OU LINK -->
+        <!-- FOTO -->
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
-          <label class="block font-bold text-brand-dark text-[11px]">📸 Foto do Perfume (Direto da Galeria):</label>
+          <label class="block font-bold text-brand-dark text-[11px]">📸 Foto do Perfume (Galeria do Celular ou PC):</label>
           <input type="file" id="admFileInput" accept="image/*" onchange="carregarFotoArquivo(event)" class="text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-brand-pink file:text-white hover:file:bg-brand-pink/90 cursor-pointer">
           <p class="text-[10px] text-neutral-400">Ou cole um link direto da imagem:</p>
           <input type="url" id="admImg" placeholder="https://..." class="w-full p-2 text-xs rounded border bg-neutral-50">
@@ -384,7 +375,7 @@
           </div>
         </div>
 
-        <!-- TAMANHOS E PREÇOS FLEXÍVEIS -->
+        <!-- TAMANHOS E PREÇOS -->
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
           <div>
             <label class="block font-bold text-brand-dark text-[11px]">📏 Tamanhos e Preços:</label>
@@ -445,7 +436,7 @@
       </form>
 
       <div class="mt-6">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-600 mb-2">Perfumes Cadastrados no Banco Online:</h4>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-600 mb-2">Perfumes no Banco de Dados:</h4>
         <div id="adminProductList" class="space-y-2 max-h-56 overflow-y-auto"></div>
       </div>
     </div>
@@ -455,7 +446,6 @@
   <footer class="bg-brand-dark text-neutral-300 pt-12 pb-8 border-t border-brand-rose/20 text-xs">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
       
-      <!-- Sobre & Redes -->
       <div class="space-y-3">
         <h4 class="font-serif text-2xl font-bold text-white tracking-widest">
           PRISÉ <span class="text-brand-pink font-light italic text-lg">Perfumes</span>
@@ -467,7 +457,6 @@
           <i data-lucide="map-pin" class="w-4 h-4 text-brand-pink"></i> Base em <strong>Itajaí - SC</strong>
         </p>
 
-        <!-- Botões Redes Sociais -->
         <div class="pt-2 flex flex-col sm:flex-row gap-2">
           <a id="footerWaBtn" href="#" target="_blank" rel="noopener noreferrer" 
              class="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-3.5 py-2 rounded-xl flex items-center justify-center gap-2 font-medium text-xs shadow transition">
@@ -481,7 +470,6 @@
         </div>
       </div>
 
-      <!-- Departamentos -->
       <div>
         <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Departamentos</h5>
         <ul class="space-y-2 text-neutral-400">
@@ -503,7 +491,6 @@
         </ul>
       </div>
 
-      <!-- Atendimento -->
       <div>
         <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Atendimento & Local</h5>
         <ul class="space-y-2 text-neutral-400">
@@ -515,7 +502,6 @@
         </ul>
       </div>
 
-      <!-- Envios & Segurança -->
       <div>
         <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Envios & Segurança</h5>
         <div class="space-y-2 text-neutral-400">
@@ -536,11 +522,10 @@
       </div>
     </div>
 
-    <!-- Linha Final com o Botão Admin ESCONDIDO/DISCRETO -->
+    <!-- Botão Admin Discreto -->
     <div class="border-t border-neutral-800 pt-6 max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-neutral-500 text-[11px] gap-2">
       <p>© 2026 PRISÉ Perfumes e Cosméticos • Itajaí - SC. Todos os direitos reservados.</p>
       
-      <!-- BOTÃO ADMIN DISCRETO (No canto direito inferior) -->
       <button onclick="solicitarAcessoAdmin()" class="opacity-25 hover:opacity-100 transition text-neutral-500 hover:text-brand-pink flex items-center gap-1 text-[10px] cursor-pointer" title="Área Restrita">
         <i data-lucide="lock" class="w-3 h-3"></i> Acesso Restrito
       </button>
@@ -552,33 +537,133 @@
   <!-- ================= SCRIPTS JS + SUPABASE ================= -->
   <script>
     // =========================================================================
-    // 👇 1. COLE AQUI SUAS DUAS CHAVES DO SUPABASE (Settings > Data API):
+    // 👇 SUAS CHAVES DO SUPABASE JÁ INSERIDAS E CONFIGURADAS:
     // =========================================================================
-    const SUPABASE_URL = "https://ptpzltsxedbgcivuizsd.supabase.co"; // Ex: https://abcdefghijkl.supabase.co
-    const SUPABASE_ANON_KEY = "sb_publishable_oQZUmoq2_RXdG1FSqUKjMA_O5wEHVP6"; // Chave 'anon' 'public'
+    const SUPABASE_URL = "https://ptpzltsxedbgcivuizsd.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_oQZUmoq2_RXdG1FSqUKjMA_O5wEHVP6";
 
-    // 👇 2. SEU WHATSAPP E INSTAGRAM:
+    // 👇 SEU WHATSAPP E INSTAGRAM:
     const SEU_WHATSAPP = "5511999999999"; 
     const SEU_INSTAGRAM = "https://instagram.com/priseperfumes";
 
-    // Links automáticos do rodapé
     document.getElementById('footerWaBtn').href = `https://wa.me/${SEU_WHATSAPP}?text=${encodeURIComponent("Olá! Estou no site da PRISÉ Perfumes e gostaria de tirar uma dúvida! ✨")}`;
     document.getElementById('footerIgBtn').href = SEU_INSTAGRAM;
 
-    // Senha padrão de administrador
     let ADMIN_PASSWORD = localStorage.getItem('prise_admin_pwd') || "1234";
 
-    // Inicialização do Supabase
-    let _supabase = null;
-    let isSupabaseConfigured = false;
-
-    if (SUPABASE_URL !== "SUA_URL_SUPABASE_AQUI" && SUPABASE_ANON_KEY !== "SUA_ANON_PUBLIC_KEY_AQUI") {
-      try {
-        _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        isSupabaseConfigured = true;
-      } catch (err) {
-        console.error("Erro ao inicializar Supabase:", err);
+    // Fallback de segurança para nunca ficar vazio
+    const fallbackProducts = [
+      {
+        id: 1,
+        name: "For Her EDT (50ml)",
+        brand: "Narciso Rodriguez",
+        category: "feminino",
+        tag: "Elegante & Sofisticado",
+        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop",
+        prices: { "5ml": 49.0, "10ml": 89.0, "50ml (Frasco)": 489.0 },
+        descricao: "Uma ode à feminilidade e elegância discreta. O For Her EDT é uma fragrância almiscarada floral inconfundível, com toque aveludado e sensual.",
+        topo: "Flor de Laranjeira Africana, Osmanthus e Bergamota",
+        coracao: "Almíscar e Âmbar",
+        fundo: "Vetiver, Baunilha e Patchouli"
+      },
+      {
+        id: 2,
+        name: "Light Blue EDP",
+        brand: "Dolce & Gabbana",
+        category: "feminino",
+        tag: "Fresco Mais Vendido",
+        img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
+        prices: { "5ml": 52.0, "10ml": 95.0, "100ml (Frasco)": 580.0 },
+        descricao: "A brisa ensolarada do verão mediterrâneo capturada em um frasco. Une o frescor revigorante do limão siciliano à maçã verde crocante.",
+        topo: "Limão Siciliano e Maçã Granny Smith",
+        coracao: "Tagetes e Jasmim",
+        fundo: "Madeira de Âmbar e Almíscar"
+      },
+      {
+        id: 3,
+        name: "Le Male EDT (75ml)",
+        brand: "Jean Paul Gaultier",
+        category: "masculino",
+        tag: "Ícone Clássico",
+        img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop",
+        prices: { "5ml": 48.0, "10ml": 88.0, "75ml (Frasco)": 470.0 },
+        descricao: "Um dos perfumes masculinos mais consagrados de todos os tempos. Viril, magnético e com base doce acolhedora de baunilha.",
+        topo: "Lavanda, Hortelã, Cardamomo e Bergamota",
+        coracao: "Canela, Flor de Laranjeira e Alcarávia",
+        fundo: "Baunilha, Fava Tonka, Âmbar e Sândalo"
+      },
+      {
+        id: 4,
+        name: "1 Million EDT (100ml)",
+        brand: "Paco Rabanne",
+        category: "masculino",
+        tag: "Balada & Conquista",
+        img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
+        prices: { "5ml": 50.0, "10ml": 92.0, "100ml (Frasco)": 599.0 },
+        descricao: "Símbolo de extravagância e audácia. Combina frescor cítrico com notas picantes de canela e uma base marcante de couro.",
+        topo: "Mandarina Sanguínea, Toranja e Hortelã",
+        coracao: "Canela, Notas Especiadas e Rosa",
+        fundo: "Âmbar, Couro, Notas Amadeiradas e Patchouli"
+      },
+      {
+        id: 5,
+        name: "I Love Love EDT (100ml)",
+        brand: "Moschino",
+        category: "feminino",
+        tag: "Alegre & Cítrico",
+        img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
+        prices: { "5ml": 38.0, "10ml": 69.0, "100ml (Frasco)": 399.0 },
+        descricao: "Um coquetel cítrico que transmite pura felicidade. Aroma cintilante de toranja e groselha com toque adocicado de cana-de-açúcar.",
+        topo: "Toranja, Laranja, Limão e Groselha Vermelha",
+        coracao: "Cana-de-Açúcar, Junco, Lírio-do-Vale e Rosa Chá",
+        fundo: "Almíscar, Cedro e Notas Amadeiradas"
+      },
+      {
+        id: 6,
+        name: "Animale For Men EDT (100ml)",
+        brand: "Animale",
+        category: "masculino",
+        tag: "Custo-Benefício & Fixação",
+        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop",
+        prices: { "5ml": 32.0, "10ml": 58.0, "100ml (Frasco)": 269.0 },
+        descricao: "Fragrância masculina intensa e magnética. Equilibra a lavanda ao calor sedutor do couro e musgo de carvalho.",
+        topo: "Néroli, Limão, Frésia e Gálbano",
+        coracao: "Lavanda, Junípero e Gerânio",
+        fundo: "Couro, Musgo de Carvalho e Vetiver"
+      },
+      {
+        id: 7,
+        name: "Devotion EDP (50ml)",
+        brand: "Dolce & Gabbana",
+        category: "feminino",
+        tag: "Gourmand Sedutor",
+        img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
+        prices: { "5ml": 58.0, "10ml": 105.0, "50ml (Frasco)": 540.0 },
+        descricao: "Uma sobremesa italiana em frasco. Abre com limões cristalizados suculentos e flor de laranjeira sobre baunilha aconchegante.",
+        topo: "Limão Cristalizado Doce",
+        coracao: "Flor de Laranjeira e Panna Cotta",
+        fundo: "Baunilha de Madagascar"
+      },
+      {
+        id: 8,
+        name: "Sauvage EDP (60ml)",
+        brand: "Christian Dior",
+        category: "masculino",
+        tag: "Campeão de Elogios",
+        img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
+        prices: { "5ml": 68.0, "10ml": 125.0, "60ml (Frasco)": 620.0 },
+        descricao: "A nobreza do deserto ao crepúsculo. Bergamota da Calábria com a sensualidade da baunilha e ambroxan.",
+        topo: "Bergamota da Calábria e Pimenta",
+        coracao: "Lavanda, Pimenta de Sichuan e Noz-moscada",
+        fundo: "Ambroxan e Baunilha de Papua-Nova Guiné"
       }
+    ];
+
+    let _supabase = null;
+    try {
+      _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } catch (err) {
+      console.error("Erro ao inicializar Supabase:", err);
     }
 
     let products = [];
@@ -588,17 +673,8 @@
     let selectedMl = '';
     let appliedDiscount = 0;
 
-    // Carregar Produtos do Supabase
+    // Carregar Produtos
     async function carregarProdutos() {
-      if (!isSupabaseConfigured) {
-        document.getElementById('loadingCatalogo').innerHTML = `
-          <div class="bg-amber-50 text-amber-800 p-4 rounded-xl border border-amber-200 max-w-md mx-auto">
-            <strong>⚠️ Quase pronto!</strong><br>
-            Abra o arquivo <code>index.html</code> e cole as suas duas chaves do Supabase nas linhas <strong>367 e 368</strong>.
-          </div>`;
-        return;
-      }
-
       try {
         const { data, error } = await _supabase
           .from('produtos')
@@ -607,43 +683,53 @@
 
         document.getElementById('loadingCatalogo').classList.add('hidden');
 
-        if (error) throw error;
-        products = data || [];
+        if (error || !data || data.length === 0) {
+          console.warn("Usando catálogo inicial:", error ? error.message : "Tabela vazia");
+          products = fallbackProducts;
+        } else {
+          products = data;
+        }
         renderProducts();
         renderAdminList();
       } catch (err) {
-        console.error("Erro ao carregar produtos:", err);
-        document.getElementById('loadingCatalogo').innerText = "Erro ao conectar com o Supabase. Verifique se o SQL foi executado.";
+        console.error("Erro ao carregar:", err);
+        products = fallbackProducts;
+        document.getElementById('loadingCatalogo').classList.add('hidden');
+        renderProducts();
       }
     }
 
-    // Carregar Cupons do Supabase
+    // Carregar Cupons
     async function carregarCupons() {
-      if (!isSupabaseConfigured) return;
       try {
         const { data, error } = await _supabase
           .from('cupons')
           .select('*')
           .order('id', { ascending: false });
 
-        if (!error && data) {
+        if (!error && data && data.length > 0) {
           coupons = data;
-          renderAdminCoupons();
+        } else {
+          coupons = [{ id: 1, code: "PRISE10", discount: 10 }, { id: 2, code: "BEMVINDA", discount: 10 }];
         }
+        renderAdminCoupons();
       } catch (err) {
-        console.error("Erro ao carregar cupons:", err);
+        coupons = [{ id: 1, code: "PRISE10", discount: 10 }, { id: 2, code: "BEMVINDA", discount: 10 }];
+        renderAdminCoupons();
       }
     }
 
-    // Escuta Atualizações em Tempo Real (Supabase Realtime)
+    // Tempo Real
     function escutarMudancasEmTempoReal() {
-      if (!isSupabaseConfigured) return;
-
-      _supabase
-        .channel('mudancas-loja')
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'produtos' }, () => carregarProdutos())
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'cupons' }, () => carregarCupons())
-        .subscribe();
+      try {
+        _supabase
+          .channel('mudancas-loja')
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'produtos' }, () => carregarProdutos())
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'cupons' }, () => carregarCupons())
+          .subscribe();
+      } catch (e) {
+        console.warn("Realtime não ativado:", e);
+      }
     }
 
     // Renderizar Vitrine
@@ -652,7 +738,7 @@
       grid.innerHTML = '';
 
       if (lista.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum perfume encontrado nesta categoria.</div>';
+        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum perfume encontrado.</div>';
         return;
       }
 
@@ -687,7 +773,7 @@
       lucide.createIcons();
     }
 
-    // Filtrar Categoria & Rolar
+    // Filtros
     function filtrarCategoria(cat, rolarTela = false) {
       document.getElementById('searchInput').value = '';
 
@@ -723,9 +809,9 @@
       renderProducts(filtrados);
     }
 
-    // Modal de Detalhes
+    // Modal
     function abrirModalProduto(id) {
-      currentModalProduct = products.find(p => p.id === id);
+      currentModalProduct = products.find(p => String(p.id) === String(id));
       if (!currentModalProduct) return;
 
       document.getElementById('modalImg').src = currentModalProduct.img;
@@ -794,7 +880,7 @@
     function adicionarAoCarrinhoModal() {
       if (!currentModalProduct || !selectedMl) return;
       
-      const itemExistente = cart.find(item => item.id === currentModalProduct.id && item.ml === selectedMl);
+      const itemExistente = cart.find(item => String(item.id) === String(currentModalProduct.id) && item.ml === selectedMl);
       const preco = currentModalProduct.prices[selectedMl] || 0;
 
       if (itemExistente) {
@@ -894,7 +980,7 @@
       renderCart();
     }
 
-    // Cupons Dinâmicos
+    // Cupons
     function aplicarCupomBarra(codigo) {
       document.getElementById('couponInput').value = codigo;
       toggleCarrinho(true);
@@ -920,7 +1006,7 @@
       renderCart();
     }
 
-    // Finalizar WhatsApp (Com menção a Itajaí - SC)
+    // Finalizar WhatsApp
     function finalizarWhatsApp() {
       if (cart.length === 0) {
         alert("Adicione pelo menos um produto ao seu carrinho!");
@@ -954,7 +1040,7 @@
       window.open(link, '_blank');
     }
 
-    // ================= ADMIN CONECTADO AO SUPABASE =================
+    // ================= ADMIN =================
     function solicitarAcessoAdmin() {
       const tentativa = prompt("🔒 Área do Lojista - PRISÉ\nDigite a senha:");
       if (!tentativa) return;
@@ -1016,14 +1102,9 @@
         return;
       }
 
-      if (!isSupabaseConfigured) {
-        alert("Configure as chaves do Supabase primeiro!");
-        return;
-      }
-
       const { error } = await _supabase.from('cupons').insert([{ code: code, discount: val }]);
       if (error) {
-        alert("Erro ao criar cupom. Verifique se esse código já existe.");
+        alert("Erro no Supabase: " + error.message);
       } else {
         document.getElementById('novoCupomCodigo').value = '';
         document.getElementById('novoCupomValor').value = '';
@@ -1039,7 +1120,6 @@
       }
     }
 
-    // Carregamento e compressão da foto
     function carregarFotoArquivo(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -1049,7 +1129,7 @@
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement('canvas');
-          const maxDim = 600;
+          const maxDim = 500;
           let w = img.width;
           let h = img.height;
           if (w > h) {
@@ -1061,7 +1141,7 @@
           canvas.height = h;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, w, h);
-          const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
 
           document.getElementById('admImg').value = dataUrl;
           document.getElementById('imgPreview').src = dataUrl;
@@ -1072,7 +1152,6 @@
       reader.readAsDataURL(file);
     }
 
-    // Salvar produto (Novo ou Editado) no Supabase
     async function salvarNovoProduto(e) {
       e.preventDefault();
 
@@ -1110,11 +1189,6 @@
         fundo: document.getElementById('admFundo').value.trim()
       };
 
-      if (!isSupabaseConfigured) {
-        alert("As chaves do Supabase não estão configuradas no código!");
-        return;
-      }
-
       const btnSalvar = document.getElementById('btnSalvarProduto');
       btnSalvar.disabled = true;
       btnSalvar.innerText = "Salvando no Supabase...";
@@ -1123,27 +1197,26 @@
         if (editId) {
           const { error } = await _supabase.from('produtos').update(dadosProduto).eq('id', editId);
           if (error) throw error;
-          alert("✓ Perfume atualizado na nuvem com sucesso!");
+          alert("✓ Perfume atualizado com sucesso!");
         } else {
           const { error } = await _supabase.from('produtos').insert([dadosProduto]);
           if (error) throw error;
-          alert("✓ Perfume salvo na nuvem e disponível para todo o Brasil!");
+          alert("✓ Perfume cadastrado com sucesso no Supabase!");
         }
 
         cancelarEdicao();
         carregarProdutos();
       } catch (err) {
-        console.error("Erro ao salvar:", err);
-        alert("Erro ao salvar no Supabase. Verifique a conexão.");
+        console.error("Erro completo do Supabase:", err);
+        alert("Erro no Supabase:\n" + (err.message || err.error_description || JSON.stringify(err)));
       } finally {
         btnSalvar.disabled = false;
         btnSalvar.innerText = "Salvar Perfume no Supabase";
       }
     }
 
-    // Carregar dados para edição
     function iniciarEdicao(id) {
-      const p = products.find(prod => prod.id === id);
+      const p = products.find(prod => String(prod.id) === String(id));
       if (!p) return;
 
       document.getElementById('editingProductId').value = p.id;
@@ -1216,9 +1289,13 @@
 
     async function deletarProduto(id) {
       if (confirm("Tem certeza que deseja apagar este produto da loja online?")) {
-        await _supabase.from('produtos').delete().eq('id', id);
-        alert("✓ Perfume removido da nuvem!");
-        carregarProdutos();
+        const { error } = await _supabase.from('produtos').delete().eq('id', id);
+        if (error) {
+          alert("Erro ao excluir: " + error.message);
+        } else {
+          alert("✓ Perfume removido da nuvem!");
+          carregarProdutos();
+        }
       }
     }
 
