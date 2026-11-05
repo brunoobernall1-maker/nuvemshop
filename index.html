@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRISÉ Perfumes e Cosméticos | Itajaí - SC</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Cormorant Garamond & Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- SUPABASE JS OFICIAL -->
@@ -43,7 +40,6 @@
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Barra Deslizante */
     @keyframes marquee {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -60,14 +56,17 @@
 </head>
 <body class="font-sans text-brand-dark antialiased">
 
-  <!-- ================= BARRA DE AVISO ANIMADA ================= -->
+  <!-- AVISO DE CONEXÃO -->
+  <div id="conexaoBanner" class="hidden bg-red-600 text-white text-xs py-2 px-4 text-center font-bold"></div>
+
+  <!-- BARRA ANIMADA -->
   <div class="bg-brand-pink text-white text-xs py-2 overflow-hidden border-b border-brand-rose/40 select-none">
     <div class="animate-marquee whitespace-nowrap flex items-center gap-8 font-medium tracking-wide">
       <span>📍 <strong>Itajaí - SC</strong>: Envios para todo o Brasil e entregas na região!</span>
       <span>•</span>
       <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF</span>
       <span>•</span>
-      <span>🌸 Perfumes Importados, Body Splashes e Cuidados Corporais</span>
+      <span>🌸 Perfumes Importados, Body Splashes e Cosméticos</span>
       <span>•</span>
       <span>💬 Atendimento exclusivo no WhatsApp</span>
       <span>•</span>
@@ -75,13 +74,11 @@
       <span>•</span>
       <span>✨ Use o cupom <strong class="underline cursor-pointer" onclick="aplicarCupomBarra('PRISE10')">PRISE10</strong> para 10% OFF</span>
       <span>•</span>
-      <span>🌸 Perfumes Importados, Body Splashes e Cuidados Corporais</span>
-      <span>•</span>
-      <span>💬 Atendimento exclusivo no WhatsApp</span>
+      <span>🌸 Perfumes Importados, Body Splashes e Cosméticos</span>
     </div>
   </div>
 
-  <!-- ================= CABEÇALHO ================= -->
+  <!-- CABEÇALHO -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-rose">
     <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
       <div>
@@ -91,7 +88,6 @@
         <p class="text-[9px] uppercase tracking-widest text-neutral-500 font-medium">100% Originais • Itajaí - SC</p>
       </div>
 
-      <!-- Carrinho -->
       <button onclick="toggleCarrinho(true)" class="relative p-2.5 text-brand-dark hover:text-brand-pink transition">
         <i data-lucide="shopping-bag" class="w-6 h-6"></i>
         <span id="cartCount" class="absolute top-0.5 right-0.5 bg-brand-pink text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
@@ -99,22 +95,22 @@
     </div>
   </header>
 
-  <!-- ================= BANNER PRINCIPAL ================= -->
+  <!-- BANNER -->
   <section class="max-w-6xl mx-auto px-4 mt-4">
     <div class="rounded-2xl bg-gradient-to-r from-[#F8ECE8] via-[#EBD8D0] to-[#F5E2DA] p-6 md:p-12 text-center relative overflow-hidden shadow-sm border border-brand-rose/60">
       <span class="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-brand-gold bg-white/70 px-3.5 py-1 rounded-full shadow-xs">
-        📍 Itajaí - SC • Perfumes, Body Splashes & Hidratantes
+        📍 Itajaí - SC • Perfumes, Body Splashes & Cuidados Corporais
       </span>
       <h2 class="font-serif text-3xl md:text-5xl font-semibold mt-3 text-brand-dark leading-tight">
         Fragrâncias & Cuidados Corporais
       </h2>
       <p class="text-xs md:text-sm text-neutral-600 max-w-lg mx-auto mt-2 font-light leading-relaxed">
-        Experimente os perfumes importados mais desejados, body splashes refrescantes e loções corporais de alta hidratação.
+        Compre decants de bolsa ou frascos fechados com total garantia de originalidade. Enviamos de Itajaí para todo o Brasil!
       </p>
     </div>
   </section>
 
-  <!-- ================= BARRA DE BUSCA E DEPARTAMENTOS ================= -->
+  <!-- FILTROS -->
   <section id="catalogoSecao" class="max-w-6xl mx-auto px-4 mt-6 scroll-mt-24">
     <div class="relative max-w-md mx-auto mb-5">
       <input type="text" id="searchInput" oninput="buscarProdutos()" placeholder="Buscar perfume, body splash, hidratante..." 
@@ -122,7 +118,6 @@
       <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5"></i>
     </div>
 
-    <!-- Categorias Atualizadas -->
     <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar justify-start md:justify-center">
       <button onclick="filtrarCategoria('todos')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-medium bg-brand-dark text-white whitespace-nowrap transition" data-cat="todos">Todos</button>
       <button onclick="filtrarCategoria('feminino')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-brand-rose text-brand-dark hover:bg-brand-rose/30 whitespace-nowrap transition" data-cat="feminino">Perfumes Femininos</button>
@@ -133,61 +128,16 @@
     </div>
   </section>
 
-  <!-- ================= GRID DE PRODUTOS ================= -->
+  <!-- GRID DE PRODUTOS -->
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div id="loadingCatalogo" class="text-center py-16 text-neutral-400 text-xs flex flex-col items-center justify-center gap-2">
       <div class="w-6 h-6 border-2 border-brand-pink border-t-transparent rounded-full animate-spin"></div>
-      <span>Carregando catálogo da PRISÉ...</span>
+      <span id="loadingMsg">Carregando catálogo do Supabase...</span>
     </div>
     <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
   </main>
 
-  <!-- ================= SEÇÃO SOBRE NÓS ================= -->
-  <section class="bg-white border-y border-brand-rose py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-brand-pink text-xs uppercase font-bold tracking-widest">Base em Itajaí - SC</span>
-        <h3 class="font-serif text-3xl font-bold text-brand-dark mt-1">Garantia & Qualidade PRISÉ</h3>
-        <p class="text-neutral-600 text-xs md:text-sm mt-2">
-          Atendemos clientes em todo o Brasil com cosméticos e fragrâncias 100% autênticas e importadas.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-2xl bg-brand-nude border border-brand-rose/60 text-center">
-          <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
-            <i data-lucide="shield-check" class="w-6 h-6"></i>
-          </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">100% Autênticos</h4>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Nunca trabalhamos com réplicas ou contratipos. Todos os perfumes e cosméticos são originais de distribuidores oficiais.
-          </p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-brand-nude border border-brand-rose/60 text-center">
-          <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
-            <i data-lucide="sparkles" class="w-6 h-6"></i>
-          </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Perfumes & Cosméticos</h4>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Linha completa de decants, perfumes lacrados, body splashes aromáticos e hidratantes corporais de alta performance.
-          </p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-brand-nude border border-brand-rose/60 text-center">
-          <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-brand-pink shadow-sm">
-            <i data-lucide="truck" class="w-6 h-6"></i>
-          </div>
-          <h4 class="font-serif text-lg font-bold text-brand-dark mb-1">Envio Rápido & Seguro</h4>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Embalagens super reforçadas com plástico bolha e código de rastreamento para você acompanhar cada etapa do envio.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= MODAL DE DETALHES DO PRODUTO ================= -->
+  <!-- MODAL DO PRODUTO -->
   <div id="productModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
     <div class="bg-white w-full max-w-2xl rounded-2xl max-h-[92vh] overflow-y-auto p-5 md:p-8 relative shadow-2xl">
       <button onclick="fecharModalProduto()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
@@ -208,19 +158,16 @@
             <h3 id="modalName" class="font-serif text-2xl font-bold text-brand-dark mt-1"></h3>
             <p id="modalCategory" class="text-xs text-neutral-500 font-medium mt-0.5"></p>
 
-            <!-- Seletor de Tamanhos Dinâmico -->
             <div class="mt-4">
-              <label class="block text-xs font-semibold text-neutral-700 mb-2">Tamanhos / Volumetria disponível:</label>
+              <label class="block text-xs font-semibold text-neutral-700 mb-2">Tamanhos disponíveis:</label>
               <div class="flex flex-wrap gap-2" id="mlOptions"></div>
             </div>
 
-            <!-- Descrição Completa -->
             <div class="mt-4 bg-brand-nude/70 p-3.5 rounded-xl border border-brand-rose/50">
               <h4 class="text-[11px] font-bold text-brand-dark uppercase tracking-wider mb-1">Sobre este Produto:</h4>
               <p id="modalDescricao" class="text-xs text-neutral-700 leading-relaxed font-light"></p>
             </div>
 
-            <!-- Pirâmide Olfativa (Aparece apenas quando preenchida) -->
             <div id="modalPiramideContainer" class="mt-4 border-t border-brand-rose pt-3 text-xs space-y-1.5">
               <p class="font-semibold text-brand-dark uppercase tracking-wider text-[11px]">Pirâmide Olfativa:</p>
               <div><strong class="text-neutral-700">Topo:</strong> <span id="modalTopo" class="text-neutral-600"></span></div>
@@ -231,11 +178,11 @@
 
           <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between gap-4">
             <div>
-              <span class="text-[10px] text-neutral-400 uppercase font-medium">Valor selecionado</span>
+              <span class="text-[10px] text-neutral-400 uppercase font-medium">Valor</span>
               <div id="modalSelectedPrice" class="font-serif text-2xl font-bold text-brand-dark">R$ 0,00</div>
             </div>
             <button onclick="adicionarAoCarrinhoModal()" class="flex-1 bg-brand-pink hover:bg-brand-pink/90 text-white font-medium py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition shadow">
-              <i data-lucide="plus" class="w-4 h-4"></i> Adicionar ao Pedido
+              <i data-lucide="plus" class="w-4 h-4"></i> Adicionar
             </button>
           </div>
         </div>
@@ -243,7 +190,7 @@
     </div>
   </div>
 
-  <!-- ================= GAVETA DO CARRINHO ================= -->
+  <!-- CARRINHO -->
   <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
     <div class="p-4 border-b border-brand-rose flex items-center justify-between bg-brand-nude">
       <div class="flex items-center gap-2">
@@ -295,7 +242,7 @@
     </div>
   </div>
 
-  <!-- ================= PAINEL ADMIN ================= -->
+  <!-- PAINEL ADMIN -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
     <div id="adminModalBox" class="bg-white w-full max-w-xl rounded-2xl max-h-[92vh] overflow-y-auto p-6 relative shadow-2xl">
       <button onclick="fecharAdminModal()" class="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200">
@@ -305,27 +252,24 @@
       <div class="flex items-center justify-between border-b pb-3 mb-4">
         <div>
           <h3 class="font-serif text-2xl font-bold text-brand-dark">Painel da Loja PRISÉ</h3>
-          <p class="text-[11px] text-green-600 font-medium flex items-center gap-1">
-            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Nuvem Supabase Conectada
-          </p>
+          <p id="statusConexaoText" class="text-[11px] text-neutral-500 font-medium">Verificando banco...</p>
         </div>
         <button onclick="alterarSenhaAdmin()" class="text-[11px] text-neutral-500 hover:text-brand-pink underline">
           Mudar Senha
         </button>
       </div>
 
-      <!-- SESSÃO DE CUPONS -->
+      <!-- CUPONS -->
       <div class="mb-6 p-4 rounded-xl bg-neutral-50 border border-brand-rose/60">
         <div class="flex items-center justify-between mb-2">
           <h4 class="text-xs font-bold uppercase tracking-wider text-brand-dark flex items-center gap-1.5">
-            <i data-lucide="ticket" class="w-4 h-4 text-brand-pink"></i> Cupons de Desconto (Supabase)
+            <i data-lucide="ticket" class="w-4 h-4 text-brand-pink"></i> Cupons de Desconto
           </h4>
-          <span class="text-[10px] text-neutral-400">Ativos em tempo real</span>
         </div>
         
         <div class="flex gap-2 mb-3">
           <input type="text" id="novoCupomCodigo" placeholder="Código (Ex: AMIGA15)" class="flex-1 p-2 text-xs uppercase rounded border bg-white focus:outline-none">
-          <input type="number" id="novoCupomValor" placeholder="% OFF (Ex: 15)" min="1" max="90" class="w-24 p-2 text-xs rounded border bg-white focus:outline-none">
+          <input type="number" id="novoCupomValor" placeholder="% OFF" min="1" max="90" class="w-24 p-2 text-xs rounded border bg-white focus:outline-none">
           <button onclick="adicionarNovoCupom()" type="button" class="bg-brand-pink hover:bg-brand-pink/90 text-white text-xs px-3 py-2 rounded font-semibold transition">
             + Criar
           </button>
@@ -334,7 +278,7 @@
         <div id="adminCouponsList" class="flex flex-wrap gap-2"></div>
       </div>
       
-      <!-- FORMULÁRIO DE PRODUTO -->
+      <!-- FORMULÁRIO -->
       <form id="newProductForm" onsubmit="salvarNovoProduto(event)" class="space-y-4 bg-brand-nude p-4 rounded-xl border border-brand-rose">
         <div class="flex items-center justify-between">
           <h4 id="formProductTitle" class="text-xs font-bold uppercase text-brand-dark tracking-wider">+ Cadastrar Produto</h4>
@@ -358,7 +302,7 @@
 
         <div class="grid grid-cols-2 gap-2 text-xs">
           <div>
-            <label class="block text-[10px] font-bold text-neutral-600 mb-1">Categoria do Produto:</label>
+            <label class="block text-[10px] font-bold text-neutral-600 mb-1">Categoria:</label>
             <select id="admCategory" class="w-full p-2 rounded border bg-white">
               <option value="feminino">Perfume Feminino</option>
               <option value="masculino">Perfume Masculino</option>
@@ -368,14 +312,14 @@
             </select>
           </div>
           <div>
-            <label class="block text-[10px] font-bold text-neutral-600 mb-1">Etiqueta de Destaque:</label>
-            <input type="text" id="admTag" placeholder="Ex: Mais Vendido, Hidratação 48h..." class="w-full p-2 rounded border bg-white">
+            <label class="block text-[10px] font-bold text-neutral-600 mb-1">Etiqueta:</label>
+            <input type="text" id="admTag" placeholder="Ex: Mais Vendido, Hidratação..." class="w-full p-2 rounded border bg-white">
           </div>
         </div>
 
         <!-- FOTO -->
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
-          <label class="block font-bold text-brand-dark text-[11px]">📸 Foto do Produto (Galeria ou Link):</label>
+          <label class="block font-bold text-brand-dark text-[11px]">📸 Foto do Produto:</label>
           <input type="file" id="admFileInput" accept="image/*" onchange="carregarFotoArquivo(event)" class="text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-brand-pink file:text-white hover:file:bg-brand-pink/90 cursor-pointer">
           <p class="text-[10px] text-neutral-400">Ou cole o link direto da imagem:</p>
           <input type="url" id="admImg" oninput="atualizarPreviaLink(this.value)" placeholder="https://..." class="w-full p-2 text-xs rounded border bg-neutral-50">
@@ -389,7 +333,6 @@
         <div class="p-3 bg-white rounded-lg border border-brand-rose/60 text-xs space-y-2">
           <div>
             <label class="block font-bold text-brand-dark text-[11px]">📏 Tamanhos e Preços:</label>
-            <p class="text-[10px] text-neutral-500">Preencha apenas o que tiver em estoque (ex: pode ser 250ml, 200ml, 5ml, etc.):</p>
           </div>
 
           <div class="grid grid-cols-2 gap-2">
@@ -426,25 +369,25 @@
           </div>
         </div>
 
-        <!-- DESCRIÇÃO COMPLETA -->
+        <!-- DESCRIÇÃO -->
         <div class="text-xs">
-          <label class="block font-bold text-neutral-700 text-[11px] mb-1">📝 Descrição Completa (Cheiro, sensação, benefícios na pele...):</label>
-          <textarea id="admDescricao" rows="3" placeholder="Conte como é a textura, o aroma, fixação e hidratação..." class="w-full p-2 rounded border bg-white text-xs"></textarea>
+          <label class="block font-bold text-neutral-700 text-[11px] mb-1">📝 Descrição Completa:</label>
+          <textarea id="admDescricao" rows="3" placeholder="Conte como é a textura, o aroma, fixação..." class="w-full p-2 rounded border bg-white text-xs"></textarea>
         </div>
 
-        <!-- PIRÂMIDE OLFATIVA (OPCIONAL) -->
+        <!-- PIRÂMIDE OLFATIVA -->
         <div class="space-y-1.5 text-xs">
           <div class="flex items-center justify-between">
-            <label class="block font-bold text-neutral-700 text-[11px]">👃 Notas Olfativas (Opcional para loções e géis):</label>
+            <label class="block font-bold text-neutral-700 text-[11px]">👃 Notas Olfativas (Opcional):</label>
             <span class="text-[10px] text-neutral-400">Pode deixar em branco</span>
           </div>
-          <input type="text" id="admTopo" placeholder="Notas de Topo - Ex: Baunilha Batida, Maçã" class="w-full p-2 text-xs rounded border bg-white">
-          <input type="text" id="admCoracao" placeholder="Notas de Coração - Ex: Flor de Algodão, Caramelo" class="w-full p-2 text-xs rounded border bg-white">
-          <input type="text" id="admFundo" placeholder="Notas de Fundo - Ex: Âmbar Macio, Almíscar" class="w-full p-2 text-xs rounded border bg-white">
+          <input type="text" id="admTopo" placeholder="Notas de Topo" class="w-full p-2 text-xs rounded border bg-white">
+          <input type="text" id="admCoracao" placeholder="Notas de Coração" class="w-full p-2 text-xs rounded border bg-white">
+          <input type="text" id="admFundo" placeholder="Notas de Fundo" class="w-full p-2 text-xs rounded border bg-white">
         </div>
 
         <button type="submit" id="btnSalvarProduto" class="w-full bg-brand-dark text-white text-xs py-3 rounded-lg hover:bg-black font-semibold transition shadow flex items-center justify-center gap-2">
-          Salvar Produto na Loja
+          Salvar Produto na Nuvem
         </button>
       </form>
 
@@ -455,7 +398,7 @@
     </div>
   </div>
 
-  <!-- ================= RODAPÉ ================= -->
+  <!-- RODAPÉ -->
   <footer class="bg-brand-dark text-neutral-300 pt-12 pb-8 border-t border-brand-rose/20 text-xs">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
       
@@ -464,7 +407,7 @@
           PRISÉ <span class="text-brand-pink font-light italic text-lg">Perfumes</span>
         </h4>
         <p class="text-neutral-400 text-xs leading-relaxed">
-          Sua loja de perfumaria e cosméticos importados com foco na experiência através de decants, perfumes, body splashes e cuidados corporais.
+          Sua loja de perfumaria e cosméticos importados com foco na experiência através de decants, body splashes e cuidados corporais.
         </p>
         <p class="text-white text-xs flex items-center gap-1.5 font-medium">
           <i data-lucide="map-pin" class="w-4 h-4 text-brand-pink"></i> Base em <strong>Itajaí - SC</strong>
@@ -483,40 +426,15 @@
         </div>
       </div>
 
-      <!-- Departamentos -->
       <div>
         <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Departamentos</h5>
         <ul class="space-y-2 text-neutral-400">
-          <li>
-            <button onclick="filtrarCategoria('feminino', true)" class="hover:text-brand-pink transition flex items-center gap-1.5">
-              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-500"></i> Perfumes Femininos
-            </button>
-          </li>
-          <li>
-            <button onclick="filtrarCategoria('masculino', true)" class="hover:text-brand-pink transition flex items-center gap-1.5">
-              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-500"></i> Perfumes Masculinos
-            </button>
-          </li>
-          <li>
-            <button onclick="filtrarCategoria('bodysplash', true)" class="hover:text-brand-pink transition flex items-center gap-1.5">
-              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-500"></i> Body Splashes
-            </button>
-          </li>
-          <li>
-            <button onclick="filtrarCategoria('locao', true)" class="hover:text-brand-pink transition flex items-center gap-1.5">
-              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-500"></i> Loções Corporais
-            </button>
-          </li>
-          <li>
-            <button onclick="filtrarCategoria('gel', true)" class="hover:text-brand-pink transition flex items-center gap-1.5">
-              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-500"></i> Géis Corporais
-            </button>
-          </li>
-          <li>
-            <button onclick="filtrarCategoria('todos', true)" class="hover:text-brand-pink transition flex items-center gap-1.5 font-semibold text-neutral-300">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-pink"></i> Ver Catálogo Completo
-            </button>
-          </li>
+          <li><button onclick="filtrarCategoria('feminino', true)">Perfumes Femininos</button></li>
+          <li><button onclick="filtrarCategoria('masculino', true)">Perfumes Masculinos</button></li>
+          <li><button onclick="filtrarCategoria('bodysplash', true)">Body Splashes</button></li>
+          <li><button onclick="filtrarCategoria('locao', true)">Loções Corporais</button></li>
+          <li><button onclick="filtrarCategoria('gel', true)">Géis Corporais</button></li>
+          <li><button onclick="filtrarCategoria('todos', true)">Ver Catálogo Completo</button></li>
         </ul>
       </div>
 
@@ -534,27 +452,14 @@
       <div>
         <h5 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Envios & Segurança</h5>
         <div class="space-y-2 text-neutral-400">
-          <p class="flex items-center gap-1.5">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-green-400"></i> Envio com Rastreamento
-          </p>
-          <p class="flex items-center gap-1.5">
-            <i data-lucide="shield" class="w-3.5 h-3.5 text-brand-pink"></i> Embalagens Antivazamento
-          </p>
-          <div class="pt-2">
-            <span class="text-[10px] text-neutral-500 uppercase block mb-1">Pagamentos:</span>
-            <div class="flex gap-2 text-neutral-300 font-mono text-[10px]">
-              <span class="border border-neutral-700 px-2 py-1 rounded bg-neutral-800">PIX</span>
-              <span class="border border-neutral-700 px-2 py-1 rounded bg-neutral-800">CARTÃO</span>
-            </div>
-          </div>
+          <p class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-green-400"></i> Envio com Rastreamento</p>
+          <p class="flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5 text-brand-pink"></i> Embalagens Antivazamento</p>
         </div>
       </div>
     </div>
 
-    <!-- Botão Admin Discreto -->
     <div class="border-t border-neutral-800 pt-6 max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-neutral-500 text-[11px] gap-2">
       <p>© 2026 PRISÉ Perfumes e Cosméticos • Itajaí - SC. Todos os direitos reservados.</p>
-      
       <button onclick="solicitarAcessoAdmin()" class="opacity-25 hover:opacity-100 transition text-neutral-500 hover:text-brand-pink flex items-center gap-1 text-[10px] cursor-pointer" title="Área Restrita">
         <i data-lucide="lock" class="w-3 h-3"></i> Acesso Restrito
       </button>
@@ -563,13 +468,17 @@
 
   <div id="cartOverlay" onclick="toggleCarrinho(false)" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
 
-  <!-- ================= SCRIPTS JS + SUPABASE ================= -->
+  <!-- ================= SCRIPTS ================= -->
   <script>
-    // 👇 SUAS CHAVES DO SUPABASE:
+    // =========================================================================
+    // 👇 CONEXÃO SUPABASE
+    // =========================================================================
     const SUPABASE_URL = "https://ptpzltsxedbgcivuizsd.supabase.co";
+
+    // 👉 COLOQUE AQUI A SUA CHAVE QUE COMEÇA COM 'eyJhbGci...'
+    // Se ainda não pegou, pode testar com a que você passou:
     const SUPABASE_ANON_KEY = "sb_publishable_oQZUmoq2_RXdG1FSqUKjMA_O5wEHVP6";
 
-    // 👇 SEU WHATSAPP E INSTAGRAM:
     const SEU_WHATSAPP = "5511999999999"; 
     const SEU_INSTAGRAM = "https://instagram.com/priseperfumes";
 
@@ -577,101 +486,6 @@
     document.getElementById('footerIgBtn').href = SEU_INSTAGRAM;
 
     let ADMIN_PASSWORD = localStorage.getItem('prise_admin_pwd') || "1234";
-
-    // Lista Inicial Completa (Perfumes + Body Splashes + Loções)
-    const defaultInitialList = [
-      {
-        id: 1,
-        name: "For Her EDT (50ml)",
-        brand: "Narciso Rodriguez",
-        category: "feminino",
-        tag: "Elegante & Sofisticado",
-        img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop",
-        prices: { "5ml": 49.0, "10ml": 89.0, "50ml (Frasco)": 489.0 },
-        descricao: "Uma ode à feminilidade e elegância discreta. O For Her EDT é uma fragrância almiscarada floral inconfundível, com toque aveludado e sensual.",
-        topo: "Flor de Laranjeira Africana, Osmanthus e Bergamota",
-        coracao: "Almíscar e Âmbar",
-        fundo: "Vetiver, Baunilha e Patchouli"
-      },
-      {
-        id: 2,
-        name: "Light Blue EDP",
-        brand: "Dolce & Gabbana",
-        category: "feminino",
-        tag: "Fresco Mais Vendido",
-        img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop",
-        prices: { "5ml": 52.0, "10ml": 95.0, "100ml (Frasco)": 580.0 },
-        descricao: "A brisa ensolarada do verão mediterrâneo capturada em um frasco. Une o frescor revigorante do limão siciliano à maçã verde crocante.",
-        topo: "Limão Siciliano e Maçã Granny Smith",
-        coracao: "Tagetes e Jasmim",
-        fundo: "Madeira de Âmbar e Almíscar"
-      },
-      {
-        id: 3,
-        name: "Le Male EDT (75ml)",
-        brand: "Jean Paul Gaultier",
-        category: "masculino",
-        tag: "Ícone Clássico",
-        img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop",
-        prices: { "5ml": 48.0, "10ml": 88.0, "75ml (Frasco)": 470.0 },
-        descricao: "Um dos perfumes masculinos mais consagrados de todos os tempos. Viril, magnético e com base doce acolhedora de baunilha.",
-        topo: "Lavanda, Hortelã, Cardamomo e Bergamota",
-        coracao: "Canela, Flor de Laranjeira e Alcarávia",
-        fundo: "Baunilha, Fava Tonka, Âmbar e Sândalo"
-      },
-      {
-        id: 4,
-        name: "1 Million EDT (100ml)",
-        brand: "Paco Rabanne",
-        category: "masculino",
-        tag: "Balada & Conquista",
-        img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
-        prices: { "5ml": 50.0, "10ml": 92.0, "100ml (Frasco)": 599.0 },
-        descricao: "Símbolo de extravagância e audácia. Combina frescor cítrico com notas picantes de canela e uma base marcante de couro.",
-        topo: "Mandarina Sanguínea, Toranja e Hortelã",
-        coracao: "Canela, Notas Especiadas e Rosa",
-        fundo: "Âmbar, Couro, Notas Amadeiradas e Patchouli"
-      },
-      {
-        id: 5,
-        name: "Bare Vanilla Body Splash (250ml)",
-        brand: "Victoria's Secret",
-        category: "bodysplash",
-        tag: "Doce & Confortável",
-        img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop",
-        prices: { "250ml": 129.0 },
-        descricao: "Aroma gourmand envolvente de baunilha aveludada e maçã caramelizada com caxemira macia. Perfeito para borrifar após o banho e ao longo de todo o dia.",
-        topo: "Baunilha Batida",
-        coracao: "Flor de Caxemira",
-        fundo: "Almíscar Macio"
-      },
-      {
-        id: 6,
-        name: "Brazilian Bum Bum Cream (240ml)",
-        brand: "Sol de Janeiro",
-        category: "locao",
-        tag: "Viral & Hidratação",
-        img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=600&auto=format&fit=crop",
-        prices: { "240ml": 249.0 },
-        descricao: "Creme corporal premiado com extrato de Guaraná que firma e suaviza a textura da pele. Aroma irresistível com notas de pistache, caramelo salgado e baunilha.",
-        topo: "Pistache e Amêndoa",
-        coracao: "Heliotrópio e Pétalas de Jasmim",
-        fundo: "Baunilha, Caramelo Salgado e Sândalo"
-      },
-      {
-        id: 7,
-        name: "Sauvage EDP (60ml)",
-        brand: "Christian Dior",
-        category: "masculino",
-        tag: "Campeão de Elogios",
-        img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop",
-        prices: { "5ml": 68.0, "10ml": 125.0, "60ml (Frasco)": 620.0 },
-        descricao: "A nobreza do deserto ao crepúsculo. Bergamota da Calábria com a sensualidade da baunilha e ambroxan.",
-        topo: "Bergamota da Calábria e Pimenta",
-        coracao: "Lavanda, Pimenta de Sichuan e Noz-moscada",
-        fundo: "Ambroxan e Baunilha de Papua-Nova Guiné"
-      }
-    ];
 
     let _supabase = null;
     try {
@@ -699,92 +513,59 @@
       return map[cat] || cat || 'Cosméticos';
     }
 
-    // Carregar Produtos (Com Cache Local Imediato)
+    // Carregar Produtos DIRETO DO BANCO (Sem farsa de salvar só local)
     async function carregarProdutos() {
-      // 1. Tenta pegar do cache local para exibir na hora sem tela branca
-      const cached = localStorage.getItem('prise_cached_products');
-      if (cached) {
-        try {
-          products = JSON.parse(cached);
-          renderProducts();
-          renderAdminList();
-          document.getElementById('loadingCatalogo').classList.add('hidden');
-        } catch(e) {}
+      if (!_supabase) {
+        mostrarErroConexao("Supabase não inicializado.");
+        return;
       }
 
-      // 2. Busca do Supabase
-      if (_supabase) {
-        try {
-          const { data, error } = await _supabase
-            .from('produtos')
-            .select('*')
-            .order('id', { ascending: false });
+      const { data, error } = await _supabase
+        .from('produtos')
+        .select('*')
+        .order('id', { ascending: false });
 
-          document.getElementById('loadingCatalogo').classList.add('hidden');
+      document.getElementById('loadingCatalogo').classList.add('hidden');
 
-          if (!error && data && data.length > 0) {
-            products = data;
-            localStorage.setItem('prise_cached_products', JSON.stringify(products));
-            renderProducts();
-            renderAdminList();
-          } else if (!cached) {
-            // Se o banco estiver vazio, usa a lista padrão e salva no Supabase
-            products = defaultInitialList;
-            renderProducts();
-            renderAdminList();
-            salvarPadrõesNoSupabase();
-          }
-        } catch (err) {
-          console.warn("Erro ao buscar Supabase:", err);
-          if (!cached) {
-            products = defaultInitialList;
-            renderProducts();
-          }
-          document.getElementById('loadingCatalogo').classList.add('hidden');
-        }
-      } else if (!cached) {
-        products = defaultInitialList;
-        document.getElementById('loadingCatalogo').classList.add('hidden');
-        renderProducts();
+      if (error) {
+        console.error("Erro ao buscar no Supabase:", error);
+        mostrarErroConexao("Erro ao conectar com o Supabase: " + error.message);
+        document.getElementById('statusConexaoText').innerHTML = "🔴 Erro: " + error.message;
+        document.getElementById('statusConexaoText').className = "text-[11px] text-red-600 font-bold";
+        return;
       }
+
+      document.getElementById('statusConexaoText').innerHTML = "🟢 Conectado ao Supabase (" + data.length + " produtos salvos)";
+      document.getElementById('statusConexaoText').className = "text-[11px] text-green-600 font-bold";
+      esconderErroConexao();
+
+      products = data || [];
+      renderProducts();
+      renderAdminList();
     }
 
-    async function salvarPadrõesNoSupabase() {
-      if (!_supabase) return;
-      try {
-        const paraSalvar = defaultInitialList.map(({ id, ...resto }) => resto);
-        const { data } = await _supabase.from('produtos').insert(paraSalvar).select();
-        if (data && data.length > 0) {
-          products = data;
-          localStorage.setItem('prise_cached_products', JSON.stringify(products));
-          renderProducts();
-          renderAdminList();
-        }
-      } catch(e) {}
+    function mostrarErroConexao(msg) {
+      const b = document.getElementById('conexaoBanner');
+      b.innerText = msg + " (Verifique se executou o SQL no Supabase e se a chave anon está correta)";
+      b.classList.remove('hidden');
+    }
+    function esconderErroConexao() {
+      document.getElementById('conexaoBanner').classList.add('hidden');
     }
 
     // Carregar Cupons
     async function carregarCupons() {
-      try {
-        const { data, error } = await _supabase
-          .from('cupons')
-          .select('*')
-          .order('id', { ascending: false });
-
-        if (!error && data && data.length > 0) {
-          coupons = data;
-        } else {
-          coupons = [{ id: 1, code: "PRISE10", discount: 10 }, { id: 2, code: "BEMVINDA", discount: 10 }];
-        }
-        renderAdminCoupons();
-      } catch (err) {
-        coupons = [{ id: 1, code: "PRISE10", discount: 10 }, { id: 2, code: "BEMVINDA", discount: 10 }];
+      if (!_supabase) return;
+      const { data, error } = await _supabase.from('cupons').select('*').order('id', { ascending: false });
+      if (!error && data) {
+        coupons = data;
         renderAdminCoupons();
       }
     }
 
     // Tempo Real
     function escutarMudancasEmTempoReal() {
+      if (!_supabase) return;
       try {
         _supabase
           .channel('mudancas-loja')
@@ -795,16 +576,16 @@
     }
 
     // Renderizar Vitrine
-    function renderProducts(lista = null) {
+    function renderProducts() {
       const grid = document.getElementById('productGrid');
       grid.innerHTML = '';
 
-      const itens = lista || (currentCategory === 'todos' 
+      const itens = (currentCategory === 'todos' 
         ? products 
         : products.filter(p => (p.category || '').toLowerCase() === currentCategory.toLowerCase()));
 
       if (!itens || itens.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum produto encontrado nesta categoria.</div>';
+        grid.innerHTML = '<div class="col-span-full text-center py-12 text-neutral-400 text-sm">Nenhum produto cadastrado nesta categoria.</div>';
         return;
       }
 
@@ -882,9 +663,8 @@
       document.getElementById('modalBrand').innerText = currentModalProduct.brand;
       document.getElementById('modalName').innerText = currentModalProduct.name;
       document.getElementById('modalCategory').innerText = "Categoria: " + getNomeCategoria(currentModalProduct.category);
-      document.getElementById('modalDescricao').innerText = currentModalProduct.descricao || "Fragrância / cosmético importado 100% autêntico com alta performance.";
+      document.getElementById('modalDescricao').innerText = currentModalProduct.descricao || "Fragrância / cosmético importado 100% autêntico.";
 
-      // Mostra a pirâmide apenas se houver notas preenchidas
       const piramideBox = document.getElementById('modalPiramideContainer');
       if (currentModalProduct.topo || currentModalProduct.coracao || currentModalProduct.fundo) {
         piramideBox.classList.remove('hidden');
@@ -1144,11 +924,6 @@
     function renderAdminCoupons() {
       const container = document.getElementById('adminCouponsList');
       container.innerHTML = '';
-      if (coupons.length === 0) {
-        container.innerHTML = '<span class="text-[11px] text-neutral-400">Nenhum cupom ativo no momento.</span>';
-        return;
-      }
-
       coupons.forEach(c => {
         const badge = document.createElement('div');
         badge.className = "flex items-center gap-1.5 bg-white border border-brand-rose px-2.5 py-1 rounded-full text-xs";
@@ -1187,11 +962,7 @@
     async function deletarCupom(id) {
       if (confirm(`Remover este cupom?`)) {
         const numId = parseInt(id, 10);
-        if (!isNaN(numId)) {
-          await _supabase.from('cupons').delete().eq('id', numId);
-        } else {
-          await _supabase.from('cupons').delete().eq('code', id);
-        }
+        await _supabase.from('cupons').delete().eq('id', numId);
         carregarCupons();
       }
     }
@@ -1239,9 +1010,14 @@
       }
     }
 
-    // Salvar produto com Atualização Instantânea no Navegador
+    // SALVAR PRODUTO DIRETO NO SUPABASE
     async function salvarNovoProduto(e) {
       e.preventDefault();
+
+      if (!_supabase) {
+        alert("Erro: O Supabase não está conectado!");
+        return;
+      }
 
       const prices = {};
       const t1_n = document.getElementById('tamanhoNome1').value.trim();
@@ -1264,7 +1040,7 @@
       const imagemFinal = document.getElementById('admImg').value.trim() || "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop";
       
       const editIdRaw = document.getElementById('editingProductId').value.trim();
-      const editId = (editIdRaw && editIdRaw !== 'undefined' && !isNaN(Number(editIdRaw))) ? parseInt(editIdRaw, 10) : null;
+      const editId = (editIdRaw && !isNaN(Number(editIdRaw))) ? parseInt(editIdRaw, 10) : null;
 
       const dadosProduto = {
         name: document.getElementById('admName').value.trim(),
@@ -1279,60 +1055,39 @@
         fundo: document.getElementById('admFundo').value.trim()
       };
 
-      // 1. Atualiza imediatamente na memória da tela para você ver na hora!
-      if (editId) {
-        const idx = products.findIndex(p => String(p.id) === String(editId));
-        if (idx !== -1) {
-          products[idx] = { ...products[idx], ...dadosProduto };
-        }
-      } else {
-        const novoItem = { id: Date.now(), ...dadosProduto };
-        products.unshift(novoItem);
-      }
-
-      // Salva no cache do aparelho e redesenha a tela imediatamente
-      localStorage.setItem('prise_cached_products', JSON.stringify(products));
-      renderProducts();
-      renderAdminList();
-
       const btnSalvar = document.getElementById('btnSalvarProduto');
       btnSalvar.disabled = true;
-      btnSalvar.innerText = "Salvando na Nuvem...";
+      btnSalvar.innerText = "Gravando no Supabase...";
 
-      // 2. Sincroniza em segundo plano com o Supabase
-      if (_supabase) {
-        try {
-          if (editId) {
-            const { data, error } = await _supabase
-              .from('produtos')
-              .update(dadosProduto)
-              .eq('id', editId)
-              .select();
+      let responseError = null;
 
-            if (!error && (!data || data.length === 0)) {
-              // Se o registro não existia com esse ID no banco, cria lá
-              const { data: inserted } = await _supabase.from('produtos').insert([dadosProduto]).select();
-              if (inserted && inserted[0]) {
-                const idx = products.findIndex(p => String(p.id) === String(editId));
-                if (idx !== -1) products[idx].id = inserted[0].id;
-              }
-            }
-          } else {
-            const { data: inserted } = await _supabase.from('produtos').insert([dadosProduto]).select();
-            if (inserted && inserted[0]) {
-              products[0].id = inserted[0].id;
-            }
-          }
-          localStorage.setItem('prise_cached_products', JSON.stringify(products));
-        } catch (errSupabase) {
-          console.warn("Aviso ao salvar no Supabase:", errSupabase);
-        }
+      if (editId) {
+        // Atualiza no banco
+        const { error } = await _supabase
+          .from('produtos')
+          .update(dadosProduto)
+          .eq('id', editId);
+        responseError = error;
+      } else {
+        // Cria no banco
+        const { error } = await _supabase
+          .from('produtos')
+          .insert([dadosProduto]);
+        responseError = error;
       }
 
       btnSalvar.disabled = false;
       btnSalvar.innerText = "Salvar Produto na Loja";
-      alert("✓ Produto e imagem atualizados com sucesso!");
+
+      if (responseError) {
+        console.error("Falha ao salvar no Supabase:", responseError);
+        alert("❌ FALHA AO GRAVAR NA NUVEM:\n" + responseError.message + "\n\nCódigo: " + responseError.code);
+        return;
+      }
+
+      alert("✓ Salvo no Supabase com sucesso! Todos os aparelhos verão agora.");
       cancelarEdicao();
+      await carregarProdutos();
     }
 
     // Iniciar Edição
@@ -1340,11 +1095,9 @@
       const p = products.find(prod => String(prod.id) === String(id));
       if (!p) return;
 
-      const validId = (!isNaN(Number(p.id))) ? p.id : '';
-      document.getElementById('editingProductId').value = validId;
-
+      document.getElementById('editingProductId').value = p.id;
       document.getElementById('formProductTitle').innerText = `✏️ Editando: ${p.name}`;
-      document.getElementById('btnSalvarProduto').innerText = "Salvar Alterações no Produto";
+      document.getElementById('btnSalvarProduto').innerText = "Salvar Alterações no Supabase";
       document.getElementById('btnCancelEdit').classList.remove('hidden');
 
       document.getElementById('admName').value = p.name;
@@ -1412,25 +1165,19 @@
     }
 
     async function deletarProduto(id) {
-      if (confirm("Tem certeza que deseja apagar este produto da loja?")) {
-        // Remove na hora da tela
-        products = products.filter(p => String(p.id) !== String(id));
-        localStorage.setItem('prise_cached_products', JSON.stringify(products));
-        renderProducts();
-        renderAdminList();
-
-        // Remove do Supabase
+      if (confirm("Tem certeza que deseja apagar este produto do Supabase?")) {
         const numId = parseInt(id, 10);
-        if (_supabase && !isNaN(numId)) {
-          try {
-            await _supabase.from('produtos').delete().eq('id', numId);
-          } catch(e) {}
+        const { error } = await _supabase.from('produtos').delete().eq('id', numId);
+        if (error) {
+          alert("Erro ao excluir: " + error.message);
+          return;
         }
-        alert("✓ Produto removido!");
+        alert("✓ Produto removido da nuvem!");
+        await carregarProdutos();
       }
     }
 
-    // Inicialização Completa
+    // Inicialização
     carregarProdutos();
     carregarCupons();
     escutarMudancasEmTempoReal();
